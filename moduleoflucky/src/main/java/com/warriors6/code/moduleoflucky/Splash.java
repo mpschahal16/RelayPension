@@ -14,7 +14,7 @@ public class Splash extends AppCompatActivity {
         new Thread() {
             public void run() {
                 int waited = 0;
-                while (waited < 500) {
+                while (waited < 1500) {
                     try {
                         Thread.sleep(100);
                         waited += 100;
