@@ -4,11 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.warriors6.code.moduleoflucky.MainActivity">
+    tools:context="com.warriors6.code.moduleoflucky.Splash">
 
     <ImageView
+        android:id="@+id/img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/old-age-pension-scheme"
-        />
+        app:srcCompat="@drawable/ic_launcher_background"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
