@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Allowance</string>
+    <string name="log_in">Log In</string>
 </resources>
