@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Allowance.iml" filepath="$PROJECT_DIR$/Allowance.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mainmodule/Mainmodule.iml" filepath="$PROJECT_DIR$/mainmodule/Mainmodule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleofaishwarya/moduleofaishwarya.iml" filepath="$PROJECT_DIR$/moduleofaishwarya/moduleofaishwarya.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleofaman/moduleofaman.iml" filepath="$PROJECT_DIR$/moduleofaman/moduleofaman.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleofdishachauhan/moduleofdishachauhan.iml" filepath="$PROJECT_DIR$/moduleofdishachauhan/moduleofdishachauhan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleoflucky/moduleoflucky.iml" filepath="$PROJECT_DIR$/moduleoflucky/moduleoflucky.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moduleofmanpreet/moduleofmanpreet.iml" filepath="$PROJECT_DIR$/moduleofmanpreet/moduleofmanpreet.iml" />
+    </modules>
+  </component>
+</project>
