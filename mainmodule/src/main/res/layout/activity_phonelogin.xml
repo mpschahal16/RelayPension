@@ -13,25 +13,52 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
         app:srcCompat="@drawable/oie_png" />
 
+
     <EditText
-        android:id="@+id/phonelogin"
-        android:hint="@string/mobile_number"
+        android:id="@+id/phoneloginet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginimg"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="43dp"
+        android:layout_marginTop="45dp"
         android:ems="10"
-        android:inputType="phone" />
+        android:hint="@string/mobile_number"
+        android:inputType="phone"
+        android:textAlignment="center" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/sendotpbt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/phoneloginet"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/buttonshape"
-        android:layout_alignEnd="@+id/phonelogin"
-        android:layout_below="@+id/phonelogin"
-        android:text="Button" />
+        android:text="Send OTP" />
+
+    <EditText
+        android:id="@+id/otpet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/phoneloginet"
+        android:layout_below="@+id/sendotpbt"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="@string/enter_otp"
+        android:inputType="number"
+        android:maxLength="4"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/verifybt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/sendotpbt"
+        android:layout_below="@+id/otpet"
+        android:background="@drawable/buttonshape"
+        android:text="@string/verify" />
+
+
 </RelativeLayout>

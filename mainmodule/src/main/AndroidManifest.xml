@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.codewarriors.hackathone.relaypension.PhoneLogin"
-            android:label="@string/log_in"/>
+            android:label="@string/login"/>
     </application>
 
 </manifest>

@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Relay Pension</string>
-    <string name="log_in">Log In</string>
+    <string name="login">Sign In/Sign Up</string>
     <string name="send_otp">SEND OTP</string>
     <string name="mobile_number">MOBILE NUMBER</string>
+    <string name="verify">Verify</string>
+    <string name="enter_otp">Enter OTP</string>
 </resources>
