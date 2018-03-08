@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/windowbackgroundstatus"
+    tools:context="com.codewarriors.hackathone.relaypension.SignIn">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/loginimg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        app:srcCompat="@drawable/oie_png" />
+
+
+
+
+        <EditText
+            android:id="@+id/phoneloginet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/loginimg"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:ems="10"
+            android:hint="@string/mobile_number"
+            android:inputType="phone"
+            android:maxLength="10"
+            android:textAlignment="center">
+
+            <requestFocus></requestFocus>
+        </EditText>
+
+        <Button
+            android:id="@+id/sendotpbt"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:layout_width="260dp"
+            android:layout_height="45dp"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:layout_below="@+id/sendotperrorret"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/buttonshape"
+            android:text="@string/send_otp" />
+
+        <EditText
+            android:id="@+id/otpet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/phoneloginet"
+            android:layout_below="@+id/sendotpbt"
+            android:ems="10"
+            android:hint="@string/enter_otp"
+            android:inputType="number"
+            android:maxLength="4"
+            android:textAlignment="center">
+
+            <requestFocus></requestFocus>
+        </EditText>
+
+
+
+        <TextView
+            android:id="@+id/sendotperrorret"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phoneloginet"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/vrifyotpeterror"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:layout_below="@id/otpet"
+            android:textSize="12sp"/>
+
+        <Button
+            android:id="@+id/verifybt"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:layout_width="260dp"
+            android:layout_height="45dp"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/vrifyotpeterror"
+            android:background="@drawable/buttonshape"
+            android:text="@string/verify" />
+
+    </RelativeLayout>
+
+    </ScrollView>
+
+
+</android.support.design.widget.CoordinatorLayout>
