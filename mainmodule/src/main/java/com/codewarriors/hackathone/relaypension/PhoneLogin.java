@@ -1,4 +1,4 @@
-package com.codewarriors.hackathone.allowance;
+package com.codewarriors.hackathone.relaypension;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

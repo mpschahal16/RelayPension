@@ -1,4 +1,4 @@
-package com.codewarriors.hackathone.allowance;
+package com.codewarriors.hackathone.relaypension;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
