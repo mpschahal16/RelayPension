@@ -10,19 +10,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SignIn extends AppCompatActivity implements View.OnClickListener{
     EditText phonenoet,otpet;
     TextView errorinsend,errorinverify;
     Button sendotp,verify;
+    Timer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in);
         phonenoet=findViewById(R.id.phoneloginet);
-        otpet=findViewById(R.id.otpet);
-        sendotp=findViewById(R.id.sendotpbt);
+        otpet=findViewById(R.id.otpaadet);
+        sendotp=findViewById(R.id.sendaddotpbt);
         verify=findViewById(R.id.verifybt);
         errorinsend=findViewById(R.id.sendotperrorret);
         errorinverify=findViewById(R.id.vrifyotpeterror);
@@ -49,7 +51,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener{
         {
             sendotp.setVisibility(View.INVISIBLE);
             errorinsend.setVisibility(View.VISIBLE);
-            new Timer().execute();
+            timer=new Timer();
+            timer.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"params");
 
             otpet.setVisibility(View.VISIBLE);
             verify.setVisibility(View.VISIBLE);
@@ -71,6 +74,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener{
         {
 
             Intent it=new Intent(SignIn.this,Aadharverify.class);
+            timer.cancel(true);
             startActivity(it);
         }
 
@@ -81,7 +85,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener{
         int id=v.getId();
         switch (id)
         {
-            case R.id.sendotpbt:
+            case R.id.sendaddotpbt:
             {
                 sendotp();
                 break;
@@ -99,14 +103,14 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener{
     private class Timer extends AsyncTask<String, Integer, String> {
         @Override
         protected String doInBackground(String... params) {
-            int i=0;
-            while (i<60) {
+            int i=60;
+            while (i>0) {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                i=i+1;
+                i=i-1;
                 publishProgress(i);
             }
 
@@ -115,8 +119,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener{
         @Override
         protected void onProgressUpdate(Integer... values) {
             int x=values[0];
-            errorinsend.setText(String.valueOf(x+" sec"));
-            if(x==60)
+            errorinsend.setText(String.valueOf("Retry in "+x+" sec"));
+            if(x==1)
             {
                 sendotp.setVisibility(View.VISIBLE);
                 sendotp.setText(R.string.send_again);

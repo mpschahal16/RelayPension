@@ -21,8 +21,10 @@
         <activity
             android:name=".SignIn"
             android:label="@string/Sign_in" />
-        <activity android:name=".Aadharverify"
-            android:label="@string/aadharverification"/>
+        <activity
+            android:name=".Aadharverify"
+            android:label="@string/aadharverification" />
+        <activity android:name=".FIllform"></activity>
     </application>
 
 </manifest>

@@ -9,4 +9,8 @@
     <string name="invalid_mobile_no">Invalid Mobile Number</string>
     <string name="send_again">Send Again</string>
     <string name="invalid_otp">Invalid OTP</string>
+    <string name="aadhar_number">Enter Aadhar Number</string>
+    <string name="retry">Retry</string>
+    <string name="otp">OTP</string>
+    <string name="aadhar_numbertv">Aadhar Number</string>
 </resources>
