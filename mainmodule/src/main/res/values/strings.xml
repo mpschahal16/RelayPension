@@ -15,4 +15,9 @@
     <string name="aadhar_numbertv">Aadhar Number</string>
     <string name="fillform">"Info Needed"</string>
     <string name="selectage">Select Age</string>
+
+
+    <string name="enter_first_name">First Name</string>
+    <string name="enter_middle_name">Middle Name</string>
+    <string name="enter_last_name">Last Name</string>
 </resources>

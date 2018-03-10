@@ -14,7 +14,7 @@ public class FIllform extends AppCompatActivity {
         String adno=it.getExtras().getString("adharno",null);
         if(adno!=null)
         {
-            Toast.makeText(getApplicationContext(),adno,Toast.LENGTH_LONG).show();
+           seteverythingonlayout();
         }
         else
         {
@@ -22,6 +22,10 @@ public class FIllform extends AppCompatActivity {
         }
         setContentView(R.layout.activity_fillform);
     }
+
+    private void seteverythingonlayout() {
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
