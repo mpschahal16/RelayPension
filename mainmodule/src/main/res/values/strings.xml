@@ -14,4 +14,5 @@
     <string name="otp">OTP</string>
     <string name="aadhar_numbertv">Aadhar Number</string>
     <string name="fillform">"Info Needed"</string>
+    <string name="selectage">Select Age</string>
 </resources>
