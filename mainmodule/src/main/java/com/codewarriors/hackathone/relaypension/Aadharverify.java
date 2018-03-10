@@ -43,10 +43,6 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
 
         sendotp.setOnClickListener(this);
         verify.setOnClickListener(this);
-
-
-
-
     }
 
     @Override
