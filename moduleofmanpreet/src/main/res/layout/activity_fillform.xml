@@ -401,7 +401,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.50"
-                        android:text=" City :"
+                        android:text="City :"
                         android:textStyle="bold" />
 
                     <RelativeLayout
@@ -687,7 +687,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.50"
-                        android:text="Salery:"
+                        android:text="Salary:"
                         android:textStyle="bold" />
 
                     <RelativeLayout
