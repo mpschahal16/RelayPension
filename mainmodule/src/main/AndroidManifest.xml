@@ -24,7 +24,9 @@
         <activity
             android:name=".Aadharverify"
             android:label="@string/aadharverification" />
-        <activity android:name=".FIllform"></activity>
+        <activity
+            android:name=".FIllform"
+            android:label="@string/fillform" />
     </application>
 
 </manifest>

@@ -22,4 +22,9 @@ public class FIllform extends AppCompatActivity {
         }
         setContentView(R.layout.activity_fillform);
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
 }

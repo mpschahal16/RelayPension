@@ -13,4 +13,6 @@
     <color name="primaryLightColor">#60ad5e</color>
     <color name="primaryDarkColor">#005005</color>
     <color name="textColor">#ffffff</color>
+    <color name="errortext">#ff0000</color>
+    <color name="avtivitybackground">#ccff90</color>
 </resources>

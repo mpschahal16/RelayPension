@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryLightColor"
+    android:background="#ccff90"
     tools:context="com.codewarriors.hackathone.relaypension.SignIn">
 
     <ScrollView
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/phoneloginet"
             android:layout_centerHorizontal="true"
-            android:textColor="#ffffff"
+            android:textColor="@color/errortext"
             android:textSize="12sp" />
 
         <TextView
@@ -91,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:textColor="#ffffff"
+            android:textColor="@color/errortext"
             android:layout_below="@id/otpaadet"
             android:textSize="12sp"/>
 

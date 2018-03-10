@@ -13,4 +13,5 @@
     <string name="retry">Retry</string>
     <string name="otp">OTP</string>
     <string name="aadhar_numbertv">Aadhar Number</string>
+    <string name="fillform">"Info Needed"</string>
 </resources>
