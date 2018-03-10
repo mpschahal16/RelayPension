@@ -6,4 +6,11 @@
     <color name="windowbackground">#A67B4a</color>
     <color name="windowbackgroundstatus">#A67B5f</color>
     <color name="edittextcolor">#ffffff</color>
+
+
+
+    <color name="primaryColor">#2e7d32</color>
+    <color name="primaryLightColor">#60ad5e</color>
+    <color name="primaryDarkColor">#005005</color>
+    <color name="textColor">#ffffff</color>
 </resources>

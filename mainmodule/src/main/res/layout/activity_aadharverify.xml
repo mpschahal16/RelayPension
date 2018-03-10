@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/windowbackgroundstatus"
+    android:background="@color/primaryLightColor"
     tools:context="com.codewarriors.hackathone.relaypension.Aadharverify">
 
 
@@ -74,7 +74,8 @@
                     android:layout_alignEnd="@+id/aadharnoet"
                     android:layout_alignStart="@+id/sendaddotpbt"
                     android:layout_below="@+id/aadharnoet"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textColor="#ffffff" />
 
                 <TextView
                     android:id="@+id/otpaad"
@@ -109,7 +110,8 @@
                     android:layout_alignEnd="@+id/otpaadet"
                     android:layout_alignStart="@+id/sendaddotpbt"
                     android:layout_below="@+id/otpaadet"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textColor="#ffffff" />
 
 
                 <Button
