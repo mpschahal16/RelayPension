@@ -21,7 +21,9 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
 
-        SharedPreferences prefs = getSharedPreferences("codewarriors", MODE_PRIVATE);
+        startActivity(new Intent(Splash.this,Insertdatatostub.class));
+
+      /*  SharedPreferences prefs = getSharedPreferences("codewarriors", MODE_PRIVATE);
         String restoredText = prefs.getString("userid", null);
         if (restoredText != null) {
 
@@ -65,6 +67,7 @@ public class Splash extends AppCompatActivity {
                 }
             }.start();
         }
+        */
     }
 
 
@@ -74,7 +77,7 @@ public class Splash extends AppCompatActivity {
         {
             case "0":
             {
-                startActivity(new Intent(Splash.this,Aadharverify.class));
+                startActivity(new Intent(Splash.this,FIllform.class));
                 break;
             }
             case "1":
