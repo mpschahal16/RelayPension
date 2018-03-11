@@ -3,6 +3,7 @@ package com.codewarriors.hackathone.relaypension;
 
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -24,9 +25,13 @@ import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
 
@@ -39,11 +44,16 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     Button sendotp, verify;
     AwesomeValidation awesomeValidation;
 
+    ProgressDialog progressDialog;
     Timeraa timeraa;
+
+    DatabaseReference rootRef;
 
 
     //1 means 1st try for otp rest retry
     int retry=1;
+
+
 
 
     private String phoneVerificationId;
@@ -78,6 +88,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         awesomeValidation.addValidation(this, R.id.phoneloginet, "^[+]?[0-9]{10,13}$", R.string.invalid_mobile_no);
 
         fbAuth = FirebaseAuth.getInstance();
+        progressDialog=new ProgressDialog(this);
 
 
     }
@@ -117,12 +128,16 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                             TimeUnit.SECONDS,   // Unit of timeout
                             this,               // Activity (for callback binding)
                             verificationCallbacks);
+                    progressDialog.setMessage("Sending OTP To"+phoneNumber);
+                    progressDialog.show();
                     break;
 
                 }
                 case 2:
                 {
                     resendCode(phoneNumber);
+                    progressDialog.setMessage("Sending OTP To"+phoneNumber);
+                    progressDialog.show();
                     break;
                 }
             }
@@ -149,8 +164,10 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                             // Invalid request
                             Log.d("msg", "Invalid credential: "
                                     + e.getLocalizedMessage());
+                            progressDialog.dismiss();
                         } else if (e instanceof FirebaseTooManyRequestsException) {
                             // SMS quota exceeded
+                            progressDialog.dismiss();
                             Log.d("msg", "SMS Quota exceeded.");
                         }
                     }
@@ -163,6 +180,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                         resendToken = token;
                         timeraa=new Timeraa();
                         timeraa.execute();
+                        progressDialog.dismiss();
                         sendotp.setVisibility(View.INVISIBLE);
                         otpet.setVisibility(View.VISIBLE);
                         verify.setVisibility(View.VISIBLE);
@@ -189,8 +207,53 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        rootRef = FirebaseDatabase.getInstance().getReference("UserState/");
+                        String userid=task.getResult().getUser().getUid();
                         if (task.isSuccessful()) {
 
+                            boolean isNew = task.getResult().getAdditionalUserInfo().isNewUser();
+                            if(isNew) {
+
+                                rootRef.child(userid).setValue(0).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        startActivity(new Intent(SignIn.this,Aadharverify.class));
+                                    }
+                                });
+
+                            }
+
+                            else {
+                                rootRef.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        String s=dataSnapshot.getValue().toString();
+                                        switch (s)
+                                        {
+                                            case "0":
+                                            {
+                                                startActivity(new Intent(SignIn.this,Aadharverify.class));
+                                                break;
+                                            }
+                                            case "1":
+                                            {
+                                                Toast.makeText(getApplicationContext(),"gottostatus",Toast.LENGTH_LONG).show();
+                                                break;
+                                            }
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+                                        Toast.makeText(getApplicationContext(),"cancel",Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
+
+                            SharedPreferences.Editor editor = getSharedPreferences("codewarriors", MODE_PRIVATE).edit();
+                            editor.putString("userid", userid);
+                            editor.apply();
 
 
 
@@ -205,30 +268,6 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                     }
                 });
     }
-
-    private void startactivityaccoringly(String user) {
-        int c=getUptowhichActivity();
-        switch (c)
-        {
-            case 0:
-            {
-                //fill from start from aadhar verification
-
-            }
-            case 1:
-            {
-                //jump to status activity
-                break;
-            }
-        }
-
-    }
-
-    public int getUptowhichActivity() {
-
-       return 0;
-    }
-
 
     public void resendCode(String phoneNumber) {
 
