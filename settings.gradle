@@ -1,1 +1,1 @@
-include ':mainmodule', ':moduleoflucky', ':moduleofmanpreet', ':moduleofaishwarya', ':moduleofaman', ':moduleofdishachauhan', ':moduleofdishasharma'
+include ':mainmodule', ':moduleoflucky', ':moduleofmanpreet', ':moduleofaishwarya', ':moduleofaman', ':moduleofdishasharma'
