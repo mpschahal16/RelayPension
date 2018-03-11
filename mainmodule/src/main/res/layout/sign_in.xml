@@ -69,7 +69,7 @@
             android:ems="10"
             android:hint="@string/enter_otp"
             android:inputType="number"
-            android:maxLength="4"
+            android:maxLength="6"
             android:textAlignment="center">
 
             <requestFocus></requestFocus>
