@@ -69,12 +69,12 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in);
-        phonenoet = findViewById(R.id.phoneloginet);
-        otpet = findViewById(R.id.otpaadet);
+        phonenoet = findViewById(R.id.phoneloginet);//editText
+        otpet = findViewById(R.id.otpaadet);//editText
         sendotp = findViewById(R.id.sendaddotpbt);
         verify = findViewById(R.id.verifybt);
-        errorinsend = findViewById(R.id.sendotperrorret);
-        errorinverify = findViewById(R.id.vrifyotpeterror);
+        errorinsend = findViewById(R.id.sendotperrorret);//tv
+        errorinverify = findViewById(R.id.vrifyotpeterror);//tv
         otpet.setVisibility(View.INVISIBLE);
         verify.setVisibility(View.INVISIBLE);
         sendotp.setOnClickListener(this);
@@ -89,8 +89,6 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
         fbAuth = FirebaseAuth.getInstance();
         progressDialog=new ProgressDialog(this);
-
-
     }
 
     @Override

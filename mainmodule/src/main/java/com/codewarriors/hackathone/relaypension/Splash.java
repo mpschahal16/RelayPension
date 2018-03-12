@@ -41,15 +41,11 @@ public class Splash extends AppCompatActivity {
 
                 }
             });
-
-
         }
 
 
 
         else {
-
-
             new Thread() {
                 public void run() {
                     int waited = 0;
@@ -57,7 +53,8 @@ public class Splash extends AppCompatActivity {
                         try {
                             Thread.sleep(100);
                             waited += 100;
-                        } catch (InterruptedException e) {
+                        }
+                         catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                     }

@@ -39,17 +39,27 @@ public class Insertdatatostub extends AppCompatActivity {
         agespinner=findViewById(R.id.spinnerage);
         submit=findViewById(R.id.submitbt);
 
-
         awesomeValidation=new AwesomeValidation(ValidationStyle.COLORATION);
 
-
-
+        awesomeValidation.addValidation(this,R.id.first_nameet,"[a-z A-Z]*",);
+        awesomeValidation.addValidation(this,R.id.dateofbirthet,"^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$.",);
+        awesomeValidation.addValidation(this,R.id.phoneloginet,"d{10}",);
+        awesomeValidation.addValidation(this,R.id.aadharnoet,"d{12}",);
+        awesomeValidation.addValidation(this,R.id.housenoet,"[a-z A-Z 0_9]*",);
+        awesomeValidation.addValidation(this,R.id.streetet,"[a-z A-Z]*",);
+        awesomeValidation.addValidation(this,R.id.postalcodeet,"d{6}",);
+        awesomeValidation.addValidation(this,R.id.cityet,"[a-z A-Z]*",);
 
 
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (awesomeValidation.validate())
+                {
+
+                    //code here
+                }
 
             }
         });
