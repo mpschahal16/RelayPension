@@ -188,7 +188,7 @@
                                 android:text="Female" />
 
                             <RadioButton
-                                android:id="@+id/transgender"
+                                android:id="@+id/radiotransgender"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Transgender" />
@@ -276,11 +276,12 @@
                         android:layout_weight=".75">
 
                         <EditText
-                            android:id="@+id/adharnoet"
+                            android:id="@+id/aadhaarnoet"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight=".75"
                             android:ems="10"
+                            android:maxLength="12"
                             android:inputType="number" />
 
                     </RelativeLayout>

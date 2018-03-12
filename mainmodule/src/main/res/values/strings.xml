@@ -20,4 +20,19 @@
     <string name="enter_first_name">First Name</string>
     <string name="enter_middle_name">Middle Name</string>
     <string name="enter_last_name">Last Name</string>
+
+
+
+
+
+
+
+    <!--string for sub-->
+    <string name="invalid_name">Invalid Name</string>
+    <string name="invalid_dob">Invalid D.O.B. required(dd/mm/yy)</string>
+    <string name="invalid_phoneno">Please Enter Valid Phone No.</string>
+    <string name="invalid_aadhaar">Invalid Aadhaar No.</string>
+    <string name="invalid_hoseno">Invalid Entry</string>
+    <string name="invalid_postal">Invalid Postal Code</string>
+    <string name="invalid_city">Invalid City Name</string>
 </resources>
