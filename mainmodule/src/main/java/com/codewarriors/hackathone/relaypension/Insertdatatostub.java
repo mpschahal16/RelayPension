@@ -3,6 +3,7 @@ package com.codewarriors.hackathone.relaypension;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+
+import java.util.regex.Pattern;
 
 public class Insertdatatostub extends AppCompatActivity {
 
@@ -51,20 +54,20 @@ public class Insertdatatostub extends AppCompatActivity {
         awesomeValidation=new AwesomeValidation(ValidationStyle.COLORATION);
 
 
-        awesomeValidation.addValidation(this,R.id.first_nameet, "^[a-z]{1,10}$",R.string.invalid_name);
-        awesomeValidation.addValidation(this,R.id.middle_nameet,"^[a-z]$",R.string.invalid_name);
-        awesomeValidation.addValidation(this,R.id.last_nameet,"^[a-z']{2,10}$",R.string.invalid_name);
-        awesomeValidation.addValidation(this,R.id.dateofbirthet,"(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\\\d\\\\d)",R.string.invalid_dob);
-        awesomeValidation.addValidation(this,R.id.phonenoet,"[0-9]{10}",R.string.invalid_mobile_no);
+        awesomeValidation.addValidation(this,R.id.first_nameet, "[a-z A-z]*",R.string.invalid_name);
+        awesomeValidation.addValidation(this,R.id.middle_nameet,"^[a-z A-Z]*",R.string.invalid_name);
+        awesomeValidation.addValidation(this,R.id.last_nameet,"[a-z A-Z]*",R.string.invalid_name);
+        awesomeValidation.addValidation(this,R.id.dateofbirthet, "([0-9]{2})/([0-9]{2})/([0-9]{4})",R.string.invalid_dob);
+        awesomeValidation.addValidation(this,R.id.phonenoet,Patterns.PHONE,R.string.invalid_mobile_no);
         //12 digit aadhaar
-        awesomeValidation.addValidation(this,R.id.aadharnoet,"[0-9]{12}",R.string.invalid_aadhaar);
+        awesomeValidation.addValidation(this,R.id.aadharnoet,"\\d{12}",R.string.invalid_aadhaar);
         //here house no means house no or buildin For Ex 2/1304 or Sai complex
-        awesomeValidation.addValidation(this,R.id.housenoet,"[a-z A-Z 0_9]*",R.string.invalid_hoseno);
+        awesomeValidation.addValidation(this,R.id.housenoet,"[a-z A-Z 0-9]*",R.string.invalid_hoseno);
         //street for ex Buddhi Vihar
         awesomeValidation.addValidation(this,R.id.streetet,"[a-z A-Z]*",R.string.invalid_hoseno);
         //any 6 digit no
-        awesomeValidation.addValidation(this,R.id.postalcodeet,"[0-9]{6}",R.string.invalid_postal);
-        awesomeValidation.addValidation(this,R.id.cityet,"[a-z A-Z]",R.string.invalid_city);
+        awesomeValidation.addValidation(this,R.id.postalcodeet,"//d{6}",R.string.invalid_postal);
+        awesomeValidation.addValidation(this,R.id.cityet,"[a-z A-Z]*",R.string.invalid_city);
 
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

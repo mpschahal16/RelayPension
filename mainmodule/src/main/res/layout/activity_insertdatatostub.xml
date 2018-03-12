@@ -11,13 +11,15 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fadeScrollbars="true">
+        android:fadeScrollbars="true"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:padding="15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -160,8 +162,8 @@
                         android:id="@+id/textVie8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.50"
                         android:layout_gravity="center"
+                        android:layout_weight="1.50"
                         android:text="Gender :"
                         android:textStyle="bold" />
 
@@ -454,9 +456,9 @@
 
 
             <LinearLayout
-                               android:layout_width="match_parent"
-                               android:layout_height="match_parent"
-                               android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/submitbt"
@@ -464,7 +466,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Submit" />
-                           </LinearLayout>
+            </LinearLayout>
 
 
         </LinearLayout>
