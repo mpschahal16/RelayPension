@@ -91,12 +91,12 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         awesomeValidation.addValidation(this, R.id.phoneloginet, "^[+]?[0-9]{10,13}$", R.string.invalid_mobile_no);
 
         fbAuth = FirebaseAuth.getInstance();
-        //added code
-        //fbUser = FirebaseAuth.getInstance().getCurrentUser();
-       // if (fbUser != null) {
-       //     startActivity(new Intent(this,Splash.class));
+        /*added code
+        fbUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (fbUser != null) {
+            startActivity(new Intent(this,Splash.class));
 
-       // }
+        }*/
         progressDialog=new ProgressDialog(this);
     }
 
