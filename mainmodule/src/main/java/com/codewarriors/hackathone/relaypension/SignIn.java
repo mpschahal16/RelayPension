@@ -25,6 +25,7 @@ import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DataSnapshot;
@@ -62,6 +63,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     private PhoneAuthProvider.ForceResendingToken resendToken;
 
     private FirebaseAuth fbAuth;
+    //added code
+    FirebaseUser fbUser;
 
 
 
@@ -88,6 +91,12 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         awesomeValidation.addValidation(this, R.id.phoneloginet, "^[+]?[0-9]{10,13}$", R.string.invalid_mobile_no);
 
         fbAuth = FirebaseAuth.getInstance();
+        //added code
+        //fbUser = FirebaseAuth.getInstance().getCurrentUser();
+       // if (fbUser != null) {
+       //     startActivity(new Intent(this,Splash.class));
+
+       // }
         progressDialog=new ProgressDialog(this);
     }
 
