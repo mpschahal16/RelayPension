@@ -62,7 +62,7 @@ public class Insertdatatostub extends AppCompatActivity {
         //12 digit aadhaar
         awesomeValidation.addValidation(this,R.id.aadharnoet,"\\d{12}",R.string.invalid_aadhaar);
         //here house no means house no or buildin For Ex 2/1304 or Sai complex
-        awesomeValidation.addValidation(this,R.id.housenoet,"[a-z A-Z 0-9 / - ,]*",R.string.invalid_hoseno);
+        awesomeValidation.addValidation(this,R.id.housenoet,"[a-z A-Z 0-9 / - , .]*",R.string.invalid_hoseno);
         //street for ex Buddhi Vihar
         awesomeValidation.addValidation(this,R.id.streetet,"[a-z A-Z , /]*",R.string.invalid_hoseno);
         //any 6 digit no
