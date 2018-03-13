@@ -28,7 +28,6 @@
 
 
 
-
         <EditText
             android:id="@+id/phoneloginet"
             android:layout_width="wrap_content"
@@ -74,7 +73,6 @@
 
             <requestFocus></requestFocus>
         </EditText>
-
 
 
         <TextView

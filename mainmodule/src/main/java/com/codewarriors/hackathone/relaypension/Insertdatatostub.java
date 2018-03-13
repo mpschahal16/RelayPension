@@ -37,6 +37,7 @@ public class Insertdatatostub extends AppCompatActivity {
 
     String gender;
 
+
     AwesomeValidation awesomeValidation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +120,11 @@ public class Insertdatatostub extends AppCompatActivity {
                 //second && case STATE IS SELECTED OR NOT
                 //3RD AGE IS SELECTED OR NOT
 
-              if (awesomeValidation.validate()&&radioGroupflag&&
+
+                FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+
+
+            if (awesomeValidation.validate()&&radioGroupflag&&
                       !statespinner.getSelectedItem().toString().equals("")&&
                       !agespinner.getSelectedItem().toString().equals(""))
               {
@@ -152,6 +157,22 @@ public class Insertdatatostub extends AppCompatActivity {
                       @Override
                       public void onComplete(@NonNull Task<Void> task) {
                           if (task.isSuccessful()) {
+                              firstnameet.getText().clear();
+                              middlenameet.getText().clear();
+                              lastnameet.getText().clear();
+                              dobet.getText().clear();
+                              phonenoet.getText().clear();
+                              aadharnoet.getText().clear();
+                              hodenoet.getText().clear();
+                              localityet.getText().clear();
+                              posstalcodeet.getText().clear();
+                              cityet.getText().clear();
+                              radioGroup.clearCheck();
+                              statespinner.setSelection(0);
+                              agespinner.setSelection(0);
+
+
+
                               Toast.makeText(getApplicationContext(), "Sucess", Toast.LENGTH_LONG).show();
                           }
                           else
