@@ -25,7 +25,7 @@
 
 
                 <EditText
-                    android:id="@+id/aadharnoet"
+                    android:id="@+id/aadharnoetinverify"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/aano"
@@ -72,9 +72,9 @@
                     android:id="@+id/aadharerrortv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/aadharnoet"
+                    android:layout_alignEnd="@+id/aadharnoetinverify"
                     android:layout_alignStart="@+id/sendaddotpbt"
-                    android:layout_below="@+id/aadharnoet"
+                    android:layout_below="@+id/aadharnoetinverify"
                     android:textAlignment="center"
                     android:textColor="@color/errortext" />
 

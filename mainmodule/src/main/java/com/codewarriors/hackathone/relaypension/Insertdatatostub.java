@@ -119,11 +119,6 @@ public class Insertdatatostub extends AppCompatActivity {
                 //radiogroupflag vaue is to check weather user touched it or not(touched then ragiogroupflag=true else flase)
                 //second && case STATE IS SELECTED OR NOT
                 //3RD AGE IS SELECTED OR NOT
-
-
-                FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
-
-
             if (awesomeValidation.validate()&&radioGroupflag&&
                       !statespinner.getSelectedItem().toString().equals("")&&
                       !agespinner.getSelectedItem().toString().equals(""))

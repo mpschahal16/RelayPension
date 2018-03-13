@@ -10,6 +10,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Aadharverify extends AppCompatActivity implements View.OnClickListener {
     EditText adharno,otpno;
@@ -18,6 +27,10 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
 
     String adharnotonextactivity;
 
+    AwesomeValidation awesomeValidation;
+
+    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("stubofuid/");
+
     Timeraa timeraa;
 
     @Override
@@ -25,7 +38,7 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aadharverify);
 
-        adharno=findViewById(R.id.aadharnoet);
+        adharno=findViewById(R.id.aadharnoetinverify);
         otpno=findViewById(R.id.otpaadet);
         errorsend=findViewById(R.id.aadharerrortv);
         errorotp=findViewById(R.id.verifotptverror);
@@ -43,6 +56,10 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
 
         sendotp.setOnClickListener(this);
         verify.setOnClickListener(this);
+
+
+        awesomeValidation=new AwesomeValidation(ValidationStyle.COLORATION);
+        awesomeValidation.addValidation(this,R.id.aadharnoetinverify,"\\d{12}",R.string.invalid_aadhaar);
     }
 
     @Override
@@ -92,25 +109,33 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
     private void sendotptoaddharinno() {
 
         String st=adharno.getText().toString().trim();
-        if(TextUtils.isEmpty(st)||st.length()<12)
+        if(awesomeValidation.validate())
         {
-
-            errorsend.setVisibility(View.VISIBLE);
-            errorsend.setText(R.string.invalid_mobile_no);
-
-        }
-        else
-        {
-            sendotp.setVisibility(View.INVISIBLE);
-            errorsend.setVisibility(View.VISIBLE);
             adharnotonextactivity=st;
-            timeraa=new Timeraa();
-            timeraa.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"params");
+            DatabaseReference mr=mDatabase.child(adharnotonextactivity);
+            mr.child("phoneNo").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.exists()) {
+                        String userpno = dataSnapshot.getValue().toString();
+                        sendOTPtoPhoneNO(userpno);
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(),"Aadhar Does Not exsist in DB",Toast.LENGTH_LONG).show();
+                    }
+                }
 
-            verify.setVisibility(View.VISIBLE);
-            otphead.setVisibility(View.VISIBLE);
-            otpno.setVisibility(View.VISIBLE);
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Toast.makeText(getApplicationContext(),"Check Network/Db error",Toast.LENGTH_LONG).show();
+
+                }
+            });
         }
+    }
+
+    private void sendOTPtoPhoneNO(String userpno) {
     }
 
     @SuppressLint("StaticFieldLeak")
