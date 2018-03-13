@@ -17,6 +17,7 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.codewarriors.hackathone.relaypension.customvariablesforparsing.StubAadhaarCustomVAR;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -170,10 +171,15 @@ public class Insertdatatostub extends AppCompatActivity {
 
                               Toast.makeText(getApplicationContext(), "Sucess", Toast.LENGTH_LONG).show();
                           }
-                          else
+/*                          else
                           {
-                              Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_LONG).show();
-                          }
+                             Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_LONG).show();
+                          }*/
+                      }
+                  }).addOnFailureListener(new OnFailureListener() {
+                      @Override
+                      public void onFailure(@NonNull Exception e) {
+                          Toast.makeText(getApplicationContext(), "Error: "+e, Toast.LENGTH_LONG).show();
                       }
                   });
 
