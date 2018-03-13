@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="states">
+        <item></item>
         <item>Andaman and Nicobar Islands</item>
         <item>Andhra Pradesh</item>
         <item>Arunachal Pradesh</item>
