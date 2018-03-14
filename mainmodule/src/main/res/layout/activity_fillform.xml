@@ -34,14 +34,14 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/picimageview"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_gravity="center"
                     app:srcCompat="@drawable/picicon" />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/selectdpbt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -67,13 +67,14 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/editText2"
+                        android:id="@+id/first_nameetfillform"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight=".75"
                         android:ems="10"
-                        android:inputType="textPersonName"
-                        android:hint="@string/enter_first_name"/>
+                        android:hint="@string/enter_first_name"
+                        android:editable="false"
+                        android:inputType="none" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -90,13 +91,14 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/editText3"
+                        android:id="@+id/middle_nameetfillform"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight=".75"
                         android:ems="10"
-                        android:inputType="textPersonName"
-                        android:hint="@string/enter_middle_name" />
+                        android:hint="@string/enter_middle_name"
+                        android:editable="false"
+                        android:inputType="none" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -113,13 +115,14 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/editText4"
+                        android:id="@+id/last_nameetfillform"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight=".75"
                         android:ems="10"
-                        android:inputType="textPersonName"
-                        android:hint="@string/enter_last_name" />
+                        android:hint="@string/enter_last_name"
+                        android:editable="false"
+                        android:inputType="none"  />
                 </LinearLayout>
 
                 <LinearLayout
@@ -141,7 +144,7 @@
                         android:layout_weight=".75">
 
                         <Spinner
-                            android:id="@+id/spinner"
+                            android:id="@+id/agespinnerfillform"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:entries="@array/age"
@@ -171,20 +174,24 @@
                         android:layout_weight=".75">
 
                         <RadioGroup
+                            android:id="@+id/genderrgfillform"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
 
                             <RadioButton
+                                android:id="@+id/malerbfillform"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Male" />
 
                             <RadioButton
+                                android:id="@+id/femalerbfillform"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Female" />
 
                             <RadioButton
+                                android:id="@+id/transgenderrbfillform"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Transgender" />
@@ -212,11 +219,12 @@
                         android:layout_weight=".75">
 
                         <EditText
-                            android:id="@+id/editText6"
+                            android:id="@+id/dateofbirth_fillform"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
-                            android:inputType="date" />
+                            android:editable="false"
+                            android:inputType="none" />
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -242,11 +250,12 @@
 
 
                         <EditText
-                            android:id="@+id/editText"
+                            android:id="@+id/phonenoetfillform"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
-                            android:inputType="number"
+                            android:editable="false"
+                            android:inputType="none"
                             android:maxLength="10" />
                     </RelativeLayout>
 
@@ -272,12 +281,13 @@
                         android:layout_weight=".75">
 
                         <EditText
-                            android:id="@+id/editText5"
+                            android:id="@+id/aadharnoetfillform"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight=".75"
                             android:ems="10"
-                            android:inputType="number" />
+                            android:editable="false"
+                            android:inputType="none" />
 
                     </RelativeLayout>
 
@@ -327,12 +337,13 @@
                         android:layout_weight=".75">
 
                         <EditText
-                            android:id="@+id/eitText8"
+                            android:id="@+id/houseno_etfillfrom"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:ems="10"
-                            android:inputType="textPostalAddress" />
+                            android:editable="false"
+                            android:inputType="none" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -355,11 +366,12 @@
                         android:layout_weight=".75">
 
                         <EditText
-                            android:id="@+id/edtText7"
+                            android:id="@+id/street_etfillform"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
-                            android:inputType="textPostalAddress" />
+                            android:editable="false"
+                            android:inputType="none" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -382,11 +394,12 @@
                         android:layout_weight=".75">
 
                         <EditText
-                            android:id="@+id/editext12"
+                            android:id="@+id/postalcodeetfillform"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
-                            android:inputType="number" />
+                            android:editable="false"
+                            android:inputType="none" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -410,11 +423,12 @@
                         android:layout_weight=".75">
 
                         <EditText
-                            android:id="@+id/ediext10"
+                            android:id="@+id/cityetfillform"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
-                            android:inputType="textPostalAddress" />
+                            android:editable="false"
+                            android:inputType="none"  />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -437,7 +451,7 @@
                         android:layout_weight=".75">
 
                         <Spinner
-                            android:id="@+id/spinner2"
+                            android:id="@+id/statespinnerfillform"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:entries="@array/states" />

@@ -113,7 +113,10 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
         {
             adharnotonextactivity=st;
             DatabaseReference mr=mDatabase.child(adharnotonextactivity);
-            mr.child("phoneNo").addListenerForSingleValueEvent(new ValueEventListener() {
+
+            //PRESENTLY WE ARE EXTRACTING AADHAR NO FROM AADHAR NO AND SENDING IT TO FORM FILL ACTIVITY
+            //BUT WE NEED TO FETCH PHONE NO ATTACHED TO THAT AADHAAR AND VERIFY THAT PHONE NO WITH OTP AND THEN SEND THAT AADHAR NO TO NEXT ACTIVITY
+            mr.child("aadharNo").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if(dataSnapshot.exists()) {
@@ -136,6 +139,9 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
     }
 
     private void sendOTPtoPhoneNO(String userpno) {
+        Intent intent=new Intent(Aadharverify.this,FIllform.class);
+        intent.putExtra("phoneno",userpno);
+        startActivity(intent);
     }
 
     @SuppressLint("StaticFieldLeak")

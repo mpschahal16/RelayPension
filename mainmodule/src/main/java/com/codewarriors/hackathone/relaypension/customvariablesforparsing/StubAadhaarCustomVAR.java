@@ -5,77 +5,60 @@ package com.codewarriors.hackathone.relaypension.customvariablesforparsing;
  */
 
 public class StubAadhaarCustomVAR {
-    private String FirstName,MiddleName,LastName,age,Gender,Dateofbirth,PhoneNo,AadharNo,
-    HoseNo1,StreetOrArea,Postalcode,City,State;
+    private String firstName,middleName,lastName,age,gender,dateofbirth,phoneNo,aadharNo,
+    hoseno1,streetorarea,postalcode,city,state;
 
     public StubAadhaarCustomVAR() {
     }
 
     public StubAadhaarCustomVAR(String firstName, String middleName, String lastName,String age, String gender, String dateofbirth, String phoneNo, String aadharNo, String hoseNo1, String streetOrArea, String postalcode, String city, String state) {
-        this.FirstName = firstName;
-        this.MiddleName = middleName;
-        this.LastName = lastName;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
         this.age=age;
-        this.Gender = gender;
-        this.Dateofbirth = dateofbirth;
-        this.PhoneNo = phoneNo;
-        this.AadharNo = aadharNo;
-        this.HoseNo1 = hoseNo1;
-        this.StreetOrArea = streetOrArea;
-        this.Postalcode = postalcode;
-        this.City = city;
-        this.State = state;
+        this.gender = gender;
+        this.dateofbirth = dateofbirth;
+        this.phoneNo = phoneNo;
+        this.aadharNo = aadharNo;
+        this.hoseno1 = hoseNo1;
+        this.streetorarea = streetOrArea;
+        this.postalcode = postalcode;
+        this.city = city;
+        this.state = state;
     }
+    public String getFirstName() {return firstName;}
 
-    public String getFirstName() {
-        return FirstName;
-    }
+    public String getMiddleName() {return middleName;}
 
-    public String getAge() {
-        return age;
-    }
+    public String getLastName() {return lastName;}
 
-    public String getMiddleName() {
-        return MiddleName;
-    }
+    public String getAge() {return age;}
 
-    public String getLastName() {
-        return LastName;
-    }
+    public String getGender() {return gender;}
 
-    public String getGender() {
-        return Gender;
-    }
+    public String getDateofbirth() {return dateofbirth;}
 
-    public String getDateofbirth() {
-        return Dateofbirth;
-    }
+    public String getPhoneNo() {return phoneNo;}
 
-    public String getPhoneNo() {
-        return PhoneNo;
-    }
+    public String getAadharNo() {return aadharNo;}
 
-    public String getAadharNo() {
-        return AadharNo;
-    }
 
-    public String getHoseNo1() {
-        return HoseNo1;
-    }
+    public String getHoseno1() {return hoseno1;}
 
-    public String getStreetOrArea() {
-        return StreetOrArea;
+    public String getStreetorarea() {
+        return streetorarea;
     }
 
     public String getPostalcode() {
-        return Postalcode;
+        return postalcode;
     }
 
     public String getCity() {
-        return City;
+        return city;
     }
 
     public String getState() {
-        return State;
+        return state;
     }
+
 }

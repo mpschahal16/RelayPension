@@ -32,8 +32,14 @@ public class Splash extends AppCompatActivity {
             rootRef.child(restoredText).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    String s=dataSnapshot.getValue().toString();
-                    openactivity(s);
+                    if(dataSnapshot.exists()) {
+                        String s = dataSnapshot.getValue().toString();
+                        openactivity(s);
+                    }
+                    else
+                    {
+                        Log.d("error in splash","datasnapshot emty");
+                    }
                 }
 
                 @Override
