@@ -1,65 +1,80 @@
 package com.codewarriors.hackathone.relaypension;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
+import android.content.DialogInterface;
+import android.hardware.ConsumerIrManager;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.codewarriors.hackathone.relaypension.customvariablesforparsing.ConstituencyHelperClass;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-public class Aadharverify extends AppCompatActivity implements View.OnClickListener {
-    EditText adharno,otpno;
-    TextView errorsend,errorotp,otphead;
-    Button sendotp,verify;
+import java.util.ArrayList;
 
-    String adharnotonextactivity;
+public class Aadharverify extends AppCompatActivity implements View.OnClickListener,DialogInterface.OnClickListener {
+   EditText aadharnoet,consituencyet,anualfamilyincomeet,otpaadharverifyet;
 
-    AwesomeValidation awesomeValidation;
+   ArrayList<String> listofconsituency;
+   ArrayList<Integer> listofmaxlimitinconsituency;
 
+
+   TextInputLayout textInputLayout;
+
+   AwesomeValidation awesomeValidation,otp;
+
+   Button sendotptophonebt,verifyotpbt;
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("stubofuid/");
 
-    Timeraa timeraa;
+    //Timeraa timeraa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aadharverify);
 
-        adharno=findViewById(R.id.aadharnoetinverify);
-        otpno=findViewById(R.id.otpaadet);
-        errorsend=findViewById(R.id.aadharerrortv);
-        errorotp=findViewById(R.id.verifotptverror);
-        sendotp=findViewById(R.id.sendaddotpbt);
-        verify=findViewById(R.id.verifyaadotpbt);
+        aadharnoet=findViewById(R.id.aadharnoetinverify);
+        consituencyet=findViewById(R.id.constituebcyaadharveriet);
+        anualfamilyincomeet=findViewById(R.id.anualincomeaadharveri);
+        otpaadharverifyet=findViewById(R.id.otpaadverifyet);
+        textInputLayout=findViewById(R.id.forthmaterial);
 
-        otphead=findViewById(R.id.otpaad);
 
-        errorsend.setVisibility(View.INVISIBLE);
-        errorotp.setVisibility(View.INVISIBLE);
-        verify.setVisibility(View.INVISIBLE);
-        otphead.setVisibility(View.VISIBLE);
-        otpno.setVisibility(View.INVISIBLE);
-        otphead.setVisibility(View.INVISIBLE);
 
-        sendotp.setOnClickListener(this);
-        verify.setOnClickListener(this);
 
+
+
+        sendotptophonebt=findViewById(R.id.sendaddotpbt);
+        verifyotpbt=findViewById(R.id.verifyaadotpbt);
+
+        ConstituencyHelperClass c=new ConstituencyHelperClass();
+        listofconsituency=c.getConstituency();
+        listofmaxlimitinconsituency=c.getConstituencylimit();
+
+
+
+        otpaadharverifyet.setVisibility(View.INVISIBLE);
+        verifyotpbt.setVisibility(View.INVISIBLE);
+        textInputLayout.setVisibility(View.INVISIBLE);
+        sendotptophonebt.setOnClickListener(this);
+        verifyotpbt.setOnClickListener(this);
 
         awesomeValidation=new AwesomeValidation(ValidationStyle.COLORATION);
+        otp=new AwesomeValidation(ValidationStyle.COLORATION);
+
+
         awesomeValidation.addValidation(this,R.id.aadharnoetinverify,"\\d{12}",R.string.invalid_aadhaar);
+        awesomeValidation.addValidation(this,R.id.constituebcyaadharveriet, "[a-z A-Z][a-z A-z]*",R.string.invalid_name);
+        awesomeValidation.addValidation(this,R.id.anualincomeaadharveri, "[0-9][0-9]*",R.string.invalid_name);
+
+        awesomeValidation.addValidation(this,R.id.verifyaadotpbt,"\\d{4}",R.string.invalid_otp);
     }
 
     @Override
@@ -74,19 +89,52 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
         {
             case R.id.sendaddotpbt:
             {
-                sendotptoaddharinno();
+                if(awesomeValidation.validate())
+                {
+                    String constituency=consituencyet.getText().toString().toUpperCase();
+                    int familysalery=Integer.parseInt(anualfamilyincomeet.getText().toString());
+                    if(listofconsituency.contains(constituency)&&familysalery<=100000)
+                    {
+
+                        Toast.makeText(getApplicationContext(),"Sucess",Toast.LENGTH_LONG).show();
+
+                    }
+                    else
+                    {
+
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+                        alertDialogBuilder.setPositiveButton("xxxxxxxxxxx",this)
+                                .setNegativeButton("Cancle", this)
+                                .setCancelable(true)
+                                .setIcon(android.R.drawable.ic_dialog_info)
+                                .setMessage("Message");
+
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+
+                        alertDialog.show();
+
+
+                    }
+                }
+               // sendotptoaddharinno();
                 break;
             }
             case R.id.verifyaadotpbt:
             {
-                verifyaddinno();
+              //  verifyaddinno();
                 break;
             }
         }
 
     }
 
-    private void verifyaddinno() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+
+    }
+
+   /* private void verifyaddinno() {
 
         String st=otpno.getText().toString().trim();
         if(TextUtils.isEmpty(st))
@@ -104,9 +152,9 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
             timeraa.cancel(true);
             startActivity(it);
         }
-    }
+    }*/
 
-    private void sendotptoaddharinno() {
+  /*  private void sendotptoaddharinno() {
 
         String st=adharno.getText().toString().trim();
         if(awesomeValidation.validate())
@@ -176,5 +224,5 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
             }
 
         }
-    }
+    }*/
 }

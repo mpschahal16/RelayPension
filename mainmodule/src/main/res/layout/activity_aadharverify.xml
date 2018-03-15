@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#ccff90"
     tools:context="com.codewarriors.hackathone.relaypension.Aadharverify">
 
@@ -17,109 +18,119 @@
             android:layout_height="match_parent">
 
             <RelativeLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="0dp">
+                android:layout_weight="1"
+                android:paddingTop="50dp">
 
-
-                <EditText
-                    android:id="@+id/aadharnoetinverify"
-                    android:layout_width="wrap_content"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/aadharnoetinverifylayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/aano"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="22dp"
-                    android:ems="10"
-                    android:hint="@string/aadhar_number"
-                    android:inputType="phone"
-                    android:maxLength="12"
-                    android:textAlignment="center">
+                    app:hintTextAppearance="@style/TextInputLayoutHintText">
 
-                    <requestFocus></requestFocus>
-                </EditText>
+                    <EditText
+                        android:id="@+id/aadharnoetinverify"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/aadhar_numbertv"
+                        android:inputType="number"
+                        android:layout_gravity="center"
+                        android:maxLength="12"
+                        android:textAlignment="center">
+
+                        <requestFocus></requestFocus>
+                    </EditText>
 
 
-                <TextView
-                    android:id="@+id/aano"
-                    android:layout_width="wrap_content"
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/secondmateril"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
+                    android:layout_below="@id/aadharnoetinverifylayout"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="33dp"
-                    android:text="@string/aadhar_numbertv"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    app:hintTextAppearance="@style/TextInputLayoutHintText">
+
+                    <EditText
+                        android:id="@+id/constituebcyaadharveriet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="Constituency"
+                        android:inputType="textCapCharacters"/>
+
+                </android.support.design.widget.TextInputLayout>
 
 
-                <Button
-                    android:id="@+id/sendaddotpbt"
-                    android:layout_width="150dp"
-                    android:layout_height="45dp"
-                    android:layout_below="@+id/aadharerrortv"
-                    android:layout_toEndOf="@+id/otpaad"
-                    android:background="@drawable/buttonshape"
-                    android:shadowColor="#A8A8A8"
-                    android:shadowDx="0"
-                    android:shadowDy="0"
-                    android:shadowRadius="5"
-                    android:text="@string/send_otp"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/aadharerrortv"
-                    android:layout_width="wrap_content"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/thirdmaterial"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/aadharnoetinverify"
-                    android:layout_alignStart="@+id/sendaddotpbt"
-                    android:layout_below="@+id/aadharnoetinverify"
-                    android:textAlignment="center"
-                    android:textColor="@color/errortext" />
-
-                <TextView
-                    android:id="@+id/otpaad"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/otpaadet"
-                    android:layout_below="@+id/sendaddotpbt"
-                    android:layout_marginTop="37dp"
-                    android:text="@string/otp"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/otpaadet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/otpaad"
+                    android:layout_below="@id/secondmateril"
                     android:layout_centerHorizontal="true"
-                    android:ems="10"
-                    android:hint="@string/enter_otp"
-                    android:inputType="number"
-                    android:maxLength="4"
-                    android:textAlignment="center">
+                    app:hintTextAppearance="@style/TextInputLayoutHintText">
 
-                    <requestFocus></requestFocus>
-                </EditText>
+                    <EditText
+                        android:id="@+id/anualincomeaadharveri"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="Annual Family Income"
+                        android:inputType="number"/>
 
-                <TextView
-                    android:id="@+id/verifotptverror"
-                    android:layout_width="wrap_content"
+                </android.support.design.widget.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/sendaddotpbt"
+                        android:layout_width="150dp"
+                        android:layout_height="45dp"
+                        android:layout_below="@id/thirdmaterial"
+                        android:layout_marginTop="25dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/buttonshape"
+                        android:shadowColor="#A8A8A8"
+                        android:shadowDx="0"
+                        android:shadowDy="0"
+                        android:shadowRadius="5"
+                        android:text="@string/send_otp"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/forthmaterial"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/otpaadet"
-                    android:layout_alignStart="@+id/sendaddotpbt"
-                    android:layout_below="@+id/otpaadet"
-                    android:textAlignment="center"
-                    android:textColor="#ffffff" />
+                    android:layout_below="@id/sendaddotpbt"
+                    android:layout_centerHorizontal="true"
+                    app:hintTextAppearance="@style/TextInputLayoutHintText">
 
+                    <EditText
+                        android:id="@+id/otpaadverifyet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:hint="@string/enter_otp"
+                        android:inputType="number"
+                        android:maxLength="4"
+                        android:textAlignment="center" />
+
+                </android.support.design.widget.TextInputLayout>
 
                 <Button
                     android:id="@+id/verifyaadotpbt"
                     android:layout_width="150dp"
                     android:layout_height="45dp"
-                    android:layout_below="@+id/verifotptverror"
+                    android:layout_below="@+id/forthmaterial"
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/buttonshape"
                     android:shadowColor="#A8A8A8"
@@ -130,8 +141,9 @@
                     android:textColor="#FFFFFF"
                     android:textSize="18sp" />
 
-
             </RelativeLayout>
+
+
         </LinearLayout>
     </ScrollView>
 

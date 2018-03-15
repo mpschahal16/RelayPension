@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -43,6 +44,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     EditText phonenoet, otpet;
     TextView errorinsend, errorinverify;
     Button sendotp, verify;
+    TextInputLayout textInputLayout;
     AwesomeValidation awesomeValidation;
 
     ProgressDialog progressDialog;
@@ -76,8 +78,10 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         otpet = findViewById(R.id.otpaadet);//editText
         sendotp = findViewById(R.id.sendaddotpbt);
         verify = findViewById(R.id.verifybt);
+        textInputLayout=findViewById(R.id.materialsignin2);//material design editt texview parent layout
         errorinsend = findViewById(R.id.sendotperrorret);//tv
         errorinverify = findViewById(R.id.vrifyotpeterror);//tv
+        textInputLayout.setVisibility(View.INVISIBLE);
         otpet.setVisibility(View.INVISIBLE);
         verify.setVisibility(View.INVISIBLE);
         sendotp.setOnClickListener(this);
@@ -103,7 +107,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         int id=v.getId();
-        switch (id)
+       switch (id)
         {
             case R.id.sendaddotpbt:
             {
@@ -191,6 +195,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                         sendotp.setVisibility(View.INVISIBLE);
                         otpet.setVisibility(View.VISIBLE);
                         verify.setVisibility(View.VISIBLE);
+                        textInputLayout.setVisibility(View.VISIBLE);
                         retry=2;
                         Toast.makeText(getApplicationContext(),"OTP SEND",Toast.LENGTH_LONG).show();
 

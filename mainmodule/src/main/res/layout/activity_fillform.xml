@@ -34,14 +34,14 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/picimageview"
+                    android:id="@+id/imageviewfillform"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_gravity="center"
                     app:srcCompat="@drawable/picicon" />
 
                 <Button
-                    android:id="@+id/selectdpbt"
+                    android:id="@+id/selectimgfillform"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -310,7 +310,7 @@
                         android:textStyle="bold" />
 
                     <Button
-                        android:id="@+id/button2"
+                        android:id="@+id/changeaddressfilformbt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.60"
@@ -496,11 +496,10 @@
 
 
                         <EditText
-                            android:id="@+id/editText8"
+                            android:id="@+id/aadharnofillformet"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:inputType="number" />
+                            android:ems="10" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -544,7 +543,7 @@
                         android:textStyle="bold" />
 
                     <Button
-                        android:id="@+id/button4"
+                        android:id="@+id/checkbt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.50"
@@ -592,7 +591,7 @@
                         android:layout_weight=".75">
 
                         <EditText
-                            android:id="@+id/ediet10"
+                            android:id="@+id/departmentnamefillfromat"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -622,7 +621,7 @@
                         android:layout_weight=".75">
 
                         <EditText
-                            android:id="@+id/edext10"
+                            android:id="@+id/postfillformet"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10" />

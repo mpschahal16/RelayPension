@@ -17,32 +17,48 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/loginimg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        app:srcCompat="@drawable/oie_png" />
 
-
-
-        <EditText
-            android:id="@+id/phoneloginet"
+        <ImageView
+            android:id="@+id/loginimg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/loginimg"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            app:srcCompat="@drawable/oie_png" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/materialsignin1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/loginimg"
             android:layout_marginTop="25dp"
-            android:ems="10"
-            android:hint="@string/mobile_number"
-            android:inputType="phone"
-            android:maxLength="10"
-            android:textAlignment="center">
+            android:layout_centerHorizontal="true"
+            app:hintTextAppearance="@style/TextInputLayoutHintText">
+
+            <EditText
+                android:id="@+id/phoneloginet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_gravity="center"
+                android:hint="@string/mobile_number"
+                android:inputType="phone"
+                android:maxLength="10"
+                android:textAlignment="center"/>
 
             <requestFocus></requestFocus>
-        </EditText>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/sendotperrorret"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/materialsignin1"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/errortext"
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/sendaddotpbt"
@@ -59,30 +75,25 @@
             android:background="@drawable/buttonshape"
             android:text="@string/send_otp" />
 
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/materialsignin2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sendaddotpbt"
+            android:layout_marginTop="25dp"
+            android:layout_centerHorizontal="true"
+            app:hintTextAppearance="@style/TextInputLayoutHintText">
+
         <EditText
             android:id="@+id/otpaadet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/phoneloginet"
-            android:layout_below="@+id/sendaddotpbt"
             android:ems="10"
+            android:layout_gravity="center"
             android:hint="@string/enter_otp"
             android:inputType="number"
-            android:maxLength="6"
-            android:textAlignment="center">
-
-            <requestFocus></requestFocus>
-        </EditText>
-
-
-        <TextView
-            android:id="@+id/sendotperrorret"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/phoneloginet"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/errortext"
-            android:textSize="12sp" />
+            android:maxLength="6"/>
+        </android.support.design.widget.TextInputLayout>
 
         <TextView
             android:id="@+id/vrifyotpeterror"
@@ -90,8 +101,9 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:textColor="@color/errortext"
-            android:layout_below="@id/otpaadet"
+            android:layout_below="@id/materialsignin2"
             android:textSize="12sp"/>
+
 
         <Button
             android:id="@+id/verifybt"
@@ -107,6 +119,10 @@
             android:layout_below="@id/vrifyotpeterror"
             android:background="@drawable/buttonshape"
             android:text="@string/verify" />
+
+
+
+
 
     </RelativeLayout>
 

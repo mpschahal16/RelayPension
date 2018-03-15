@@ -5,17 +5,16 @@ package com.codewarriors.hackathone.relaypension.customvariablesforparsing;
  */
 
 public class StubAadhaarCustomVAR {
-    private String firstName,middleName,lastName,age,gender,dateofbirth,phoneNo,aadharNo,
+    private String firstName,middleName,lastName,gender,dateofbirth,phoneNo,aadharNo,
     hoseno1,streetorarea,postalcode,city,state;
 
     public StubAadhaarCustomVAR() {
     }
 
-    public StubAadhaarCustomVAR(String firstName, String middleName, String lastName,String age, String gender, String dateofbirth, String phoneNo, String aadharNo, String hoseNo1, String streetOrArea, String postalcode, String city, String state) {
+    public StubAadhaarCustomVAR(String firstName, String middleName, String lastName,String gender, String dateofbirth, String phoneNo, String aadharNo, String hoseNo1, String streetOrArea, String postalcode, String city, String state) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
-        this.age=age;
         this.gender = gender;
         this.dateofbirth = dateofbirth;
         this.phoneNo = phoneNo;
@@ -31,8 +30,6 @@ public class StubAadhaarCustomVAR {
     public String getMiddleName() {return middleName;}
 
     public String getLastName() {return lastName;}
-
-    public String getAge() {return age;}
 
     public String getGender() {return gender;}
 

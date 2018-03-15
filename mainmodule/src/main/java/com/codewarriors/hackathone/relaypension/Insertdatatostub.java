@@ -23,15 +23,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 public class Insertdatatostub extends AppCompatActivity {
 
-    EditText firstnameet,middlenameet,lastnameet,dobet,phonenoet,aadharnoet,hodenoet,localityet,posstalcodeet,cityet;
+    EditText firstnameet,middlenameet,lastnameet,phonenoet,aadharnoet,hodenoet,localityet,posstalcodeet,cityet;
+    EditText dobdayet,dobmonthet,dobyearet;
     RadioGroup radioGroup;
     Boolean radioGroupflag=false;//for checking radio button is clicked or not will be set in on checkedchange listner.
     RadioButton male,female,transender;
-    Spinner statespinner,agespinner;
+    Spinner statespinner;
 
     Button submit;
 
@@ -47,7 +51,6 @@ public class Insertdatatostub extends AppCompatActivity {
         firstnameet=findViewById(R.id.first_nameet);
         middlenameet=findViewById(R.id.middle_nameet);
         lastnameet=findViewById(R.id.last_nameet);
-        dobet=findViewById(R.id.dateofbirthet);
         phonenoet=findViewById(R.id.phonenoet);
         aadharnoet=findViewById(R.id.aadhaarnoet);
         hodenoet=findViewById(R.id.housenoet);
@@ -56,8 +59,12 @@ public class Insertdatatostub extends AppCompatActivity {
         cityet=findViewById(R.id.cityet);
         radioGroup=findViewById(R.id.radiogroup);
         statespinner=findViewById(R.id.statespinner);
-        agespinner=findViewById(R.id.spinnerage);
         submit=findViewById(R.id.submitbt);
+
+        //date et added
+        dobdayet=findViewById(R.id.dobdayetstub);
+        dobmonthet=findViewById(R.id.dobmonthetstub);
+        dobyearet=findViewById(R.id.dobyearetstub);
 
         male=findViewById(R.id.radiobuttonmale);
         female=findViewById(R.id.radiobuttonfemale);
@@ -69,7 +76,11 @@ public class Insertdatatostub extends AppCompatActivity {
         awesomeValidation.addValidation(this,R.id.first_nameet, "[a-z A-Z][a-z A-z]*",R.string.invalid_name);
         awesomeValidation.addValidation(this,R.id.middle_nameet,"[a-z A-Z]*",R.string.invalid_name);
         awesomeValidation.addValidation(this,R.id.last_nameet,"[a-z A-Z][a-z A-Z]*",R.string.invalid_name);
-        awesomeValidation.addValidation(this,R.id.dateofbirthet, "([0-9]{2})/([0-9]{2})/([0-9]{4})",R.string.invalid_dob);
+       // awesomeValidation.addValidation(this,R.id.dateofbirthet, "([0-9]{2})/([0-9]{2})/([0-9]{4})",R.string.invalid_dob);
+        awesomeValidation.addValidation(this,R.id.dobdayetstub,"\\d{2}",R.string.invalid_dob);
+        awesomeValidation.addValidation(this,R.id.dobmonthetstub,"\\d{2}",R.string.invalid_dob);
+        awesomeValidation.addValidation(this,R.id.dobyearetstub,"\\d{4}",R.string.invalid_dob);
+
         awesomeValidation.addValidation(this,R.id.phonenoet,Patterns.PHONE,R.string.invalid_mobile_no);
         //12 digit aadhaar
         awesomeValidation.addValidation(this,R.id.aadhaarnoet,"\\d{12}",R.string.invalid_aadhaar);
@@ -117,20 +128,24 @@ public class Insertdatatostub extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+
+
+
+
                 //radiogroupflag vaue is to check weather user touched it or not(touched then ragiogroupflag=true else flase)
                 //second && case STATE IS SELECTED OR NOT
                 //3RD AGE IS SELECTED OR NOT
             if (awesomeValidation.validate()&&radioGroupflag&&
-                      !statespinner.getSelectedItem().toString().equals("")&&
-                      !agespinner.getSelectedItem().toString().equals(""))
+                      !statespinner.getSelectedItem().toString().equals(""))
               {
 
                   String first_name=firstnameet.getText().toString();
                   String middle_name=middlenameet.getText().toString();
                   String last_name=lastnameet.getText().toString();
-                  String age=agespinner.getSelectedItem().toString();
                   String gen=gender;
-                  String dateofbirth=dobet.getText().toString();
+                //  String dateofbirth=dobet.getText().toString();
+                  String dateofbirth=dobdayet.getText()+"/"+dobmonthet.getText()+"/"+dobyearet.getText();
                   String phone_no=phonenoet.getText().toString();
                   String aadhar_no=aadharnoet.getText().toString();
                   String hoseno=hodenoet.getText().toString();
@@ -139,9 +154,10 @@ public class Insertdatatostub extends AppCompatActivity {
                   String city=cityet.getText().toString();
                   String state=statespinner.getSelectedItem().toString();
 
-
+//changes
                 StubAadhaarCustomVAR stubAadhaarCustomVAR=new StubAadhaarCustomVAR(first_name,
-                          middle_name,last_name,age,gen,dateofbirth,phone_no,aadhar_no,hoseno,street,
+                          middle_name,last_name,gen,dateofbirth
+                        ,phone_no,aadhar_no,hoseno,street,
                           postal,city,state);
 
                   DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("stubofuid/");
@@ -156,7 +172,10 @@ public class Insertdatatostub extends AppCompatActivity {
                               firstnameet.getText().clear();
                               middlenameet.getText().clear();
                               lastnameet.getText().clear();
-                              dobet.getText().clear();
+                             // dobet.getText().clear();
+                              dobdayet.getText().clear();
+                              dobmonthet.getText().clear();
+                              dobyearet.getText().clear();
                               phonenoet.getText().clear();
                               aadharnoet.getText().clear();
                               hodenoet.getText().clear();
@@ -165,16 +184,15 @@ public class Insertdatatostub extends AppCompatActivity {
                               cityet.getText().clear();
                               radioGroup.clearCheck();
                               statespinner.setSelection(0);
-                              agespinner.setSelection(0);
 
 
 
                               Toast.makeText(getApplicationContext(), "Sucess", Toast.LENGTH_LONG).show();
                           }
-/*                          else
+                        else
                           {
                              Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_LONG).show();
-                          }*/
+                          }
                       }
                   }).addOnFailureListener(new OnFailureListener() {
                       @Override
@@ -199,18 +217,11 @@ public class Insertdatatostub extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Select State",Toast.LENGTH_LONG).show();
                     }
 
-                    if(agespinner.getSelectedItem().toString().equals(""))
-                    {
-                        Toast.makeText(getApplicationContext(),"Select Age",Toast.LENGTH_LONG).show();
-                    }
-
                 }
 
             }
         });
     }
-
-
 
 
 }
