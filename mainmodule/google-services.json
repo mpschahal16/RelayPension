@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "299335379167",
+    "firebase_url": "https://allowance-54163.firebaseio.com",
+    "project_id": "allowance-54163",
+    "storage_bucket": "allowance-54163.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:299335379167:android:92db5f04604bc12b",
+        "android_client_info": {
+          "package_name": "com.codewarriors.hackathone.relaypension"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "299335379167-1lkvji7j1cajt7f3063qg22tk4ejl79d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codewarriors.hackathone.relaypension",
+            "certificate_hash": "329d6571639e42e2390f6129559f12885cfa6d6e"
+          }
+        },
+        {
+          "client_id": "299335379167-ve0cuu24m0caj515ugfmso7hurabos6j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXCSapRdheTahwiQyK-_rPWnsN8vxz6Ic"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "299335379167-ve0cuu24m0caj515ugfmso7hurabos6j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
