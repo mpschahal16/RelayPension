@@ -25,6 +25,9 @@
     <string name="invalid_hoseno">Invalid Entry</string>
     <string name="invalid_postal">Invalid Postal Code</string>
     <string name="invalid_city">Invalid City Name</string>
+    <string name="invalid_state">Invalid State</string>
+    <string name="invalid_accountnp">Invalid Account No.</string>
+    <string name="invalid">Invalid Entry</string>
 
 
     <string name="msg69key">203084AvQ3y6WW5aaa7ad7</string>

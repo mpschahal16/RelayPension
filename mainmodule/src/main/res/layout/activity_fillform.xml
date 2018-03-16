@@ -42,16 +42,24 @@
 
                 <Button
                     android:id="@+id/selectimgfillform"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="180dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:background="@drawable/buttonshapesec"
+                    android:shadowColor="#A81459"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="5"
                     android:text="Select Photo" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -80,7 +88,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/textView6"
@@ -104,7 +113,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/textView7"
@@ -128,7 +138,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/textView8"
@@ -148,7 +159,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:entries="@array/age"
-                            android:textAlignment="textEnd" />
+                            android:textAlignment="textEnd"/>
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -157,7 +168,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/textVie8"
@@ -182,19 +194,22 @@
                                 android:id="@+id/malerbfillform"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Male" />
+                                android:text="Male"
+                                android:clickable="false"/>
 
                             <RadioButton
                                 android:id="@+id/femalerbfillform"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Female" />
+                                android:text="Female"
+                                android:clickable="false"/>
 
                             <RadioButton
                                 android:id="@+id/transgenderrbfillform"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Transgender" />
+                                android:text="Transgender"
+                                android:clickable="false"/>
                         </RadioGroup>
                     </RelativeLayout>
 
@@ -203,7 +218,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/date"
@@ -233,7 +249,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/phonetv"
@@ -264,7 +281,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
 
 
                     <TextView
@@ -297,7 +315,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="15dp">
+                    android:paddingTop="15dp"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/textVie4"
@@ -314,14 +333,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.60"
-                        android:text="Change" />
+                        android:text="Change"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:background="@drawable/buttonshapesec"
+                        android:shadowColor="#A81459"
+                        android:shadowDx="0"
+                        android:shadowDy="0"
+                        android:shadowRadius="5"/>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/textVew10"
@@ -350,7 +377,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/textViw"
@@ -378,7 +406,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/textVew13"
@@ -406,7 +435,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
 
 
                     <TextView
@@ -435,7 +465,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/tetVew12"
@@ -450,11 +481,13 @@
                         android:layout_height="wrap_content"
                         android:layout_weight=".75">
 
-                        <Spinner
-                            android:id="@+id/statespinnerfillform"
+                        <EditText
+                            android:id="@+id/stateetfillform"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:entries="@array/states" />
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:editable="false"
+                            android:inputType="none"  />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -462,7 +495,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="15dp">
+                    android:paddingTop="15dp"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/textVi4"
@@ -479,7 +513,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/textVw10"
@@ -496,7 +531,7 @@
 
 
                         <EditText
-                            android:id="@+id/aadharnofillformet"
+                            android:id="@+id/aacountnofillformet"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10" />
@@ -506,7 +541,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/textw"
@@ -532,7 +568,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/textView4"
@@ -547,7 +584,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.50"
-                        android:text="Select" />
+                        android:text="Select"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:background="@drawable/buttonshapesec"
+                        android:shadowColor="#A81459"
+                        android:shadowDx="0"
+                        android:shadowDy="0"
+                        android:shadowRadius="5"/>
 
                 </LinearLayout>
 
@@ -556,14 +600,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="15dp">
+                    android:paddingTop="15dp"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/tetVi4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight=".75"
-                        android:text="Department Details"
+                        android:text="Income Details"
                         android:textAlignment="center"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -574,125 +619,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-
-                    <TextView
-                        android:id="@+id/tetew11"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.50"
-                        android:text="Department Name"
-                        android:textStyle="bold" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight=".75">
-
-                        <EditText
-                            android:id="@+id/departmentnamefillfromat"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:inputType="textPersonName" />
-                    </RelativeLayout>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-
-                    <TextView
-                        android:id="@+id/textw11"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.50"
-                        android:text="Post :"
-                        android:textStyle="bold" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight=".75">
-
-                        <EditText
-                            android:id="@+id/postfillformet"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ems="10" />
-                    </RelativeLayout>
-                </LinearLayout>
-
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-
-                    <TextView
-                        android:id="@+id/txtw11"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.50"
-                        android:text="Department Id.:"
-                        android:textStyle="bold" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight=".75">
-
-                        <EditText
-                            android:id="@+id/edi10"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ems="10" />
-                    </RelativeLayout>
-                </LinearLayout>
-
-
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-
-                    <TextView
-                        android:id="@+id/txt11"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.50"
-                        android:text="Date of Retirement"
-                        android:textStyle="bold" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight=".75">
-
-                        <EditText
-                            android:id="@+id/edi"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:inputType="date"/>
-                    </RelativeLayout>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
 
 
                     <TextView
@@ -700,7 +628,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.50"
-                        android:text="Salary:"
+                        android:text="Family Income:"
                         android:textStyle="bold" />
 
                     <RelativeLayout
@@ -709,11 +637,12 @@
                         android:layout_weight=".75">
 
                         <EditText
-                            android:id="@+id/i10"
+                            android:id="@+id/familyincomefillformet"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
-                            android:inputType="number"/>
+                            android:editable="false"
+                            android:inputType="none" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -723,22 +652,47 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
 
-                <TextView
-                    android:id="@+id/text4"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight=".70"
-                    android:text="Attach Pay Slip"
-                    android:textStyle="bold" />
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Attach Slip:"
+                        android:textStyle="bold" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".10"
+                        android:clickable="false"
+                        />
+
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/butto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.50"
-                    android:text="Select" />
+                    android:text="Select"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:background="@drawable/buttonshapesec"
+                    android:shadowColor="#A81459"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="5"/>
 
             </LinearLayout>
 
@@ -746,36 +700,68 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
 
-                <TextView
-                    android:id="@+id/te4"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight=".70"
-                    android:text="Signature :"
-                    android:textStyle="bold" />
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/te4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Signature :"
+                        android:textStyle="bold" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".10"
+                        android:clickable="false"/>
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/butt4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.50"
-                    android:text="Select" />
+                    android:text="Select"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:background="@drawable/buttonshapesec"
+                    android:shadowColor="#A81459"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="5"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
 
                 <Button
-                    android:id="@+id/submit"
+                    android:id="@+id/submitfillform"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
                     android:layout_weight="1"
-                    android:text="Submit" />
+                    android:background="@drawable/buttonshape"
+                    android:shadowColor="#A8A8A8"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="5"
+                    android:text="Submit"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
             </LinearLayout>
 
 

@@ -38,12 +38,10 @@ public class Insertdatatostub extends AppCompatActivity {
     Spinner statespinner;
 
     Button submit;
-
-
     String gender;
-
-
     AwesomeValidation awesomeValidation;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,11 +125,6 @@ public class Insertdatatostub extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
-
-
 
                 //radiogroupflag vaue is to check weather user touched it or not(touched then ragiogroupflag=true else flase)
                 //second && case STATE IS SELECTED OR NOT

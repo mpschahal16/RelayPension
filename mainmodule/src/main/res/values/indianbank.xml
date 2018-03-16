@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="banklist">
+        <item></item>
         <item>ABHYUDAYA CO-OP BANK LTD</item>
         <item>ABU DHABI COMMERCIAL BANK</item>
         <item>AKOLA DISTRICT CENTRAL CO-OPERATIVE BANK</item>
