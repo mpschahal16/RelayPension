@@ -3,11 +3,8 @@ package com.codewarriors.hackathone.relaypension;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -29,15 +26,14 @@ import com.msg91.sendotp.library.Verification;
 import com.msg91.sendotp.library.VerificationListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Aadharverify extends AppCompatActivity implements View.OnClickListener,DialogInterface.OnClickListener,VerificationListener{
+public class Aadharverify extends AppCompatActivity implements View.OnClickListener,VerificationListener{
    EditText aadharnoet,consituencyet,anualfamilyincomeet,otpaadharverifyet;
 
    ArrayList<String> listofconsituency;
    ArrayList<Integer> listofmaxlimitinconsituency;
 
-   String adharno,constituency;
+   String adharno,constituency,salary;
    int familyanylin;
 
 
@@ -46,11 +42,9 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
    AwesomeValidation awesomeValidation,otp;
 
    Button sendotptophonebt,verifyotpbt;
-    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("stubofuid/");
-
-    ProgressDialog progressDialog;
-    //Timeraa timeraa;
-
+   DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("stubofuid/");
+   ProgressDialog progressDialog;
+   //Timeraa timeraa;
 
     Verification msg69var;
 
@@ -65,36 +59,24 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
         otpaadharverifyet=findViewById(R.id.otpaadverifyet);
         textInputLayout=findViewById(R.id.forthmaterial);
 
-
-
-
-
-
         sendotptophonebt=findViewById(R.id.sendaddotpbt);
         verifyotpbt=findViewById(R.id.verifyaadotpbt);
 
         ConstituencyHelperClass c=new ConstituencyHelperClass();
         listofconsituency=c.getConstituency();
         listofmaxlimitinconsituency=c.getConstituencylimit();
-
-
-
         otpaadharverifyet.setVisibility(View.INVISIBLE);
         verifyotpbt.setVisibility(View.INVISIBLE);
         textInputLayout.setVisibility(View.INVISIBLE);
         sendotptophonebt.setOnClickListener(this);
         verifyotpbt.setOnClickListener(this);
-
         progressDialog=new ProgressDialog(this);
-
         awesomeValidation=new AwesomeValidation(ValidationStyle.COLORATION);
         otp=new AwesomeValidation(ValidationStyle.COLORATION);
-
 
         awesomeValidation.addValidation(this,R.id.aadharnoetinverify,"\\d{12}",R.string.invalid_aadhaar);
         awesomeValidation.addValidation(this,R.id.constituebcyaadharveriet, "[a-z A-Z][a-z A-z]*",R.string.invalid_name);
         awesomeValidation.addValidation(this,R.id.anualincomeaadharveri, "[0-9][0-9]*",R.string.invalid_name);
-
         awesomeValidation.addValidation(this,R.id.verifyaadotpbt,"\\d{4}",R.string.invalid_otp);
     }
 
@@ -113,29 +95,33 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
                 if(awesomeValidation.validate())
                 {
                     String constituency=consituencyet.getText().toString().toUpperCase();
-                    int familysalery=Integer.parseInt(anualfamilyincomeet.getText().toString());
+                    salary=anualfamilyincomeet.getText().toString();
+                    int familysalery=Integer.parseInt(salary);
                     if(listofconsituency.contains(constituency)&&familysalery<=100000)
                     {
-
                         checkinfoinstub();
-
                     }
                     else
                     {
-
                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                        alertDialogBuilder.setPositiveButton("Eligibilty Criteria", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(Aadharverify.this,EligibilityActivity.class));
+                            }
+                        })
+                                .setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
 
-                        alertDialogBuilder.setPositiveButton("xxxxxxxxxxx",this)
-                                .setNegativeButton("Cancle", this)
+                                    }
+                                })
                                 .setCancelable(true)
                                 .setIcon(android.R.drawable.ic_dialog_info)
-                                .setMessage("Message");
-
+                                .setMessage("Please Read Eligibilty Criteria");
                         AlertDialog alertDialog = alertDialogBuilder.create();
-
                         alertDialog.show();
-
-
                     }
                 }
                 break;
@@ -151,10 +137,6 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-
-    }
 
    private void verifyaddinno() {
        String s=otpaadharverifyet.getText().toString();
@@ -175,7 +157,6 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()) {
                     String userpno = dataSnapshot.getValue().toString();
-                    Toast.makeText(getApplicationContext(),userpno,Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
                     adharno=st;
                     sendOTPtoPhoneNO(userpno);
@@ -195,10 +176,6 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
 
 
 
-
-
-
-
     //msg 69 code for otp verification of aadhar
     private void sendOTPtoPhoneNO(String userpno) {
 
@@ -208,9 +185,7 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
                         .context(this)
                         .autoVerification(true)
                         .build(), this);
-
         msg69var.initiate();
-      //  onInitiated("CCC");
 
     }
 
@@ -219,7 +194,7 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
         otpaadharverifyet.setVisibility(View.VISIBLE);
         verifyotpbt.setVisibility(View.VISIBLE);
         textInputLayout.setVisibility(View.VISIBLE);
-
+        Toast.makeText(getApplication(),"Otp send to Aadhar linked Mobile",Toast.LENGTH_LONG).show();
         Log.d("msg69","onInitiated"+response);
     }
 
@@ -233,16 +208,11 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onVerified(String response) {
         Log.d("msg69","onverified");
-
-        Toast.makeText(getApplication(),"Sucess",Toast.LENGTH_LONG).show();
-
-
-        //here we will write the code to update database that user has verified itself
-
-
-      /*  Intent intent=new Intent(Aadharverify.this,FIllform.class);
-        startActivity(intent);*/
-
+        Intent intent = new Intent(Aadharverify.this, FIllform.class);
+        intent.putExtra("aadharno", adharno);
+        intent.putExtra("constituency",constituency);
+        intent.putExtra("salary",salary);
+        startActivity(intent);
     }
 
     @Override

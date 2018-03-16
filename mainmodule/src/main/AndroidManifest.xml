@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme1">
-        <meta-data android:name="sendotp.key" android:value="@string/msg69key" />
+        <meta-data
+            android:name="sendotp.key"
+            android:value="@string/msg69key" />
 
         <activity
             android:name=".Splash"
@@ -25,22 +27,29 @@
         <activity
             android:name=".SignIn"
             android:label="@string/Sign_in">
+
         </activity>
         <activity
             android:name=".Aadharverify"
-            android:label="@string/aadharverification" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:label="@string/aadharverification">
+
         </activity>
         <activity
             android:name=".FIllform"
             android:label="@string/fillform">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Insertdatatostub">
+
         </activity>
         <activity android:name=".StubNoReturn">
+
+        </activity>
+        <activity android:name=".EligibilityActivity">
         </activity>
     </application>
 

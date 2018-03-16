@@ -144,7 +144,6 @@ public class Insertdatatostub extends AppCompatActivity {
                   String middle_name=middlenameet.getText().toString();
                   String last_name=lastnameet.getText().toString();
                   String gen=gender;
-                //  String dateofbirth=dobet.getText().toString();
                   String dateofbirth=dobdayet.getText()+"/"+dobmonthet.getText()+"/"+dobyearet.getText();
                   String phone_no=phonenoet.getText().toString();
                   String aadhar_no=aadharnoet.getText().toString();
@@ -154,7 +153,7 @@ public class Insertdatatostub extends AppCompatActivity {
                   String city=cityet.getText().toString();
                   String state=statespinner.getSelectedItem().toString();
 
-//changes
+                //changes
                 StubAadhaarCustomVAR stubAadhaarCustomVAR=new StubAadhaarCustomVAR(first_name,
                           middle_name,last_name,gen,dateofbirth
                         ,phone_no,aadhar_no,hoseno,street,

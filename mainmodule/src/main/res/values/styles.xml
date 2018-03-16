@@ -31,7 +31,9 @@
 
 
     <style name="TextInputLayoutHintText">
-        <item name="android:textSize">18sp</item></style>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
 
 
 </resources>

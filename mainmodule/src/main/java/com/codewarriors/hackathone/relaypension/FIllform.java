@@ -28,6 +28,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
 
 
 
+    String adno,consituency,salary;
 
 
     @Override
@@ -35,9 +36,14 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fillform);
         seteverythingonlayout();
-       Intent it=getIntent();
-        String adno=it.getExtras().getString("phoneno",null);
-        if(adno!=null)
+        Intent it=getIntent();
+        adno="499240755287";
+        consituency="A";
+        salary="80000";
+        /*adno=it.getExtras().getString("aadharno",null);
+        consituency=it.getExtras().getString("constituency",null);
+        salary=it.getExtras().getString("salary",null);*/
+        if(adno!=null&&consituency!=null&&salary!=null)
         {
             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("stubofuid/");
             mDatabase.child(adno).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -57,14 +63,14 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Toast.makeText(getApplicationContext(),"Cncelled",Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(FIllform.this,StubNoReturn.class));
                 }
             });
 
         }
         else
         {
-            Toast.makeText(getApplicationContext(),"Somthing wents wrong",Toast.LENGTH_LONG).show();
+            startActivity(new Intent(FIllform.this,StubNoReturn.class));
         }
 
 
