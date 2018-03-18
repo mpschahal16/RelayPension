@@ -31,7 +31,6 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
    EditText aadharnoet,consituencyet,anualfamilyincomeet,otpaadharverifyet;
 
    ArrayList<String> listofconsituency;
-   ArrayList<Integer> listofmaxlimitinconsituency;
 
    String adharno,constituency,salary;
    int familyanylin;
@@ -64,7 +63,6 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
 
         ConstituencyHelperClass c=new ConstituencyHelperClass();
         listofconsituency=c.getConstituency();
-        listofmaxlimitinconsituency=c.getConstituencylimit();
         otpaadharverifyet.setVisibility(View.INVISIBLE);
         verifyotpbt.setVisibility(View.INVISIBLE);
         textInputLayout.setVisibility(View.INVISIBLE);

@@ -8,6 +8,10 @@ import java.util.ArrayList;
 
 public class ConstituencyHelperClass {
 
+    private int consAlimit=5;
+    private int consBlimit=5;
+    private int consClimit=5;
+
     public ArrayList<String> getConstituency()
     {
         ArrayList<String> constituencylist = new ArrayList<String>();
@@ -18,13 +22,15 @@ public class ConstituencyHelperClass {
         return constituencylist;
     }
 
-    public ArrayList<Integer> getConstituencylimit()
-    {
-        ArrayList<Integer> maxvaluelist = new ArrayList<Integer>();
-        maxvaluelist.add(5);
-        maxvaluelist.add(5);
-        maxvaluelist.add(5);
+    public int getConsAlimit() {
+        return consAlimit;
+    }
 
-        return maxvaluelist;
+    public int getConsBlimit() {
+        return consBlimit;
+    }
+
+    public int getConsClimit() {
+        return consClimit;
     }
 }
