@@ -1,11 +1,11 @@
 package com.codewarriors.hackathone.relaypension;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -27,11 +27,17 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.bumptech.glide.Glide;
 import com.codewarriors.hackathone.relaypension.customvariablesforparsing.StubAadhaarCustomVAR;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -53,6 +59,10 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
     String adno, consituency, familyincome;
 
     AwesomeValidation awesomeValidation;
+
+
+    FirebaseStorage storage;
+    StorageReference storageReference;
 
 
     final int RESULT_LOAD_PIC = 459;
@@ -85,8 +95,9 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
         consituency=it.getExtras().getString("constituency",null);
         familyincome=it.getExtras().getString("salary",null);*/
         if (adno != null && consituency != null && familyincome != null) {
-            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("stubofuid/");
-            mDatabase.child(adno).addListenerForSingleValueEvent(new ValueEventListener() {
+            final DatabaseReference rootreference=FirebaseDatabase.getInstance().getReference();
+            DatabaseReference stubreferecne = rootreference.child("stubofuid/");
+            stubreferecne.child(adno).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
@@ -103,6 +114,23 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                     startActivity(new Intent(FIllform.this, StubNoReturn.class));
                 }
             });
+
+            rootreference.child("globalcounter").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    String formno=dataSnapshot.getValue().toString();
+                    int temp=Integer.parseInt(formno)+1;
+                    rootreference.child("globalcounter").setValue(temp);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
 
         } else {
             startActivity(new Intent(FIllform.this, StubNoReturn.class));
@@ -195,6 +223,13 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
         selectpassbookpicbt.setOnClickListener(this);
         selectincomeslipbt.setOnClickListener(this);
         selectsignaturebt.setOnClickListener(this);
+
+
+
+        //we r getting storage root reference here
+
+        storage = FirebaseStorage.getInstance();
+
     }
 
     private void setAadharValues(StubAadhaarCustomVAR stubAadhaarCustomVAR) {
@@ -231,6 +266,8 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                 Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_LONG).show();
             }
         }
+
+        storageReference = storage.getReference().child(stubAadhaarCustomVAR.getAadharNo());
 
     }
 
@@ -386,20 +423,38 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
         switch (requestCode) {
             case RESULT_LOAD_PIC: {
                 if (resultCode == RESULT_OK && null != data) {
-                    Uri selectedImage = data.getData();
-                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                    final Uri selectedImage = data.getData();
 
-                    Cursor cursor = getContentResolver().query(selectedImage,
-                            filePathColumn, null, null, null);
-                    cursor.moveToFirst();
+                    final ProgressDialog progressDialog = new ProgressDialog(this);
+                    progressDialog.setTitle("Uploading...");
+                    progressDialog.show();
 
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    String picturePath = cursor.getString(columnIndex);
-                    cursor.close();
+                    StorageReference sre=storageReference.child("userpic");
+                    sre.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.dismiss();
+                            Glide.with(FIllform.this).load(selectedImage).into(picimageview);
+                            selectpiccb.setChecked(true);
+                            Toast.makeText(FIllform.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
 
-                    Glide.with(this).load(picturePath).into(picimageview);
+                            progressDialog.dismiss();
+                            Toast.makeText(FIllform.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                    .getTotalByteCount());
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                        }
+                    });
 
-                    selectpiccb.setChecked(true);
+
                 }
                 break;
             }
@@ -407,60 +462,111 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
 
             case RESULT_LOAD_PASSBOOK_PIC: {
                 if (resultCode == RESULT_OK && null != data) {
-                    Uri selectedImage = data.getData();
-                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                    final Uri selectedImage = data.getData();
 
-                    Cursor cursor = getContentResolver().query(selectedImage,
-                            filePathColumn, null, null, null);
-                    cursor.moveToFirst();
 
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    String picturePath = cursor.getString(columnIndex);
-                    cursor.close();
+                    final ProgressDialog progressDialog = new ProgressDialog(this);
+                    progressDialog.setTitle("Uploading...");
+                    progressDialog.show();
 
-                    Glide.with(this).load(picturePath).into(imageViewpassbook);
+                    StorageReference sre=storageReference.child("passbook");
+                    sre.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.dismiss();
+                            Glide.with(FIllform.this).load(selectedImage).into(imageViewpassbook);
+                            passbookcb.setChecked(true);
+                            Toast.makeText(FIllform.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
 
-                    passbookcb.setChecked(true);
+                            progressDialog.dismiss();
+                            Toast.makeText(FIllform.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                    .getTotalByteCount());
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                        }
+                    });
                 }
                 break;
             }
 
             case RESULT_LOAD_INCOME_PIC: {
                 if (resultCode == RESULT_OK && null != data) {
-                    Uri selectedImage = data.getData();
-                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                    final Uri selectedImage = data.getData();
 
-                    Cursor cursor = getContentResolver().query(selectedImage,
-                            filePathColumn, null, null, null);
-                    cursor.moveToFirst();
+                    final ProgressDialog progressDialog = new ProgressDialog(this);
+                    progressDialog.setTitle("Uploading...");
+                    progressDialog.show();
 
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    String picturePath = cursor.getString(columnIndex);
-                    cursor.close();
+                    StorageReference sre=storageReference.child("incomeslip");
+                    sre.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.dismiss();
+                            Glide.with(FIllform.this).load(selectedImage).into(imageViewpayslip);
+                            payslipcb.setChecked(true);
+                            Toast.makeText(FIllform.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
 
-                    Glide.with(this).load(picturePath).into(imageViewpayslip);
+                            progressDialog.dismiss();
+                            Toast.makeText(FIllform.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                    .getTotalByteCount());
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                        }
+                    });
 
-                    payslipcb.setChecked(true);
                 }
                 break;
             }
 
             case RESULT_LOAD_SIGNATURE: {
                 if (resultCode == RESULT_OK && null != data) {
-                    Uri selectedImage = data.getData();
-                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                    final Uri selectedImage = data.getData();
 
-                    Cursor cursor = getContentResolver().query(selectedImage,
-                            filePathColumn, null, null, null);
-                    cursor.moveToFirst();
 
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    String picturePath = cursor.getString(columnIndex);
-                    cursor.close();
+                    final ProgressDialog progressDialog = new ProgressDialog(this);
+                    progressDialog.setTitle("Uploading...");
+                    progressDialog.show();
 
-                    Glide.with(this).load(picturePath).into(imageViewsignature);
+                    StorageReference sre=storageReference.child("incomeslip");
+                    sre.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.dismiss();
+                            Glide.with(FIllform.this).load(selectedImage).into(imageViewsignature);
+                            signaturecb.setChecked(true);
+                            Toast.makeText(FIllform.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
 
-                    signaturecb.setChecked(true);
+                            progressDialog.dismiss();
+                            Toast.makeText(FIllform.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                    .getTotalByteCount());
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                        }
+                    });
                 }
                 break;
             }
