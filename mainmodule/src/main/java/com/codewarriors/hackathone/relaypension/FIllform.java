@@ -3,7 +3,9 @@ package com.codewarriors.hackathone.relaypension;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -26,9 +28,15 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.bumptech.glide.Glide;
+import com.codewarriors.hackathone.relaypension.customvariablesforparsing.ConsituencyCustomVAR;
+import com.codewarriors.hackathone.relaypension.customvariablesforparsing.ConstituencyHelperClass;
+import com.codewarriors.hackathone.relaypension.customvariablesforparsing.FormPushPullCustomVAR;
 import com.codewarriors.hackathone.relaypension.customvariablesforparsing.StubAadhaarCustomVAR;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -56,7 +64,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
     Button submitbt, selectphotobt, changeaddressbt, selectpassbookpicbt, selectincomeslipbt, selectsignaturebt;
 
 
-    String adno, consituency, familyincome;
+    String adno, consituency, familyincome,formno;
 
     AwesomeValidation awesomeValidation;
 
@@ -83,17 +91,17 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
 
 
         // Test values that we will get from intent in normal work
-        adno = "499240755287";
+       /* adno = "499240755287";
         consituency = "A";
-        familyincome = "80000";
+        familyincome = "80000";*/
 
         //getting values from calling intent
         Intent it = getIntent();
 
 
-      /*  adno=it.getExtras().getString("aadharno",null);
+        adno=it.getExtras().getString("aadharno",null);
         consituency=it.getExtras().getString("constituency",null);
-        familyincome=it.getExtras().getString("salary",null);*/
+        familyincome=it.getExtras().getString("salary",null);
         if (adno != null && consituency != null && familyincome != null) {
             final DatabaseReference rootreference=FirebaseDatabase.getInstance().getReference();
             DatabaseReference stubreferecne = rootreference.child("stubofuid/");
@@ -119,14 +127,15 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    String formno=dataSnapshot.getValue().toString();
+                    formno=dataSnapshot.getValue().toString();
                     int temp=Integer.parseInt(formno)+1;
                     rootreference.child("globalcounter").setValue(temp);
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-
+                    Toast.makeText(FIllform.this, "ERROR In fetching form no", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(FIllform.this, StubNoReturn.class));
                 }
             });
 
@@ -543,7 +552,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                     progressDialog.setTitle("Uploading...");
                     progressDialog.show();
 
-                    StorageReference sre=storageReference.child("incomeslip");
+                    StorageReference sre=storageReference.child("signature");
                     sre.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -593,11 +602,37 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
 
     private void AlerDialogCeckBeforesubmission()
     {
+        String fno=formno;
+        String consituency=consituencyet.getText().toString();
+        String firstName=firstnameet.getText().toString();
+        String middleName=middlenameet.getText().toString();
+        String lastname=lastnameet.getText().toString();
+        String age=agespinner.getSelectedItem().toString();
+        String gender=getGender();
+        String dateofbirth=dobet.getText().toString();
+        String phoneNo=phonenoet.getText().toString();
+        String aadharNo=aadharnoet.getText().toString();
+        String hoseno1=hosenoet.getText().toString();
+        String streetorarea=streetet.getText().toString();
+        String postalcode=postalet.getText().toString();
+        String city=cityet.getText().toString();
+        String state=stateet.getText().toString();
+        String bankaccountno=accountnoet.getText().toString();
+        String bankname=bankspinner.getSelectedItem().toString();
+        String familyincome=familyincomeet.getText().toString();
+
+
+
+        final FormPushPullCustomVAR formPushPullCustomVAR=new FormPushPullCustomVAR(fno,consituency,firstName,middleName,lastname,age,gender,dateofbirth,phoneNo,
+                aadharNo,hoseno1,streetorarea,postalcode,
+                city,state,bankaccountno,bankname,familyincome);
+
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setPositiveButton("SUBMIT", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-               Toast.makeText(getApplicationContext(),"Suceess",Toast.LENGTH_LONG).show();
+              setValueIndatabase(formPushPullCustomVAR);
+              dialog.dismiss();
             }
         })
                 .setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
@@ -612,6 +647,119 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                 .setMessage("Please ReCheck EveryThing");
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+    }
+
+
+
+
+
+
+    private void setValueIndatabase(final FormPushPullCustomVAR formPushPullCustomVAR) {
+        DatabaseReference databaseRef=FirebaseDatabase.getInstance().getReference("consituency/"+formPushPullCustomVAR.getConstituency()+"/");
+        final DatabaseReference queueref= databaseRef.child("queue/");
+        final DatabaseReference readyref=databaseRef.child("ready/");
+
+      databaseRef.child("ready").addListenerForSingleValueEvent(new ValueEventListener() {
+          @Override
+          public void onDataChange(DataSnapshot dataSnapshot) {
+              ConstituencyHelperClass c=new ConstituencyHelperClass();
+              long x=dataSnapshot.getChildrenCount();
+
+
+              //if true push values to ready else push to queue
+              if(x<=c.getlimit(formPushPullCustomVAR.getConstituency()))
+              {
+                  readyref.child(formPushPullCustomVAR.getAadharNo()).setValue(formPushPullCustomVAR).addOnCompleteListener(new OnCompleteListener<Void>() {
+                      @Override
+                      public void onComplete(@NonNull Task<Void> task) {
+                          SharedPreferences prefs = getSharedPreferences("codewarriors", MODE_PRIVATE);
+                          final String userid = prefs.getString("userid", null);
+                          DatabaseReference rootref = FirebaseDatabase.getInstance().getReference("UserState/");
+                          rootref.child(userid).setValue(aadharnoet.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                              @Override
+                              public void onComplete(@NonNull Task<Void> task) {
+                                  DatabaseReference root=FirebaseDatabase.getInstance().getReference("userstatecons/");
+
+
+                                  ConsituencyCustomVAR consituencyCustomVAR=new ConsituencyCustomVAR(firstnameet.getText().toString()
+                                          +" "+middlenameet.getText().toString()+""+
+                                          lastnameet.getText().toString(),userid,aadharnoet.getText().toString(),consituency,"1");
+                                  root.child(aadharnoet.getText().toString()).setValue(consituencyCustomVAR).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                      @Override
+                                      public void onSuccess(Void aVoid) {
+                                          //This will open status activity
+                                          startActivity(new Intent(FIllform.this,StatusActivity.class));
+                                      }
+                                  });
+
+                              }
+                          });
+
+                      }
+                  });
+              }
+              else {
+                  queueref.child(formPushPullCustomVAR.getAadharNo()).setValue(formPushPullCustomVAR).addOnCompleteListener(new OnCompleteListener<Void>() {
+                      @Override
+                      public void onComplete(@NonNull Task<Void> task) {
+                          SharedPreferences prefs = getSharedPreferences("codewarriors", MODE_PRIVATE);
+                          final String userid = prefs.getString("userid", null);
+                          DatabaseReference rootref = FirebaseDatabase.getInstance().getReference("UserState/");
+                          rootref.child(userid).setValue(aadharnoet.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                              @Override
+                              public void onComplete(@NonNull Task<Void> task) {
+                                  DatabaseReference root=FirebaseDatabase.getInstance().getReference("userstatecons/");
+                                  ConsituencyCustomVAR consituencyCustomVAR=new ConsituencyCustomVAR(firstnameet.getText().toString()
+                                          +" "+middlenameet.getText().toString()+""+
+                                          lastnameet.getText().toString(),userid,aadharnoet.getText().toString(),consituency,"0");
+                                  root.child(aadharnoet.getText().toString()).setValue(consituencyCustomVAR).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                      @Override
+                                      public void onSuccess(Void aVoid) {
+
+                                         startActivity(new Intent(FIllform.this,StatusActivity.class));
+                                      }
+                                  });
+
+                              }
+                          });
+                      }
+                  });
+              }
+          }
+
+          @Override
+          public void onCancelled(DatabaseError databaseError) {
+
+              Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_LONG).show();
+
+          }
+      });
+
+
+    }
+
+
+
+
+
+
+
+
+    public String getGender()
+    {
+        if(maleradio.isChecked())
+        {
+            return "MALE";
+        }
+        if(femaleradio.isChecked())
+        {
+            return "FEMALE";
+        }
+        if(transgebderradio.isChecked())
+        {
+            return "TRANSGENDER";
+        }
+        return null;
     }
 
 
@@ -635,7 +783,6 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-
                     }
                 })
                 .setCancelable(true)

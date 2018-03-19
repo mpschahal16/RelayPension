@@ -3,6 +3,7 @@ package com.codewarriors.hackathone.relaypension;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.codewarriors.hackathone.relaypension.customvariablesforparsing.ConsituencyCustomVAR;
 import com.codewarriors.hackathone.relaypension.customvariablesforparsing.ConstituencyHelperClass;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,6 +44,7 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
 
    Button sendotptophonebt,verifyotpbt;
    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("stubofuid/");
+   DatabaseReference userstateconsref=FirebaseDatabase.getInstance().getReference("userstatecons/");
    ProgressDialog progressDialog;
    //Timeraa timeraa;
 
@@ -145,31 +148,55 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
         final String st=aadharnoet.getText().toString().trim();
         constituency= consituencyet.getText().toString();
         familyanylin=Integer.parseInt(anualfamilyincomeet.getText().toString());
-        DatabaseReference mr=mDatabase.child(st);
+        final DatabaseReference mr=mDatabase.child(st);
         progressDialog.setMessage("Checking Info");
         progressDialog.show();
-        //PRESENTLY WE ARE EXTRACTING AADHAR NO FROM AADHAR NO AND SENDING IT TO FORM FILL ACTIVITY
-        //BUT WE NEED TO FETCH PHONE NO ATTACHED TO THAT AADHAAR AND VERIFY THAT PHONE NO WITH OTP AND THEN SEND THAT AADHAR NO TO NEXT ACTIVITY
-        mr.child("phoneNo").addListenerForSingleValueEvent(new ValueEventListener() {
+
+
+        userstateconsref.child(aadharnoet.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()) {
-                    String userpno = dataSnapshot.getValue().toString();
+            public void onDataChange(DataSnapshot dataSnapshotx) {
+
+                if(dataSnapshotx.exists()) {
+
                     progressDialog.dismiss();
-                    adharno=st;
-                    sendOTPtoPhoneNO(userpno);
+                    Toast.makeText(getApplicationContext(),"Aadhar Already Used",Toast.LENGTH_LONG).show();
+
                 }
                 else
                 {
-                    progressDialog.dismiss();
-                    Toast.makeText(getApplicationContext(),"Aadhar Does Not exsist in DB",Toast.LENGTH_LONG).show();
+
+                    mr.child("phoneNo").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                String userpno = dataSnapshot.getValue().toString();
+                                adharno = st;
+                                sendOTPtoPhoneNO(userpno);
+                            } else {
+                                progressDialog.dismiss();
+                                Toast.makeText(getApplicationContext(), "Aadhar Does Not exsist in DB", Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Toast.makeText(getApplicationContext(), "Check Network/Db error", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                   progressDialog.dismiss();
+
                 }
+
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(),"Check Network/Db error",Toast.LENGTH_LONG).show();
-                }
+
+            }
         });
+
+
     }
 
 
@@ -192,6 +219,7 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
         otpaadharverifyet.setVisibility(View.VISIBLE);
         verifyotpbt.setVisibility(View.VISIBLE);
         textInputLayout.setVisibility(View.VISIBLE);
+        progressDialog.dismiss();
         Toast.makeText(getApplication(),"Otp send to Aadhar linked Mobile",Toast.LENGTH_LONG).show();
         Log.d("msg69","onInitiated"+response);
     }

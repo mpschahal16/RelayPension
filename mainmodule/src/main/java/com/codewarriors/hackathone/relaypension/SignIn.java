@@ -240,18 +240,13 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                         String s=dataSnapshot.getValue().toString();
-                                        switch (s)
+                                        if(s.equals("0"))
                                         {
-                                            case "0":
-                                            {
-                                                startActivity(new Intent(SignIn.this,Aadharverify.class));
-                                                break;
-                                            }
-                                            case "1":
-                                            {
-                                                Toast.makeText(getApplicationContext(),"gottostatus",Toast.LENGTH_LONG).show();
-                                                break;
-                                            }
+                                            startActivity(new Intent(SignIn.this,Aadharverify.class));
+                                        }
+                                        else
+                                        {
+                                            startActivity(new Intent(SignIn.this,StatusActivity.class));
                                         }
 
                                     }
@@ -266,7 +261,6 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                             SharedPreferences.Editor editor = getSharedPreferences("codewarriors", MODE_PRIVATE).edit();
                             editor.putString("userid", userid);
                             editor.apply();
-
 
 
 

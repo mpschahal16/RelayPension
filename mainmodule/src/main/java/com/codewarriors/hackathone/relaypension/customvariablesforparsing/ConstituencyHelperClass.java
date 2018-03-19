@@ -1,5 +1,7 @@
 package com.codewarriors.hackathone.relaypension.customvariablesforparsing;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 /**
@@ -20,6 +22,34 @@ public class ConstituencyHelperClass {
         constituencylist.add("C");
 
         return constituencylist;
+    }
+
+
+    public int getlimit(String constiuencyvar)
+    {
+
+        switch (constiuencyvar)
+        {
+            case "A":
+            {
+                return consAlimit;
+            }
+            case "B":
+            {
+                return consBlimit;
+            }
+            case "C":
+            {
+                return consClimit;
+            }
+            default:
+            {
+                Log.d("conslimit","default part");
+            }
+
+
+        }
+        return 0;
     }
 
     public int getConsAlimit() {

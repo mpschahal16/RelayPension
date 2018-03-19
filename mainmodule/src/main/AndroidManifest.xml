@@ -37,11 +37,7 @@
         <activity
             android:name=".FIllform"
             android:label="@string/fillform">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Insertdatatostub">
 
@@ -50,6 +46,17 @@
 
         </activity>
         <activity android:name=".EligibilityActivity">
+
+        </activity>
+        <activity android:name=".StatusActivity"
+            android:label="@string/status">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
     </application>
 

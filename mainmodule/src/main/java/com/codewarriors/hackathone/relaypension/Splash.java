@@ -76,18 +76,13 @@ public class Splash extends AppCompatActivity {
 
     void openactivity(String s)
     {
-        switch (s)
+        if(s.equals("0"))
         {
-            case "0":
-            {
-                startActivity(new Intent(Splash.this,Aadharverify.class));
-                break;
-            }
-            case "1":
-            {
-                Toast.makeText(getApplicationContext(),"gottostatus",Toast.LENGTH_LONG).show();
-                break;
-            }
+            startActivity(new Intent(Splash.this,Aadharverify.class));
+        }
+        else
+        {
+            startActivity(new Intent(Splash.this,StatusActivity.class));
         }
     }
 }
