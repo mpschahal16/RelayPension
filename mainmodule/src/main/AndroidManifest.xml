@@ -22,28 +22,48 @@
         <activity
             android:name=".Splash"
             android:theme="@style/SplashTheme">
+
+        </activity>
+        <activity
+            android:name=".SignIn"
+            android:label="@string/Sign_in">
+
+        </activity>
+        <activity
+            android:name=".Aadharverify"
+            android:label="@string/aadharverification">
+
+        </activity>
+        <activity
+            android:name=".FIllform"
+            android:label="@string/fillform">
+
+        </activity>
+        <activity android:name=".Insertdatatostub">
+
+        </activity>
+        <activity android:name=".StubNoReturn">
+
+        </activity>
+        <activity android:name=".EligibilityActivity">
+
+        </activity>
+        <activity
+            android:name=".StatusActivity"
+            android:label="@string/status">
+
+        </activity>
+        <activity android:name=".adminside.NewAdminLogin">
+
+        </activity>
+        <activity android:name=".adminside.ListAllConstituency"
+            android:label="@string/status">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".SignIn"
-            android:label="@string/Sign_in"></activity>
-        <activity
-            android:name=".Aadharverify"
-            android:label="@string/aadharverification"></activity>
-        <activity
-            android:name=".FIllform"
-            android:label="@string/fillform"></activity>
-        <activity android:name=".Insertdatatostub"></activity>
-        <activity android:name=".StubNoReturn"></activity>
-        <activity android:name=".EligibilityActivity"></activity>
-        <activity
-            android:name=".StatusActivity"
-            android:label="@string/status"></activity>
-        <activity android:name=".NewAdminLogin"></activity>
     </application>
 
 </manifest>
