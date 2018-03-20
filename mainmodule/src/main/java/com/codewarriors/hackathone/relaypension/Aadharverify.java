@@ -204,7 +204,7 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
 
 
 
-    //msg 69 code for otp verification of aadhar
+    //msg 91 code for otp verification of aadhar
     private void sendOTPtoPhoneNO(String userpno) {
 
         msg69var = SendOtpVerification.createSmsVerification

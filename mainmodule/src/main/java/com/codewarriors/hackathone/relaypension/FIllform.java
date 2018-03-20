@@ -670,7 +670,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
 
 
               //if true push values to ready else push to queue
-              if(x<=c.getlimit(formPushPullCustomVAR.getConstituency()))
+              if(x<c.getlimit(formPushPullCustomVAR.getConstituency()))
               {
                   readyref.child(formPushPullCustomVAR.getAadharNo()).setValue(formPushPullCustomVAR).addOnCompleteListener(new OnCompleteListener<Void>() {
                       @Override
