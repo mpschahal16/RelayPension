@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 public class ConstituencyHelperClass {
 
-    private int consAlimit=1;
-    private int consBlimit=1;
-    private int consClimit=1;
+    private int consAlimit=3;
+    private int consBlimit=2;
+    private int consClimit=4;
 
     public ArrayList<String> getConstituency()
     {

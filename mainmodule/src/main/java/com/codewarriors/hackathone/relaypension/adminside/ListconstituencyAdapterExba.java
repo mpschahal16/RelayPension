@@ -1,6 +1,7 @@
 package com.codewarriors.hackathone.relaypension.adminside;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +18,11 @@ import java.util.ArrayList;
 
 public class ListconstituencyAdapterExba extends BaseAdapter {
 
-    private Activity activity;
+    private Context context;
     private ArrayList<ListConstituencyVAR> listConstituencyVARSlist;
 
-    public ListconstituencyAdapterExba(Activity activity, ArrayList<ListConstituencyVAR> listConstituencyVARSlist) {
-        this.activity = activity;
+    public ListconstituencyAdapterExba(Context context, ArrayList<ListConstituencyVAR> listConstituencyVARSlist) {
+        this.context = context;
         this.listConstituencyVARSlist = listConstituencyVARSlist;
     }
 
@@ -50,7 +51,7 @@ public class ListconstituencyAdapterExba extends BaseAdapter {
         View v;
         if(view==null)
         {
-            LayoutInflater inflater=activity.getLayoutInflater();
+            LayoutInflater inflater=LayoutInflater.from(context);
             v=inflater.inflate(R.layout.customconstituency_listitem,null);
             final ViewHolder viewHolder=new ViewHolder();
             viewHolder.constituencytv=v.findViewById(R.id.consnamelistitemtv);

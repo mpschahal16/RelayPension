@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.codewarriors.hackathone.relaypension.R;
 import com.codewarriors.hackathone.relaypension.customvariablesforparsing.ConstituencyHelperClass;
@@ -35,20 +36,12 @@ public class ListAllConstituency extends AppCompatActivity {
 
         listtodisplay=new ArrayList<>();
 
-
-
-
-
-
-
-
-
-
-
-        rootreference.child("consituency").addListenerForSingleValueEvent(new ValueEventListener() {
+        rootreference.child("consituency").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()) {
+
+                    listtodisplay.clear();
 
                     ConstituencyHelperClass constituencyHelperClass=new ConstituencyHelperClass();
 
@@ -63,11 +56,11 @@ public class ListAllConstituency extends AppCompatActivity {
                         Log.d("msg",constituencyname+"/"+nooformin_ready+"/"+nooformin_queue);
 
                     }
-                  //  listconstituencyAdapterExba=new ListconstituencyAdapterExba((ListAllConstituency)g,listtodisplay);
+                    listconstituencyAdapterExba=new ListconstituencyAdapterExba(getApplicationContext(),listtodisplay);
                     listallconstit.setAdapter(listconstituencyAdapterExba);
                     listconstituencyAdapterExba.notifyDataSetChanged();
 
-                   // setall();
+                    // setall();
 
                 }
             }
@@ -75,16 +68,16 @@ public class ListAllConstituency extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
+                Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_LONG).show();
+
             }
         });
 
 
 
-    }
 
-    private void setall() {
-        for (ListConstituencyVAR temp:listtodisplay) {
-            listConstituencyVAR = new ListConstituencyVAR(temp.getConstituencyname(),temp.nooformin_ready,temp.getNooformin_queue(),temp.getMaxlimit());
-        }
+
+
+
     }
 }
