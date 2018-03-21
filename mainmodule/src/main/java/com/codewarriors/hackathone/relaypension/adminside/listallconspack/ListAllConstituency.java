@@ -34,6 +34,8 @@ public class ListAllConstituency extends AppCompatActivity {
         listallconstit=findViewById(R.id.listviewallconstituency);
 
 
+
+
         listtodisplay=new ArrayList<>();
 
         rootreference.child("consituency").addValueEventListener(new ValueEventListener() {
