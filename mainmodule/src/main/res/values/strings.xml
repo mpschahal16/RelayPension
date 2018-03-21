@@ -35,7 +35,6 @@
     <string name="msg69key">203084AvQ3y6WW5aaa7ad7</string>
 
 
-
     <string name="constituency">Constituency</string>
     <string name="eligibility2"><![CDATA[2. Annual family income of less than Rs 1,00,000 from all sources (including rent, interest/dividends on savings & investments, earnings from farm, property sale proceeds etc.) of the applicant & spouse.]]></string>
     <string name="eligibility1">1.) To persons above 60 years.</string>
@@ -43,4 +42,11 @@
     <string name="elligebility2">3.) The applicant should have an Aadhaar number.</string>
     <string name="elligibility4">4.) The applicant should have a ‘singly-operated’ account in any Bank in National Capital Territory of Delhi only mapped with Aadhaar number of the applicant for receiving the payment through Aadhaar Payment Bridge System (APBS).</string>
     <string name="eligibility5">5.) Must not be receiving any pension/ financial assistance from Central Govt/ State Govt/ other governmental local bodies or any other source for this purpose.</string>
+    <string name="title_activity_tab_activityforreadyqueue">TabActivityforreadyqueue</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_tabready_queue">TabactivityReadyQueue</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
 </resources>
