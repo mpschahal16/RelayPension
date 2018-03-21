@@ -1,6 +1,5 @@
-package com.codewarriors.hackathone.relaypension.adminside;
+package com.codewarriors.hackathone.relaypension.adminside.listallconspack;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.codewarriors.hackathone.relaypension.R;
+import com.codewarriors.hackathone.relaypension.adminside.listallconspack.ListConstituencyVAR;
 
 import java.util.ArrayList;
 

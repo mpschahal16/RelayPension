@@ -57,7 +57,7 @@
         <activity android:name=".adminside.NewAdminLogin">
 
         </activity>
-        <activity android:name=".adminside.ListAllConstituency"
+        <activity android:name=".adminside.listallconspack.ListAllConstituency"
             android:label="@string/status">
 
             <intent-filter>

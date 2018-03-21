@@ -1,4 +1,4 @@
-package com.codewarriors.hackathone.relaypension.adminside;
+package com.codewarriors.hackathone.relaypension.adminside.listallconspack;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +34,8 @@ public class ListAllConstituency extends AppCompatActivity {
         listallconstit=findViewById(R.id.listviewallconstituency);
 
 
+
+
         listtodisplay=new ArrayList<>();
 
         rootreference.child("consituency").addValueEventListener(new ValueEventListener() {
@@ -60,7 +62,7 @@ public class ListAllConstituency extends AppCompatActivity {
                     listallconstit.setAdapter(listconstituencyAdapterExba);
                     listconstituencyAdapterExba.notifyDataSetChanged();
 
-                    // setall();
+
 
                 }
             }
