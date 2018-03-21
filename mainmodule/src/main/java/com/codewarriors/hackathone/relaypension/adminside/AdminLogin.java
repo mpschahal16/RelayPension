@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.codewarriors.hackathone.relaypension.R;
 
-public class NewAdminLogin extends AppCompatActivity {
+public class AdminLogin extends AppCompatActivity {
 
 
 

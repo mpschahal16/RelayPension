@@ -22,8 +22,6 @@
         <activity
             android:name=".Splash"
             android:theme="@style/SplashTheme">
-
-
         </activity>
         <activity
             android:name=".SignIn"
@@ -54,17 +52,15 @@
             android:label="@string/status">
 
         </activity>
-        <activity android:name=".adminside.NewAdminLogin">
-
-        </activity>
-        <activity android:name=".adminside.ListAllConstituency"
-            android:label="@string/status">
-
+        <activity android:name=".adminside.AdminLogin"
+            android:label="@string/admin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".adminside.listallconspack.ListAllConstituency"
+            android:label="@string/constituency">
         </activity>
     </application>
 

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Relay Pension</string>
     <string name="Sign_in">Sign In</string>
+    <string name="admin">Administrater</string>
     <string name="send_otp">SEND OTP</string>
     <string name="status">Status</string>
     <string name="mobile_number">MOBILE NUMBER</string>
@@ -32,6 +33,10 @@
 
 
     <string name="msg69key">203084AvQ3y6WW5aaa7ad7</string>
+
+
+
+    <string name="constituency">Constituency</string>
     <string name="eligibility2"><![CDATA[2. Annual family income of less than Rs 1,00,000 from all sources (including rent, interest/dividends on savings & investments, earnings from farm, property sale proceeds etc.) of the applicant & spouse.]]></string>
     <string name="eligibility1">1.) To persons above 60 years.</string>
     <string name="eligibility_criteriaheading">Eligibility Criteria</string>

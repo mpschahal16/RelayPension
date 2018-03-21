@@ -12,6 +12,9 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.codewarriors.hackathone.relaypension.adminside.AdminLogin;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -126,7 +130,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     private void senotpfun() {
         if(awesomeValidation.validate())
         {
-            String phoneNumber = phonenoet.getText().toString();
+            String phoneNumber =phonenoet.getText().toString();
             setUpVerificatonCallbacks();
             switch (retry)
             {
@@ -140,6 +144,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                             this,               // Activity (for callback binding)
                             verificationCallbacks);
                     progressDialog.setMessage("Sending OTP To "+phoneNumber);
+                    progressDialog.setCancelable(false);
                     progressDialog.show();
                     break;
 
@@ -329,5 +334,35 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
          }
      }
+
+
+
+
+
+     //menu button code written here
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menuforadminlogin, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+
+        switch (item.getItemId())
+        {
+            case R.id.admin_login:
+                startActivity(new Intent(SignIn.this, AdminLogin.class));
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 }
