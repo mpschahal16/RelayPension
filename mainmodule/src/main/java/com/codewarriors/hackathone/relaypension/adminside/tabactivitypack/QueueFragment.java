@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -52,7 +51,7 @@ public class QueueFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_queue, container, false);
-        queuelistview=view.findViewById(R.id.readyformlistv);
+        queuelistview=view.findViewById(R.id.queuefromlv);
 
         Intent intent=getActivity().getIntent();
         constituency=intent.getExtras().getString("constituency");
@@ -93,8 +92,8 @@ public class QueueFragment extends Fragment {
                             queuelistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                                    Toast.makeText(getContext(),i+""+allformslistinqueue.get(i).getAadharNo(),Toast.LENGTH_LONG).show();
+                                    DialogForQueueForm dialogForQueueForm =new DialogForQueueForm(getActivity(),allformslistinqueue.get(i));
+                                    dialogForQueueForm.show();
                                 }
                             });
                     }

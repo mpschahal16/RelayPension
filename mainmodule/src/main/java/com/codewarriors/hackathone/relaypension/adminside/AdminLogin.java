@@ -38,19 +38,20 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
         b1 = this.findViewById(R.id.signup);
         b2 = this.findViewById(R.id.signin);
         tv = this.findViewById(R.id.login);
-        b1.setOnClickListener(this);
-        b2.setVisibility(View.INVISIBLE);
+      //  b1.setOnClickListener(this);
+        b1.setVisibility(View.INVISIBLE);
+       // b2.setVisibility(View.INVISIBLE);
         b2.setOnClickListener(this);
         tv.setOnClickListener(this);
         dialog = new ProgressDialog(this);
         auth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
+       /* if (user != null) {
            // go_to_login();
             b2.setVisibility(View.VISIBLE);
             b1.setVisibility(View.INVISIBLE);
             tv.setText(user.getEmail());
-        }
+        }*/
 
     }
 

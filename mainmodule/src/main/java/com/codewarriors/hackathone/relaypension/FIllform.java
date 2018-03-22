@@ -270,7 +270,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                 femaleradio.setChecked(true);
                 break;
             }
-            case "Transgender": {
+            case "Transender": {
                 transgebderradio.setChecked(true);
                 break;
             }
@@ -713,7 +713,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                               public void onComplete(@NonNull Task<Void> task) {
                                   DatabaseReference root=FirebaseDatabase.getInstance().getReference("userstatecons/");
                                   ConsituencyCustomVAR consituencyCustomVAR=new ConsituencyCustomVAR(firstnameet.getText().toString()
-                                          +" "+middlenameet.getText().toString()+""+
+                                          +" "+middlenameet.getText().toString()+" "+
                                           lastnameet.getText().toString(),userid,aadharnoet.getText().toString(),consituency,"0");
                                   root.child(aadharnoet.getText().toString()).setValue(consituencyCustomVAR).addOnSuccessListener(new OnSuccessListener<Void>() {
                                       @Override
@@ -752,15 +752,15 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
     {
         if(maleradio.isChecked())
         {
-            return "MALE";
+            return "Male";
         }
         if(femaleradio.isChecked())
         {
-            return "FEMALE";
+            return "Female";
         }
         if(transgebderradio.isChecked())
         {
-            return "TRANSGENDER";
+            return "Trangender";
         }
         return null;
     }

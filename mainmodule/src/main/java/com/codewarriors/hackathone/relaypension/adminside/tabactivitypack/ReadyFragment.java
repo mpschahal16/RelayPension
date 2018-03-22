@@ -12,7 +12,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.codewarriors.hackathone.relaypension.R;
-import com.codewarriors.hackathone.relaypension.adminside.listallconspack.ListConstituencyVAR;
 import com.codewarriors.hackathone.relaypension.customvariablesforparsing.FormPushPullCustomVAR;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,7 +20,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -96,7 +94,8 @@ public class ReadyFragment extends Fragment {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                                Toast.makeText(getContext(),i+""+allformslistinready.get(i).getAadharNo(),Toast.LENGTH_LONG).show();
+                                DialogForReadyForm dialogForReadyForm =new DialogForReadyForm(getActivity(),allformslistinready.get(i));
+                                dialogForReadyForm.show();
 
                             }
                         });
