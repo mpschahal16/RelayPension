@@ -21,57 +21,39 @@
 
         <activity
             android:name=".Splash"
-            android:theme="@style/SplashTheme">
-
-        </activity>
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".SignIn"
             android:label="@string/Sign_in" />
         <activity
             android:name=".Aadharverify"
-            android:label="@string/aadharverification">
-
-        </activity>
+            android:label="@string/aadharverification" />
         <activity
             android:name=".FIllform"
-            android:label="@string/fillform">
-
-        </activity>
-        <activity android:name=".Insertdatatostub">
-
-        </activity>
-        <activity android:name=".StubNoReturn">
-
-        </activity>
-        <activity android:name=".EligibilityActivity">
-
-        </activity>
+            android:label="@string/fillform" />
+        <activity android:name=".Insertdatatostub" />
+        <activity android:name=".StubNoReturn" />
+        <activity android:name=".EligibilityActivity" />
         <activity
             android:name=".StatusActivity"
-            android:label="@string/status" >
-
-        </activity>
+            android:label="@string/status" />
         <activity
             android:name=".adminside.AdminLogin"
-            android:label="@string/admin">
-
-        </activity>
+            android:label="@string/admin" />
         <activity
             android:name=".adminside.listallconspack.ListAllConstituency"
-            android:label="@string/constituency" >
+            android:label="@string/constituency" />
+        <activity
+            android:name=".adminside.tabactivitypack.TabactivityReadyQueue"
+            android:label="@string/title_activity_tabready_queue"
+            android:theme="@style/AppTheme1.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".adminside.tabactivitypack.TabactivityReadyQueue"
-            android:label="@string/title_activity_tabready_queue"
-            android:theme="@style/AppTheme1.NoActionBar">
-
-        </activity>
+        <activity android:name=".adminside.Admin_review"></activity>
     </application>
 
 </manifest>
