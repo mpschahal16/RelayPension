@@ -5,35 +5,15 @@
     android:padding="7dp"
     android:background="@color/avtivitybackground">
 
-    <Button
-        android:id="@+id/readytestbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
-
-    <TextView
-        android:id="@+id/readytv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="198dp"
-        android:text="TextView" />
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/layoutbackground">
 
-        <LinearLayout
+        <ListView
+            android:id="@+id/readyformlistv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-    </ScrollView>
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
 </RelativeLayout>

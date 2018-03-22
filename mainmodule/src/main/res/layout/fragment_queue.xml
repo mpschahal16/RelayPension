@@ -13,23 +13,9 @@
 
 
         <ListView
+            android:id="@+id/queuefromlv"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/queuetv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="153dp"
-        android:layout_marginTop="200dp"
-        android:text="TextView" />
-
-    <Button
-        android:id="@+id/queuetestbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
 </RelativeLayout>

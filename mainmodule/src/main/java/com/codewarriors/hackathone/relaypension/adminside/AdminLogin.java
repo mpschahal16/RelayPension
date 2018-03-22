@@ -46,6 +46,7 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
         auth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
+           // go_to_login();
             b2.setVisibility(View.VISIBLE);
             b1.setVisibility(View.INVISIBLE);
             tv.setText(user.getEmail());
@@ -83,7 +84,23 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
             });
         }
         if(v==b2){
-            go_to_login();
+            dialog.setMessage("Logging In ...please Wait");
+            dialog.show();
+            auth.signInWithEmailAndPassword(user,pass).
+                    addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()) {
+                                go_to_login();
+                            }
+                        }
+                    }).addOnFailureListener(this, new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    dialog.dismiss();
+                    Toast.makeText(AdminLogin.this, "ERROR: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 

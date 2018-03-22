@@ -6,6 +6,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.codewarriors.hackathone.relaypension.R;
+import com.codewarriors.hackathone.relaypension.adminside.tabactivitypack.ApplicationFormListAdapter;
+import com.codewarriors.hackathone.relaypension.adminside.tabactivitypack.ApplicationFormListVAR;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,9 +19,9 @@ import java.util.ArrayList;
 public class Admin_review extends AppCompatActivity {
     DatabaseReference rootreference= FirebaseDatabase.getInstance().getReference();
     ListView lv;
-    ArrayList<ListVar> listtodisplay;
-    ListAdapter listAdapter;
-    ListVar listVar;
+    ArrayList<ApplicationFormListVAR> listtodisplay;
+    ApplicationFormListAdapter applicationFormListAdapter;
+    ApplicationFormListVAR applicationFormListVAR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +38,16 @@ public class Admin_review extends AppCompatActivity {
 
                     for(DataSnapshot dataSnapshotchild:dataSnapshot.getChildren())
                     {
-                        String name=dataSnapshotchild.getKey();
+                       /* String name=dataSnapshotchild.getKey();
                         String consti=dataSnapshotchild.getKey();
                         int age=Integer.parseInt(dataSnapshotchild.getKey());
                         int fno=Integer.parseInt(dataSnapshotchild.getKey());
-                        ListVar var=new ListVar(name,age,consti,fno);
-                        listtodisplay.add(var);
+                        ApplicationFormListVAR var=new ApplicationFormListVAR(name,age,consti,fno);
+                        listtodisplay.add(var);*/
                     }
-                    listAdapter=new ListAdapter(getApplicationContext(),listtodisplay);
-                    lv.setAdapter(listAdapter);
-                    listAdapter.notifyDataSetChanged();
+                    applicationFormListAdapter =new ApplicationFormListAdapter(getApplicationContext(),listtodisplay);
+                    lv.setAdapter(applicationFormListAdapter);
+                    applicationFormListAdapter.notifyDataSetChanged();
 
     }
 }

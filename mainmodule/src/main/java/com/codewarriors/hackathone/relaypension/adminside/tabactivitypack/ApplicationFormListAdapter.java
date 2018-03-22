@@ -1,4 +1,4 @@
-package com.codewarriors.hackathone.relaypension.adminside;
+package com.codewarriors.hackathone.relaypension.adminside.tabactivitypack;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,12 +15,12 @@ import java.util.ArrayList;
      * Created by aishwarya on 21-03-2018.
      */
 
-    public class ListAdapter extends BaseAdapter {
+    public class ApplicationFormListAdapter extends BaseAdapter {
 
         private Context context;
-        private ArrayList<ListVar> lvar;
+        private ArrayList<ApplicationFormListVAR> lvar;
 
-        public ListAdapter(Context context, ArrayList<ListVar> lvar) {
+        public ApplicationFormListAdapter(Context context, ArrayList<ApplicationFormListVAR> lvar) {
 
             this.context = context;
             this.lvar = lvar;
@@ -56,12 +56,12 @@ import java.util.ArrayList;
             if(view==null)
             {
                 LayoutInflater inflater= LayoutInflater.from(context);
-                v=inflater.inflate(R.layout.detail_user,null);
+                v=inflater.inflate(R.layout.readyorqueuelistitem,null);
                 final ViewHolder viewHolder=new ViewHolder();
-                viewHolder.tv=v.findViewById(R.id.tv);
-                viewHolder.tv2=v.findViewById(R.id.tv2);
-                viewHolder.tv3=v.findViewById(R.id.tv3);
-                viewHolder.tv4=v.findViewById(R.id.tv4);
+                viewHolder.tv=v.findViewById(R.id.readynametv);
+                viewHolder.tv2=v.findViewById(R.id.formnoreadytv);
+                viewHolder.tv3=v.findViewById(R.id.constituencyreadytv);
+                viewHolder.tv4=v.findViewById(R.id.agereadytv);
                 v.setTag(viewHolder);
 
             }
@@ -70,7 +70,7 @@ import java.util.ArrayList;
                 v=view;
             }
             ViewHolder holder=(ViewHolder) v.getTag();
-            final  ListVar lv= lvar.get(i);
+            final ApplicationFormListVAR lv= lvar.get(i);
             holder.tv.setText(lv.getName());
             holder.tv2.setText(lv.getFno());
             holder.tv3.setText(lv.getConsti());
