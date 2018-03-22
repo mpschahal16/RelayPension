@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.codewarriors.hackathone.relaypension.R;
+
 import java.util.ArrayList;
 
     /**
@@ -77,4 +79,4 @@ import java.util.ArrayList;
             return v;
         }
     }
-}
+

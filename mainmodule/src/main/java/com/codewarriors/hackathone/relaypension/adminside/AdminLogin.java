@@ -2,17 +2,17 @@ package com.codewarriors.hackathone.relaypension.adminside;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codewarriors.hackathone.relaypension.R;
+import com.codewarriors.hackathone.relaypension.adminside.listallconspack.ListAllConstituency;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -21,7 +21,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class AdminLogin extends AppCompatActivity implements View.OnClickListener{
-    LinearLayout linearLayout;
 
     EditText t1, t2;
     Button b1,b2;
@@ -68,7 +67,7 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 dialog.dismiss();
-                                Toasty.success(Main77Activity.this, "User Registered", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AdminLogin.this, "User Registered", Toast.LENGTH_SHORT).show();
                                 t1.setText("");
                                 t2.setText("");
                                 t1.requestFocus();
@@ -79,7 +78,7 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     dialog.dismiss();
-                    Toast.makeText(Main77Activity.this, "ERROR: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminLogin.this, "ERROR: "+e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -89,7 +88,7 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
     }
 
     private void go_to_login() {
-        Intent intent = new Intent(this,Main75Activity.class);
+        Intent intent = new Intent(this,ListAllConstituency.class);
         startActivity(intent);
 
     }
