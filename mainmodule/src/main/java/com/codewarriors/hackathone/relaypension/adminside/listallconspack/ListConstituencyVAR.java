@@ -5,6 +5,7 @@ package com.codewarriors.hackathone.relaypension.adminside.listallconspack;
  */
 
 public class ListConstituencyVAR {
+
     String constituencyname;
     Long nooformin_ready,nooformin_queue;
     int maxlimit;

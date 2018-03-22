@@ -58,7 +58,6 @@ public class ListconstituencyAdapterExba extends BaseAdapter {
             viewHolder.inreadytv=v.findViewById(R.id.inreadycountcustomtv);
             viewHolder.inqueuelv=v.findViewById(R.id.inqueuetv);
             viewHolder.maxlimitlv=v.findViewById(R.id.maxlimittv);
-
             v.setTag(viewHolder);
 
         }
@@ -67,7 +66,7 @@ public class ListconstituencyAdapterExba extends BaseAdapter {
             v=view;
         }
         ViewHolder holder=(ViewHolder) v.getTag();
-        final ListConstituencyVAR listConstituencyVAR=listConstituencyVARSlist.get(i);
+        final ListConstituencyVAR listConstituencyVAR =listConstituencyVARSlist.get(i);
         holder.constituencytv.setText(listConstituencyVAR.getConstituencyname());
         holder.inreadytv.setText(listConstituencyVAR.getNooformin_ready().toString());
         holder.maxlimitlv.setText(listConstituencyVAR.getMaxlimit()+"");
