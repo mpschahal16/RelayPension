@@ -4,11 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.codewarriors.hackathone.relaypension.EligibilityActivity"
-    android:background="@color/avtivitybackground">
+    android:background="@color/avtivitybackground"
+    android:padding="7dp">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/layoutbackground">
 
         <LinearLayout
             android:layout_width="match_parent"

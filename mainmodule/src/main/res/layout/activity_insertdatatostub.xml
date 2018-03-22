@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.codewarriors.hackathone.relaypension.FIllform"
-    android:background="@color/avtivitybackground">
+    android:background="@color/avtivitybackground"
+    android:padding="7dp">
 
 
     <ScrollView
@@ -13,7 +14,8 @@
         android:layout_height="match_parent"
         android:fadeScrollbars="true"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteY="0dp"
+        android:background="@drawable/layoutbackground">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -487,4 +489,4 @@
         </LinearLayout>
     </ScrollView>
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

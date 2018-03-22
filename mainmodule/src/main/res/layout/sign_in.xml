@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ccff90"
-    tools:context="com.codewarriors.hackathone.relaypension.SignIn">
+    android:background="@color/avtivitybackground"
+    tools:context="com.codewarriors.hackathone.relaypension.SignIn"
+    android:padding="7dp">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/layoutbackground">
 
 
 

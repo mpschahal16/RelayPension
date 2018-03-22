@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.codewarriors.hackathone.relaypension.FIllform"
     android:background="@color/avtivitybackground"
-    android:padding="7dp">
+    android:padding="2dp">
 
 
     <ScrollView
@@ -49,29 +49,8 @@
                         android:scaleType="fitCenter"
                         app:srcCompat="@drawable/picicon" />
 
-                    <CheckBox
-                        android:id="@+id/selcetpic_fillformcb"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentBottom="true"
-                        android:clickable="false"/>
-
                 </RelativeLayout>
 
-                <Button
-                    android:id="@+id/selectimgfillformbt"
-                    android:layout_width="180dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/buttonshapesec"
-                    android:shadowColor="#A81459"
-                    android:shadowDx="0"
-                    android:shadowDy="0"
-                    android:shadowRadius="5"
-                    android:text="Select Photo"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -88,7 +67,7 @@
 
                     <TextView
                         android:id="@+id/textView15"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.50"
                         android:text="Consituency:"
@@ -96,7 +75,7 @@
 
                     <EditText
                         android:id="@+id/consituency_etfillform"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight=".75"
                         android:editable="false"
@@ -372,20 +351,6 @@
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/changeaddressfilformbt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.60"
-                        android:text="Change"
-                        android:textColor="#FFFFFF"
-                        android:textSize="15sp"
-                        android:background="@drawable/buttonshapesec"
-                        android:shadowColor="#A81459"
-                        android:shadowDx="0"
-                        android:shadowDy="0"
-                        android:shadowRadius="5"/>
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -578,7 +543,9 @@
                             android:id="@+id/aacountnofillformet"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:ems="10" />
+                            android:ems="10"
+                            android:editable="false"
+                            android:inputType="none"/>
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -601,11 +568,12 @@
                         android:layout_height="wrap_content"
                         android:layout_weight=".75">
 
-                        <Spinner
+                        <EditText
                             android:id="@+id/banknamespinner"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:entries="@array/banklist" />
+                            android:editable="false"
+                            android:inputType="none" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -633,30 +601,11 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="2"
-                                android:text="Attach Passbook Picture"
+                                android:text="Passbook Picture"
                                 android:textStyle="bold" />
 
-                            <CheckBox
-                                android:id="@+id/selectpassbookcb"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight=".20"
-                                android:clickable="false" />
                         </LinearLayout>
 
-                        <Button
-                            android:id="@+id/selectpassbook_fillformbt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1.50"
-                            android:background="@drawable/buttonshapesec"
-                            android:shadowColor="#A81459"
-                            android:shadowDx="0"
-                            android:shadowDy="0"
-                            android:shadowRadius="5"
-                            android:text="Select"
-                            android:textColor="#FFFFFF"
-                            android:textSize="15sp" />
                     </LinearLayout>
 
                     <ImageView
@@ -747,31 +696,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:text="Attach Slip:"
+                            android:text="Slip:"
                             android:textStyle="bold" />
 
-                        <CheckBox
-                            android:id="@+id/selectincomecb"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight=".10"
-                            android:clickable="false" />
-
                     </LinearLayout>
-
-                    <Button
-                        android:id="@+id/selectIncomslipbt_fillformbt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.50"
-                        android:background="@drawable/buttonshapesec"
-                        android:shadowColor="#A81459"
-                        android:shadowDx="0"
-                        android:shadowDy="0"
-                        android:shadowRadius="5"
-                        android:text="Select"
-                        android:textColor="#FFFFFF"
-                        android:textSize="15sp" />
 
                 </LinearLayout>
 
@@ -813,27 +741,7 @@
                             android:text="Signature :"
                             android:textStyle="bold" />
 
-                        <CheckBox
-                            android:id="@+id/selectsignaturecb"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight=".10"
-                            android:clickable="false" />
                     </LinearLayout>
-
-                    <Button
-                        android:id="@+id/selectsignature_fillformbt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.50"
-                        android:background="@drawable/buttonshapesec"
-                        android:shadowColor="#A81459"
-                        android:shadowDx="0"
-                        android:shadowDy="0"
-                        android:shadowRadius="5"
-                        android:text="Select"
-                        android:textColor="#FFFFFF"
-                        android:textSize="15sp" />
 
                 </LinearLayout>
 
@@ -854,7 +762,7 @@
                 android:layout_marginTop="8dp">
 
                 <Button
-                    android:id="@+id/submitfillformbt"
+                    android:id="@+id/cancelbt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -864,7 +772,22 @@
                     android:shadowDx="0"
                     android:shadowDy="0"
                     android:shadowRadius="5"
-                    android:text="Submit"
+                    android:text="Cancel"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/rejectbt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:background="@drawable/buttonshape"
+                    android:shadowColor="#A8A8A8"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="5"
+                    android:text="Reject"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -873,4 +796,4 @@
         </LinearLayout>
     </ScrollView>
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

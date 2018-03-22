@@ -1,12 +1,16 @@
 package com.codewarriors.hackathone.relaypension.adminside.listallconspack;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.codewarriors.hackathone.relaypension.R;
+import com.codewarriors.hackathone.relaypension.adminside.tabactivitypack.TabactivityReadyQueue;
 import com.codewarriors.hackathone.relaypension.customvariablesforparsing.ConstituencyHelperClass;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -72,6 +76,16 @@ public class ListAllConstituency extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_LONG).show();
 
+            }
+        });
+
+
+        listallconstit.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent it=new Intent(ListAllConstituency.this, TabactivityReadyQueue.class);
+                it.putExtra("constituency",listtodisplay.get(i).getConstituencyname());
+                startActivity(it);
             }
         });
 

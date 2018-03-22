@@ -12,13 +12,12 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/appbar_padding_top"
         android:theme="@style/AppTheme1.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
@@ -30,8 +29,21 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@android:color/black"
+            app:tabTextAppearance="@android:style/TextAppearance.DeviceDefault.Widget.PopupMenu.Large">
 
+            <android.support.design.widget.TabItem
+                android:id="@+id/readytab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="READY" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/queuetab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="QUEUE" />
         </android.support.design.widget.TabLayout>
     </android.support.design.widget.AppBarLayout>
 

@@ -1,5 +1,6 @@
 package com.codewarriors.hackathone.relaypension.adminside.tabactivitypack;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.codewarriors.hackathone.relaypension.R;
 
@@ -38,10 +40,16 @@ public class TabactivityReadyQueue extends AppCompatActivity {
      */
     private ViewPager mViewPager;
 
+
+
+    String constituency;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabready_queue);
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -58,8 +66,11 @@ public class TabactivityReadyQueue extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
+        mViewPager.setOffscreenPageLimit(2);
+
 
     }
+
 
 
     @Override
@@ -142,10 +153,13 @@ public class TabactivityReadyQueue extends AppCompatActivity {
 
         }
 
+
+
         @Override
         public int getCount() {
             // Show 3 total pages.
             return 2;
         }
+
     }
 }

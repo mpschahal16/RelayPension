@@ -5,21 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.codewarriors.hackathone.relaypension.adminside.listallconspack.ListAllConstituency"
-    android:background="@color/avtivitybackground">
+    android:background="@color/avtivitybackground"
+    android:padding="7dp">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
+        android:background="@drawable/layoutbackground"
         android:dividerPadding="10dp"
-        android:orientation="vertical"
-        android:padding="8dp">
+        android:padding="2dp"
+        android:orientation="vertical">
 
         <ListView
             android:id="@+id/listviewallconstituency"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:dividerHeight="3dp"
+            android:divider="@color/avtivitybackground"
             android:fastScrollAlwaysVisible="false"
             android:fastScrollEnabled="true" />
     </LinearLayout>

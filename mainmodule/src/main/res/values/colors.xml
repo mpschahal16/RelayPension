@@ -8,11 +8,14 @@
     <color name="edittextcolor">#ffffff</color>
 
 
+    #2e7d32
 
-    <color name="primaryColor">#2e7d32</color>
+    005005
+    <color name="primaryColor">#005005</color>
     <color name="primaryLightColor">#60ad5e</color>
-    <color name="primaryDarkColor">#005005</color>
+    <color name="primaryDarkColor">#2e7d32</color>
     <color name="textColor">#ffffff</color>
     <color name="errortext">#ff0000</color>
-    <color name="avtivitybackground">#ccff90</color>
+    <color name="avtivitybackground">#B2B2B2</color>
+    <color name="activityforground">#ffffff</color>
 </resources>
