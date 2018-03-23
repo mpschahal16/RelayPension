@@ -85,7 +85,7 @@ public class AcceptedFragment extends Fragment {
                         Collections.sort(listtodisplay, new Comparator<ApplicationFormListVAR>() {
                             @Override
                             public int compare(ApplicationFormListVAR applicationFormListVAR, ApplicationFormListVAR t1) {
-                                return t1.getFno().compareToIgnoreCase(applicationFormListVAR.getFno());
+                                return applicationFormListVAR.getFno().compareToIgnoreCase(t1.getFno());
                             }
                         });
 

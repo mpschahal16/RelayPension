@@ -139,17 +139,27 @@ public class StatusActivity extends AppCompatActivity {
         {
             case "0":
             {
-                applictionstatus.setText("IN QUEUE");
+                applictionstatus.setText("Rejected");
                 break;
             }
             case "1":
             {
+                applictionstatus.setText("IN QUEUE");
+                break;
+            }
+            case "2":
+            {
                 applictionstatus.setText("IN READY");
+                break;
+            }
+            case "4":
+            {
+                applictionstatus.setText("ACCEPTED");
                 break;
             }
             default:
             {
-                applictionstatus.setText("Cancelled");
+                applictionstatus.setText("UNKNOWN");
 
             }
         }
