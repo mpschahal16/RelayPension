@@ -769,10 +769,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@drawable/layoutbackground">
 
             <Button
-                android:id="@+id/cancelbt"
+                android:id="@+id/acceptbt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -782,7 +783,7 @@
                 android:shadowDx="0"
                 android:shadowDy="0"
                 android:shadowRadius="5"
-                android:text="Dismiss"
+                android:text="ACCEPT"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
 

@@ -2,6 +2,8 @@ package com.codewarriors.hackathone.relaypension.adminside.tabactivitypack;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,10 +22,19 @@ import com.codewarriors.hackathone.relaypension.R;
 import com.codewarriors.hackathone.relaypension.StatusActivity;
 import com.codewarriors.hackathone.relaypension.customvariablesforparsing.FormPushPullCustomVAR;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by hp on 22-03-2018.
@@ -38,6 +49,11 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
     private FormPushPullCustomVAR formPushPullCustomVAR;
 
 
+    ProgressDialog progressDialog;
+
+
+    private ArrayList<FormPushPullCustomVAR> queueformlist;
+    private DatabaseReference rootreference= FirebaseDatabase.getInstance().getReference();
 
     private StorageReference storageRef =
             FirebaseStorage.getInstance().getReference();
@@ -61,7 +77,7 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.custom_dia_forreadyform);
-        Button cancel = findViewById(R.id.cancelbt);
+       Button cancel = findViewById(R.id.acceptbt);
         Button reject = findViewById(R.id.rejectbt);
         // image view
         picimageview = findViewById(R.id.imageviewfillform);
@@ -99,8 +115,13 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
         
 
 
-        
+
+
+
         setEverything();
+        queueformlist=new ArrayList<>();
+
+        progressDialog=new ProgressDialog(getContext());
 
         cancel.setOnClickListener(this);
         reject.setOnClickListener(this);
@@ -180,24 +201,65 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
 
             }
         });
+
     }
 
 
     @Override
     public void onClick(View view) {
         int i=view.getId();
+        progressDialog.setMessage("Applying Changes");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         switch (i)
         {
-            case R.id.cancelbt:
+            case R.id.acceptbt:
             {
-                dismiss();
+                DatabaseReference fromreadyref=FirebaseDatabase.getInstance().getReference("consituency/"+formPushPullCustomVAR.getConstituency()+"/"+
+                        "ready/");
+                DatabaseReference acceptref=FirebaseDatabase.getInstance().getReference("consituency/"+formPushPullCustomVAR.getConstituency()+"/"+
+                        "accepted/");
+                readytoaccepted(fromreadyref,acceptref,formPushPullCustomVAR.getAadharNo());
+
+
+
+
+
+
+                //TEST VALUES
+            /*  DatabaseReference fromreadyref=FirebaseDatabase.getInstance().getReference("consituency/"+"A"+"/"+
+                        "ready/");
+                DatabaseReference acceptref=FirebaseDatabase.getInstance().getReference("consituency/"+"A"+"/"+
+                        "accepted/");
+                 // readytoaccepted(fromreadyref,acceptref,"499240755287");
+                readytoaccepted(acceptref,fromreadyref,"499240755287");*/
                 break;
             }
 
 
             case R.id.rejectbt:
             {
-                Toast.makeText(activity,"clicked",Toast.LENGTH_LONG).show();
+                 DatabaseReference fromreadyref=FirebaseDatabase.getInstance().getReference("consituency/"+formPushPullCustomVAR.getConstituency()+"/"+
+                "ready/");
+                DatabaseReference rejectref=FirebaseDatabase.getInstance().getReference("consituency/"+formPushPullCustomVAR.getConstituency()+"/"+
+                        "rejected/");
+                readytorejected(fromreadyref,rejectref,formPushPullCustomVAR.getAadharNo());
+
+
+
+
+
+
+                //TEST VALUES
+              /* DatabaseReference fromreadyref=FirebaseDatabase.getInstance().getReference("consituency/"+"A"+"/"+
+                        "ready/");
+                DatabaseReference rejectref=FirebaseDatabase.getInstance().getReference("consituency/"+"A"+"/"+
+                        "rejected/");
+
+               // readytorejected(fromreadyref,rejectref,"499240755287");
+                readytorejected(rejectref,fromreadyref,"499240755287");*/
+
+
                 break;
             }
 
@@ -205,5 +267,194 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
 
 
         }
+    }
+
+
+
+    private void readytorejected(final DatabaseReference fromPath, final DatabaseReference toPath, final String key) {
+        fromPath.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+            // Now "DataSnapshot" holds the key and the value at the "fromPath".
+            // Let's move it to the "toPath". This operation duplicates the
+            // key/value pair at the "fromPath" to the "toPath".
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                toPath.child(dataSnapshot.getKey())
+                        .setValue(dataSnapshot.getValue(), new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                if (databaseError == null) {
+                                    Log.i(TAG, "onComplete: success");
+                                    // In order to complete the move, we are going to erase
+                                    // the original copy by assigning null as its value.
+                                    fromPath.child(key).setValue(null);
+                                    getQueuelist();
+
+
+                                }
+                                else {
+                                    Log.e(TAG, "onComplete: failure:" + databaseError.getMessage() + ": "
+                                            + databaseError.getDetails());
+                                }
+                            }
+                        });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e(TAG, "onCancelled: " + databaseError.getMessage() + ": "
+                        + databaseError.getDetails());
+            }
+        });
+    }
+
+
+    private void readytoaccepted(final DatabaseReference fromPath, final DatabaseReference toPath, final String key) {
+        fromPath.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+            // Now "DataSnapshot" holds the key and the value at the "fromPath".
+            // Let's move it to the "toPath". This operation duplicates the
+            // key/value pair at the "fromPath" to the "toPath".
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                toPath.child(dataSnapshot.getKey())
+                        .setValue(dataSnapshot.getValue(), new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                if (databaseError == null) {
+                                    Log.i(TAG, "onComplete: success");
+                                    // In order to complete the move, we are going to erase
+                                    // the original copy by assigning null as its value.
+                                    fromPath.child(key).setValue(null);
+                                    getQueuelist();
+
+                                }
+                                else {
+                                    Log.e(TAG, "onComplete: failure:" + databaseError.getMessage() + ": "
+                                            + databaseError.getDetails());
+                                }
+                            }
+                        });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e(TAG, "onCancelled: " + databaseError.getMessage() + ": "
+                        + databaseError.getDetails());
+            }
+        });
+    }
+
+
+
+
+    private void queuetoready(final DatabaseReference fromPath, final DatabaseReference toPath, final String key) {
+        fromPath.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+            // Now "DataSnapshot" holds the key and the value at the "fromPath".
+            // Let's move it to the "toPath". This operation duplicates the
+            // key/value pair at the "fromPath" to the "toPath".
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                toPath.child(dataSnapshot.getKey())
+                        .setValue(dataSnapshot.getValue(), new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                if (databaseError == null) {
+                                    Log.d("errrrrrrrrrrrrr","12345");
+                                    Log.i(TAG, "onComplete: success");
+                                    // In order to complete the move, we are going to erase
+                                    // the original copy by assigning null as its value.
+                                    fromPath.child(key).setValue(null);
+                                    progressDialog.dismiss();
+                                    queueformlist.remove(0);
+                                    dismiss();
+
+                                }
+                                else {
+                                    Log.e(TAG, "onComplete: failure:" + databaseError.getMessage() + ": "
+                                            + databaseError.getDetails());
+                                }
+                            }
+                        });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e(TAG, "onCancelled: " + databaseError.getMessage() + ": "
+                        + databaseError.getDetails());
+            }
+        });
+    }
+
+
+
+
+
+
+    private void getQueuelist()
+    {
+
+        DatabaseReference referencetoready=rootreference.child("consituency/"+formPushPullCustomVAR.getConstituency()+"/");
+        referencetoready.child("queue").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists())
+                {
+                    queueformlist.clear();
+                    for(DataSnapshot dataSnapshotchild:dataSnapshot.getChildren()) {
+
+                        FormPushPullCustomVAR formPushPullCustomVAR=dataSnapshotchild.getValue(FormPushPullCustomVAR.class);
+                        queueformlist.add(formPushPullCustomVAR);
+
+                    }
+                    Collections.sort(queueformlist, new Comparator<FormPushPullCustomVAR>() {
+
+                        @Override
+                        public int compare(FormPushPullCustomVAR formPushPullCustomVAR, FormPushPullCustomVAR t1) {
+                            return formPushPullCustomVAR.getFormno().compareToIgnoreCase(t1.getFormno());
+                        }
+                    });
+
+
+                    if(!queueformlist.isEmpty())
+                    {
+
+
+                        DatabaseReference fromqueue=FirebaseDatabase.getInstance().getReference("consituency/"+formPushPullCustomVAR.getConstituency()+"/"+
+                                "queue/");
+                        DatabaseReference toready=FirebaseDatabase.getInstance().getReference("consituency/"+formPushPullCustomVAR.getConstituency()+"/"+
+                                "ready/");
+
+                        queuetoready(fromqueue,toready,queueformlist.get(0).getAadharNo());
+
+                    }
+                    else
+                    {
+
+                        progressDialog.dismiss();
+                        dismiss();
+
+
+                    }
+
+
+
+                }
+                else
+                {
+
+                    progressDialog.dismiss();
+                    dismiss();
+                    Log.d("error","erreor in dialog while fetching queue");
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+                Log.d("canceled","erreor in dialog while fetching queue");
+
+            }
+        });
     }
 }

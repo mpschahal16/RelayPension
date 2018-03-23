@@ -34,6 +34,12 @@
             app:tabTextAppearance="@android:style/TextAppearance.DeviceDefault.Widget.PopupMenu.Large">
 
             <android.support.design.widget.TabItem
+                android:id="@+id/acceptedtab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ACCEPTED" />
+
+            <android.support.design.widget.TabItem
                 android:id="@+id/readytab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
