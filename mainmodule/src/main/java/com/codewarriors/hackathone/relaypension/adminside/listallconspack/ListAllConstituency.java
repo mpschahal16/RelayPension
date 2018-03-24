@@ -24,10 +24,7 @@ public class ListAllConstituency extends AppCompatActivity {
 
     DatabaseReference rootreference= FirebaseDatabase.getInstance().getReference();
     ListView listallconstit;
-
     ArrayList<ListConstituencyVAR> listtodisplay;
-
-
     ListconstituencyAdapterExba listconstituencyAdapterExba;
     ListConstituencyVAR listConstituencyVAR;
 

@@ -24,7 +24,6 @@ import java.util.ArrayList;
 
             this.context = context;
             this.lvar = lvar;
-
         }
 
         @Override
@@ -63,7 +62,6 @@ import java.util.ArrayList;
                 viewHolder.tv3=v.findViewById(R.id.tv3);
                 viewHolder.tv4=v.findViewById(R.id.tv4);
                 v.setTag(viewHolder);
-
             }
             else
             {

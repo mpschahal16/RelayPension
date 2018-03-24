@@ -3,14 +3,19 @@ package com.codewarriors.hackathone.relaypension;
 
 
 import android.annotation.SuppressLint;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,6 +44,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import static com.basgeekball.awesomevalidation.ValidationStyle.COLORATION;
@@ -72,6 +78,19 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     //added code
     FirebaseUser fbUser;
 
+    //otp code
+    SmsManager smsManager;
+    PendingIntent sendPI,delPI;
+    BroadcastReceiver sendBR,delBR;
+    String data;
+    int a,otp;
+    //otp
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //otp_extra
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
 
     @Override
@@ -92,8 +111,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         verify.setOnClickListener(this);
         errorinsend.setVisibility(View.INVISIBLE);
         errorinverify.setVisibility(View.INVISIBLE);
-
-
+        //otp code
+      otponcreate();
 
         awesomeValidation = new AwesomeValidation(COLORATION);
         awesomeValidation.addValidation(this, R.id.phoneloginet, "^[+]?[0-9]{10,13}$", R.string.invalid_mobile_no);
@@ -108,6 +127,46 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         progressDialog=new ProgressDialog(this);
     }
 
+    private void otponcreate() {
+        //otp_extra
+        sendPI = PendingIntent.getBroadcast(this,987,new Intent("SEND_SMS"),0);
+        delPI=PendingIntent.getBroadcast(this,986, new Intent("DEL_SMS"),0);
+        smsManager = SmsManager.getDefault();
+        sendBR = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                switch (this.getResultCode()){
+                    case RESULT_OK :
+                        Toast.makeText(context, "SMS SEND", Toast.LENGTH_SHORT).show();
+                        break;
+                    case SmsManager.RESULT_ERROR_NO_SERVICE :
+                        Toast.makeText(context, "NO SERVICE", Toast.LENGTH_SHORT).show();
+                        break;
+                    default :
+                        Toast.makeText(context, "SERVICE PROBLEM", Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+        delBR = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                switch (this.getResultCode()){
+                    case RESULT_OK :
+                        Toast.makeText(context, "SMS DELIVERED", Toast.LENGTH_SHORT).show();
+                        break;
+                    case SmsManager.RESULT_ERROR_GENERIC_FAILURE :
+                        Toast.makeText(context, "GENERIC FAILURE", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        Toast.makeText(context, "SERVICE PROBLEM", Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+        this.registerReceiver(sendBR, new IntentFilter("SEND_SMS"));
+        this.registerReceiver(delBR,new IntentFilter("DEL_SMS"));
+    }
+
+
     @Override
     public void onClick(View v) {
         int id=v.getId();
@@ -116,21 +175,34 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             case R.id.sendaddotpbt:
             {
                 senotpfun();
-                break;
+               //-- break;
+
+                //otp
+mysenotpfun();
+
             }
             case R.id.verifybt:
             {
                 verifyCode();
-                break;
+                //break;
+                //otp
+                myverifyCode();
             }
         }
 
     }
 
+    private void mysenotpfun() {
+//otp_extra
+        Random r = new Random();
+        a = r.nextInt(999999+100000);
+        smsManager.sendTextMessage("+91"+phonenoet,null,""+a,sendPI,delPI);//change
+    }
+
     private void senotpfun() {
         if(awesomeValidation.validate())
         {
-            String phoneNumber =phonenoet.getText().toString();
+            String phoneNumber ="+91"+phonenoet.getText().toString();
             setUpVerificatonCallbacks();
             switch (retry)
             {
@@ -217,6 +289,18 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                     PhoneAuthProvider.getCredential(phoneVerificationId, code);
             signInWithPhoneAuthCredential(credential);
 
+    }
+    public void myverifyCode() {
+        //otp_extra
+        data = otpet.getText().toString();//change
+        otp= Integer.parseInt(data);
+        if(a==otp)
+        {
+            Toast.makeText(this, "welcome user", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(this, "INVALID OTP", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
