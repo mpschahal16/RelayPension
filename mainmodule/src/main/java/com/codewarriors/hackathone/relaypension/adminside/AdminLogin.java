@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.codewarriors.hackathone.relaypension.R;
 import com.codewarriors.hackathone.relaypension.adminside.listallconspack.ListAllConstituency;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +32,8 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
     FirebaseUser user;
     ProgressDialog dialog;
 
+    AwesomeValidation awesomeValidation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,18 +43,25 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
         b1 = this.findViewById(R.id.signup);
         b2 = this.findViewById(R.id.signin);
         tv = this.findViewById(R.id.login);
-        b1.setOnClickListener(this);
-        b2.setVisibility(View.INVISIBLE);
+      //  b1.setOnClickListener(this);
+        b1.setVisibility(View.INVISIBLE);
+       // b2.setVisibility(View.INVISIBLE);
         b2.setOnClickListener(this);
         tv.setOnClickListener(this);
         dialog = new ProgressDialog(this);
         auth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
+       /* if (user != null) {
+           // go_to_login();
             b2.setVisibility(View.VISIBLE);
             b1.setVisibility(View.INVISIBLE);
             tv.setText(user.getEmail());
-        }
+        }*/
+
+        String regexPassword = "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\d])(?=.*[~`!@#\\$%\\^&\\*\\(\\)\\-_\\+=\\{\\}\\[\\]\\|\\;:\"<>,./\\?]).{8,}";
+        awesomeValidation = new AwesomeValidation(ValidationStyle.COLORATION);
+        awesomeValidation.addValidation(this, R.id.admemail, Patterns.EMAIL_ADDRESS, R.string.invalid_mail);
+       // awesomeValidation.addValidation(this, R.id.pass, regexPassword, R.string.invalid_password);
 
     }
 
@@ -57,33 +69,51 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
     public void onClick(View v) {
         String user = t1.getText().toString();
         String pass = t2.getText().toString();
-        if(v== b1){
-            dialog.setMessage("Registering User...please Wait");
-            dialog.show();
+        if(awesomeValidation.validate()&&pass.length()>8) {
+            if (v == b1) {
+                dialog.setMessage("Registering User...please Wait");
+                dialog.show();
 
-            auth.createUserWithEmailAndPassword(user,pass).
-                    addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-                                dialog.dismiss();
-                                Toast.makeText(AdminLogin.this, "User Registered", Toast.LENGTH_SHORT).show();
-                                t1.setText("");
-                                t2.setText("");
-                                t1.requestFocus();
-                                go_to_login();
+                auth.createUserWithEmailAndPassword(user, pass).
+                        addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    dialog.dismiss();
+                                    Toast.makeText(AdminLogin.this, "User Registered", Toast.LENGTH_SHORT).show();
+                                    t1.setText("");
+                                    t2.setText("");
+                                    t1.requestFocus();
+                                    go_to_login();
+                                }
                             }
-                        }
-                    }).addOnFailureListener(this, new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    dialog.dismiss();
-                    Toast.makeText(AdminLogin.this, "ERROR: "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-        if(v==b2){
-            go_to_login();
+                        }).addOnFailureListener(this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        dialog.dismiss();
+                        Toast.makeText(AdminLogin.this, "ERROR: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (v == b2) {
+                dialog.setMessage("Logging In ...please Wait");
+                dialog.show();
+                auth.signInWithEmailAndPassword(user, pass).
+                        addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    go_to_login();
+                                }
+                            }
+                        }).addOnFailureListener(this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        dialog.dismiss();
+                        Toast.makeText(AdminLogin.this, "ERROR: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         }
     }
 

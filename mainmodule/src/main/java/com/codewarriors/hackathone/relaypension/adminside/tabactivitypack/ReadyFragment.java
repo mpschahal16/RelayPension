@@ -1,31 +1,51 @@
 package com.codewarriors.hackathone.relaypension.adminside.tabactivitypack;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.codewarriors.hackathone.relaypension.R;
-import com.google.android.gms.plus.PlusOneButton;
+import com.codewarriors.hackathone.relaypension.customvariablesforparsing.FormPushPullCustomVAR;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+import static android.content.ContentValues.TAG;
 
 
 public class ReadyFragment extends Fragment {
 
-    TextView test;
 
-
-    Button readytestbt;
-
+    DatabaseReference rootreference= FirebaseDatabase.getInstance().getReference();
     private String constituency;
 
+    ListView readylistview;
+
+
+
+    //Test BUTTON
+   // Button revert;
+
+    FormPushPullCustomVAR formPushPullCustomVAR;
+    ApplicationFormListAdapter applicationFormListAdapter;
+
+
+    ArrayList<ApplicationFormListVAR> listtodisplay;
+    ArrayList<FormPushPullCustomVAR> allformslistinready;
 
     public ReadyFragment() {
         // Required empty public constructor
@@ -40,31 +60,97 @@ public class ReadyFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_ready, container, false);
 
+        readylistview=view.findViewById(R.id.readyformlistv);
+       // revert=view.findViewById(R.id.revertbt);
+
         Intent intent=getActivity().getIntent();
-        String contituency=intent.getExtras().getString("constituency");
-        test=view.findViewById(R.id.readytv);
+        constituency=intent.getExtras().getString("constituency",null);
 
+        listtodisplay=new ArrayList<>();
+        allformslistinready=new ArrayList<>();
 
-        readytestbt=view.findViewById(R.id.readytestbutton);
-
-
-
-
-
-
-        readytestbt.setOnClickListener(new View.OnClickListener() {
+      /*  revert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(),"ready bt",Toast.LENGTH_LONG).show();
+                DialogForReadyForm dialogForReadyForm =new DialogForReadyForm(getActivity(),null);
+                dialogForReadyForm.show();
             }
-        });
+        });*/
 
-        test.setText(contituency);
+        if(constituency!=null)
+        {
 
+            DatabaseReference referencetoready=rootreference.child("consituency/"+constituency+"/");
+            referencetoready.child("ready").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    listtodisplay.clear();
+                    allformslistinready.clear();
+                    if(dataSnapshot.exists())
+                    {
+
+                        for(DataSnapshot dataSnapshotchild:dataSnapshot.getChildren()) {
+                            formPushPullCustomVAR=dataSnapshotchild.getValue(FormPushPullCustomVAR.class);
+                            allformslistinready.add(formPushPullCustomVAR);
+                            ApplicationFormListVAR applicationFormListVAR=new ApplicationFormListVAR(formPushPullCustomVAR.getFirstName()+" "+formPushPullCustomVAR.getMiddleName()
+                            +" "+formPushPullCustomVAR.getLastName(),formPushPullCustomVAR.getAge(),
+                                    formPushPullCustomVAR.getConstituency(),formPushPullCustomVAR.getFormno());
+
+
+                           listtodisplay.add(applicationFormListVAR);
+                        }
+                            Collections.sort(listtodisplay, new Comparator<ApplicationFormListVAR>() {
+                                @Override
+                                public int compare(ApplicationFormListVAR applicationFormListVAR, ApplicationFormListVAR t1) {
+                                    return applicationFormListVAR.getFno().compareToIgnoreCase(t1.getFno());
+                                }
+                            });
+
+                        readylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                                DialogForReadyForm dialogForReadyForm =new DialogForReadyForm(getActivity(),allformslistinready.get(i));
+                                dialogForReadyForm.show();
+
+                            }
+                        });
+                    }
+                    else
+                    {
+                        Log.d("data","Ready is empty");
+                    }
+
+                    applicationFormListAdapter=new ApplicationFormListAdapter(getContext(),listtodisplay);
+                    readylistview.setAdapter(applicationFormListAdapter);
+                    applicationFormListAdapter.notifyDataSetChanged();
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                    Toast.makeText(getContext(),"Cancel",Toast.LENGTH_LONG).show();
+                }
+            });
+
+
+        }
+
+        else
+        {
+           Toast.makeText(getContext(),"Error",Toast.LENGTH_LONG).show();
+        }
 
 
         return view;
     }
+
+
+
+
+
+
 
 
 }

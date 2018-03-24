@@ -30,6 +30,8 @@
     <string name="invalid_state">Invalid State</string>
     <string name="invalid_accountnp">Invalid Account No.</string>
     <string name="invalid">Invalid Entry</string>
+    <string name="invalid_mail">Invalid Email</string>
+    <string name="invalid_password">Invalid Password</string>
 
 
     <string name="msg69key">203084AvQ3y6WW5aaa7ad7</string>
@@ -49,4 +51,8 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="tab_text_3">Tab 3</string>
+    <string name="submitted_forms">Submitted Forms</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -22,7 +22,7 @@
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme1.PopupOverlay"
-            app:title="@string/app_name">
+            app:title="@string/submitted_forms">
 
         </android.support.v7.widget.Toolbar>
 
@@ -31,7 +31,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabIndicatorColor="@android:color/black"
+            app:tabMode="scrollable"
             app:tabTextAppearance="@android:style/TextAppearance.DeviceDefault.Widget.PopupMenu.Large">
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/acceptedtab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ACCEPTED" />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/readytab"
@@ -44,6 +51,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="QUEUE" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/rejected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REJECTED" />
         </android.support.design.widget.TabLayout>
     </android.support.design.widget.AppBarLayout>
 

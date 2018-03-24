@@ -1,14 +1,14 @@
-package com.codewarriors.hackathone.relaypension.adminside;
+package com.codewarriors.hackathone.relaypension.adminside.tabactivitypack;
 
 /**
  * Created by aishwarya on 21-03-2018.
  */
 
-public class ListVar {
-    String name,consti;
-    int age,fno;
+public class ApplicationFormListVAR {
+    private String name,consti,age,fno;
 
-    public ListVar(String name, int age, String consti, int fno) {
+
+    public ApplicationFormListVAR(String name, String age, String consti, String fno) {
         this.name = name;
         this.age = age;
         this.consti = consti;
@@ -24,11 +24,11 @@ public class ListVar {
         return consti;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public int getFno() {
+    public String getFno() {
         return fno;
     }
 }

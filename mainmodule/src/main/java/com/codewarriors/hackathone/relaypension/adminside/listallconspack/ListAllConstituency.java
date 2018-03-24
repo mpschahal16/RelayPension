@@ -26,7 +26,6 @@ public class ListAllConstituency extends AppCompatActivity {
     ListView listallconstit;
     ArrayList<ListConstituencyVAR> listtodisplay;
     ListconstituencyAdapterExba listconstituencyAdapterExba;
-    ListConstituencyVAR listConstituencyVAR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,10 +86,13 @@ public class ListAllConstituency extends AppCompatActivity {
         });
 
 
-
-
-
-
-
     }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
+
 }

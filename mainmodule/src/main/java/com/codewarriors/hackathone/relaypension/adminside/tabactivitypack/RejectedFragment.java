@@ -25,23 +25,24 @@ import java.util.Collections;
 import java.util.Comparator;
 
 
-public class QueueFragment extends Fragment {
+public class RejectedFragment extends Fragment {
 
     DatabaseReference rootreference= FirebaseDatabase.getInstance().getReference();
     private String constituency;
 
-    ListView queuelistview;
+    ListView rejectedlistview;
 
     FormPushPullCustomVAR formPushPullCustomVAR;
     ApplicationFormListAdapter applicationFormListAdapter;
 
 
     ArrayList<ApplicationFormListVAR> listtodisplay;
-    ArrayList<FormPushPullCustomVAR> allformslistinqueue;
+    ArrayList<FormPushPullCustomVAR> allformslistinaccepted;
 
-    public QueueFragment() {
+    public RejectedFragment() {
         // Required empty public constructor
     }
+
 
 
 
@@ -50,29 +51,30 @@ public class QueueFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_queue, container, false);
-        queuelistview=view.findViewById(R.id.queuefromlv);
+        View view = inflater.inflate(R.layout.fragment_accepted, container, false);
+
+        rejectedlistview=view.findViewById(R.id.rejectedfromlv);
 
         Intent intent=getActivity().getIntent();
         constituency=intent.getExtras().getString("constituency");
 
         listtodisplay=new ArrayList<>();
-        allformslistinqueue=new ArrayList<>();
+        allformslistinaccepted=new ArrayList<>();
 
         if(constituency!=null)
         {
             DatabaseReference referencetoready=rootreference.child("consituency/"+constituency+"/");
-            referencetoready.child("queue").addValueEventListener(new ValueEventListener() {
+            referencetoready.child("rejected").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     listtodisplay.clear();
-                    allformslistinqueue.clear();
+                    allformslistinaccepted.clear();
                     if(dataSnapshot.exists())
                     {
 
                         for(DataSnapshot dataSnapshotchild:dataSnapshot.getChildren()) {
                             formPushPullCustomVAR=dataSnapshotchild.getValue(FormPushPullCustomVAR.class);
-                            allformslistinqueue.add(formPushPullCustomVAR);
+                            allformslistinaccepted.add(formPushPullCustomVAR);
                             ApplicationFormListVAR applicationFormListVAR=new ApplicationFormListVAR(formPushPullCustomVAR.getFirstName()+" "+formPushPullCustomVAR.getMiddleName()
                                     +" "+formPushPullCustomVAR.getLastName(),formPushPullCustomVAR.getAge(),
                                     formPushPullCustomVAR.getConstituency(),formPushPullCustomVAR.getFormno());
@@ -88,20 +90,21 @@ public class QueueFragment extends Fragment {
                         });
 
 
-                            queuelistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                    DialogForQueueForm dialogForQueueForm =new DialogForQueueForm(getActivity(),allformslistinqueue.get(i));
-                                    dialogForQueueForm.show();
-                                }
-                            });
+                        rejectedlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                DialogForQueueForm dialogForQueueForm =new DialogForQueueForm(getActivity(),allformslistinaccepted.get(i));
+                                dialogForQueueForm.show();
+                            }
+                        });
                     }
                     else
                     {
-                        Log.d("data","queue is empty");
+                        Log.d("data","REJECTED is empty");
                     }
+
                     applicationFormListAdapter=new ApplicationFormListAdapter(getContext(),listtodisplay);
-                    queuelistview.setAdapter(applicationFormListAdapter);
+                    rejectedlistview.setAdapter(applicationFormListAdapter);
                     applicationFormListAdapter.notifyDataSetChanged();
 
                 }
@@ -125,8 +128,13 @@ public class QueueFragment extends Fragment {
 
 
 
+
+
         return view;
     }
+
+
+
 
 
 

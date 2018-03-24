@@ -143,7 +143,7 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
 
 
    private void verifyaddinno() {
-       String s=otpaadharverifyet.getText().toString();
+       String s = otpaadharverifyet.getText().toString();
        msg69var.verify(s);
     }
 
