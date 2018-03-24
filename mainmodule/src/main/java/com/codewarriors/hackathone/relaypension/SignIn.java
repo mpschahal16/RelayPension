@@ -143,6 +143,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                             TimeUnit.SECONDS,   // Unit of timeout
                             this,               // Activity (for callback binding)
                             verificationCallbacks);
+                    retry=retry+1;
                     progressDialog.setMessage("Sending OTP To "+phoneNumber);
                     progressDialog.setCancelable(false);
                     progressDialog.show();

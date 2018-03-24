@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -18,9 +20,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.codewarriors.hackathone.relaypension.FIllform;
 import com.codewarriors.hackathone.relaypension.R;
 import com.codewarriors.hackathone.relaypension.StatusActivity;
+import com.codewarriors.hackathone.relaypension.customvariablesforparsing.ConsituencyCustomVAR;
 import com.codewarriors.hackathone.relaypension.customvariablesforparsing.FormPushPullCustomVAR;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -287,6 +292,7 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
                                     // In order to complete the move, we are going to erase
                                     // the original copy by assigning null as its value.
                                     fromPath.child(key).setValue(null);
+                                    setstateofapplictionform(key,"0");
                                     getQueuelist();
 
 
@@ -324,6 +330,7 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
                                     // In order to complete the move, we are going to erase
                                     // the original copy by assigning null as its value.
                                     fromPath.child(key).setValue(null);
+                                    setstateofapplictionform(key,"4");
                                     getQueuelist();
 
                                 }
@@ -343,7 +350,23 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
         });
     }
 
+    private void setstateofapplictionform(String aadhrnowheretochange,String state) {
+        DatabaseReference root=FirebaseDatabase.getInstance().getReference("userstatecons/"+aadhrnowheretochange+"/");
 
+        root.child("applicationstate").setValue(state).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+
+                Toast.makeText(activity,"Sucess to change application stste",Toast.LENGTH_LONG).show();
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("failure","to writr state in statecons");
+            }
+        });
+    }
 
 
     private void queuetoready(final DatabaseReference fromPath, final DatabaseReference toPath, final String key) {
@@ -363,6 +386,7 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
                                     // In order to complete the move, we are going to erase
                                     // the original copy by assigning null as its value.
                                     fromPath.child(key).setValue(null);
+                                    setstateofapplictionform(key,"2");
                                     progressDialog.dismiss();
                                     queueformlist.remove(0);
                                     dismiss();

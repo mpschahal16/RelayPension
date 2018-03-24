@@ -148,6 +148,10 @@ public class TabactivityReadyQueue extends AppCompatActivity {
                 {
                     return new QueueFragment();
                 }
+              /*  case 3:
+                {
+                    return new RejectedFragment();
+                }*/
                 default:
                 {
                     return PlaceholderFragment.newInstance(position + 1);

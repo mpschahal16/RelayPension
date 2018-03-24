@@ -29,6 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+
         </activity>
         <activity
             android:name=".SignIn"
@@ -54,6 +55,7 @@
         <activity
             android:name=".adminside.listallconspack.ListAllConstituency"
             android:label="@string/constituency">
+
 
 
         </activity>
