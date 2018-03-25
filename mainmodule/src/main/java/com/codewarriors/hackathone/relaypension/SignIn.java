@@ -47,6 +47,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import es.dmoral.toasty.Toasty;
+
 import static com.basgeekball.awesomevalidation.ValidationStyle.COLORATION;
 
 public class SignIn extends AppCompatActivity implements View.OnClickListener {
@@ -140,13 +142,13 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             public void onReceive(Context context, Intent intent) {
                 switch (this.getResultCode()){
                     case RESULT_OK :
-                        Toast.makeText(context, "SMS SEND", Toast.LENGTH_SHORT).show();
+                        Toasty.success(context, "SMS SEND", Toast.LENGTH_SHORT,true).show();
                         break;
                     case SmsManager.RESULT_ERROR_NO_SERVICE :
-                        Toast.makeText(context, "NO SERVICE", Toast.LENGTH_SHORT).show();
+                        Toasty.success(context, "NO SERVICE", Toast.LENGTH_SHORT,true).show();
                         break;
                     default :
-                        Toast.makeText(context, "SERVICE PROBLEM", Toast.LENGTH_SHORT).show();
+                        Toasty.success(context, "SERVICE PROBLEM", Toast.LENGTH_SHORT,true).show();
                 }
             }
         };
@@ -155,13 +157,13 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             public void onReceive(Context context, Intent intent) {
                 switch (this.getResultCode()){
                     case RESULT_OK :
-                        Toast.makeText(context, "SMS DELIVERED", Toast.LENGTH_SHORT).show();
+                        Toasty.success(context, "SMS DELIVERED", Toast.LENGTH_SHORT,true).show();
                         break;
                     case SmsManager.RESULT_ERROR_GENERIC_FAILURE :
-                        Toast.makeText(context, "GENERIC FAILURE", Toast.LENGTH_SHORT).show();
+                        Toasty.error(context, "GENERIC FAILURE", Toast.LENGTH_SHORT,true).show();
                         break;
                     default:
-                        Toast.makeText(context, "SERVICE PROBLEM", Toast.LENGTH_SHORT).show();
+                        Toasty.error(context, "SERVICE PROBLEM", Toast.LENGTH_SHORT,true).show();
                 }
             }
         };
@@ -278,7 +280,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                         verify.setVisibility(View.VISIBLE);
                         textInputLayout.setVisibility(View.VISIBLE);
                         retry=2;
-                        Toast.makeText(getApplicationContext(),"OTP SEND",Toast.LENGTH_LONG).show();
+                        Toasty.success(getApplicationContext(),"OTP SEND",Toast.LENGTH_LONG,true).show();
 
                     }
                 };
@@ -305,10 +307,10 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         otp= Integer.parseInt(data);
         if(a==otp)
         {
-            Toast.makeText(this, "welcome user", Toast.LENGTH_SHORT).show();
+            Toasty.success(this, "welcome user", Toast.LENGTH_SHORT,true).show();
         }
         else {
-            Toast.makeText(this, "INVALID OTP", Toast.LENGTH_SHORT).show();
+            Toasty.error(this, "INVALID OTP", Toast.LENGTH_SHORT,true).show();
         }
     }
 
@@ -352,7 +354,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
                                     @Override
                                     public void onCancelled(DatabaseError databaseError) {
-                                        Toast.makeText(getApplicationContext(),"cancel",Toast.LENGTH_LONG).show();
+                                        Toasty.warning(getApplicationContext(),"Slow Internet",Toast.LENGTH_LONG,true).show();
                                     }
                                 });
                             }

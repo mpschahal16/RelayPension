@@ -135,7 +135,7 @@ public class DialogForQueueForm extends Dialog {
                 break;
             }
             default: {
-                Toast.makeText(getContext(), "error", Toast.LENGTH_LONG).show();
+               Log.d("rrrrrrrrrrrrr","error in gender");
             }
         }
 

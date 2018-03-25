@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class RejectedFragment extends Fragment {
 
@@ -121,7 +123,7 @@ public class RejectedFragment extends Fragment {
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
 
-                    Toast.makeText(getContext(),"Cancel",Toast.LENGTH_LONG).show();
+                    Log.d("firebaseeeeee", databaseError.getMessage());
                 }
             });
 
@@ -130,7 +132,7 @@ public class RejectedFragment extends Fragment {
 
         else
         {
-            Toast.makeText(getContext(),"Error",Toast.LENGTH_LONG).show();
+            Toasty.error(getContext(),"Error in Accepted",Toast.LENGTH_LONG,true).show();
         }
 
 

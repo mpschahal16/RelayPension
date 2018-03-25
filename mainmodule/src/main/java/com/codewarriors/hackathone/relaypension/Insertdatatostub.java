@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Pattern;
+
+import es.dmoral.toasty.Toasty;
 
 public class Insertdatatostub extends AppCompatActivity {
 
@@ -179,17 +182,17 @@ public class Insertdatatostub extends AppCompatActivity {
 
 
 
-                              Toast.makeText(getApplicationContext(), "Sucess", Toast.LENGTH_LONG).show();
+                              Toasty.success(getApplicationContext(), "Sucess", Toast.LENGTH_LONG,true).show();
                           }
                         else
                           {
-                             Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_LONG).show();
+                             Toasty.error(getApplicationContext(), "Failed", Toast.LENGTH_LONG,true).show();
                           }
                       }
                   }).addOnFailureListener(new OnFailureListener() {
                       @Override
                       public void onFailure(@NonNull Exception e) {
-                          Toast.makeText(getApplicationContext(), "Error: "+e, Toast.LENGTH_LONG).show();
+                          Log.d("errrrrr","ERROR "+e.getMessage());
                       }
                   });
 
@@ -201,12 +204,12 @@ public class Insertdatatostub extends AppCompatActivity {
                 {
                     if(!radioGroupflag)
                     {
-                        Toast.makeText(getApplicationContext(),"Select Gender",Toast.LENGTH_LONG).show();
+                        Toasty.warning(getApplicationContext(),"Select Gender",Toast.LENGTH_LONG,true).show();
                     }
 
                     if(statespinner.getSelectedItem().toString().equals(""))
                     {
-                        Toast.makeText(getApplicationContext(),"Select State",Toast.LENGTH_LONG).show();
+                        Toasty.warning(getApplicationContext(),"Select State",Toast.LENGTH_LONG,true).show();
                     }
 
                 }

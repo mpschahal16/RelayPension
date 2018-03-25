@@ -26,6 +26,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import es.dmoral.toasty.Toasty;
+
 public class StatusActivity extends AppCompatActivity {
     TextView name,aadharno,consituency,applictionstatus;
     ImageView pic;
@@ -131,7 +133,7 @@ public class StatusActivity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(getApplicationContext(),"Error in Fetching Data",Toast.LENGTH_LONG).show();
+            Toasty.error(getApplicationContext(),"Error in Fetching Data",Toast.LENGTH_LONG,true).show();
         }
 
 

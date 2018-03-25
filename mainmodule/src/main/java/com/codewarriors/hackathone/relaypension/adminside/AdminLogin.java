@@ -23,6 +23,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import es.dmoral.toasty.Toasty;
+
 public class AdminLogin extends AppCompatActivity implements View.OnClickListener{
 
     EditText t1, t2;
@@ -80,7 +82,7 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     dialog.dismiss();
-                                    Toast.makeText(AdminLogin.this, "User Registered", Toast.LENGTH_SHORT).show();
+                                    Toasty.success(AdminLogin.this, "User Registered", Toast.LENGTH_SHORT,true).show();
                                     t1.setText("");
                                     t2.setText("");
                                     t1.requestFocus();
@@ -91,7 +93,7 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         dialog.dismiss();
-                        Toast.makeText(AdminLogin.this, "ERROR: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toasty.error(AdminLogin.this, "ERROR: " + e.getMessage(), Toast.LENGTH_SHORT,true).show();
                     }
                 });
             }
@@ -110,7 +112,7 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         dialog.dismiss();
-                        Toast.makeText(AdminLogin.this, "ERROR: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toasty.error(AdminLogin.this, "ERROR: " + e.getMessage(), Toast.LENGTH_SHORT,true).show();
                     }
                 });
             }

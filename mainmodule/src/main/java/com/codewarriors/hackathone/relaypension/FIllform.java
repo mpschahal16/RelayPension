@@ -53,6 +53,8 @@ import com.google.firebase.storage.UploadTask;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import es.dmoral.toasty.Toasty;
+
 public class FIllform extends AppCompatActivity implements View.OnClickListener {
     EditText consituencyet, firstnameet, middlenameet, lastnameet, dobet, phonenoet, aadharnoet, hosenoet, streetet, postalet, cityet, stateet, familyincomeet, accountnoet;
     Spinner agespinner, bankspinner;
@@ -144,7 +146,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Toast.makeText(FIllform.this, "ERROR In fetching form no", Toast.LENGTH_SHORT).show();
+                    Toasty.error(FIllform.this, "ERROR In fetching form no", Toast.LENGTH_SHORT,true).show();
                     startActivity(new Intent(FIllform.this, StubNoReturn.class));
                 }
             });
@@ -282,7 +284,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                 break;
             }
             default: {
-                Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_LONG).show();
+              Log.d("Errrrrrrrr","Gender Selection");
             }
         }
 
@@ -339,19 +341,19 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                     break;
                 } else {
                     if (bankspinner.getSelectedItem().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "Select Bank", Toast.LENGTH_LONG).show();
+                        Toasty.warning(getApplicationContext(), "Select Bank", Toast.LENGTH_LONG,true).show();
                         break;
                     } else if (!selectpiccb.isChecked()) {
-                        Toast.makeText(getApplicationContext(), "Upload your Passport Size pic", Toast.LENGTH_LONG).show();
+                        Toasty.warning(getApplicationContext(), "Upload your Passport Size pic", Toast.LENGTH_LONG,true).show();
                         break;
                     } else if (!passbookcb.isChecked()) {
-                        Toast.makeText(getApplicationContext(), "Attach your Passbook", Toast.LENGTH_LONG).show();
+                        Toasty.warning(getApplicationContext(), "Attach your Passbook", Toast.LENGTH_LONG,true).show();
                         break;
                     } else if (!payslipcb.isChecked()) {
-                        Toast.makeText(getApplicationContext(), "Attach your Income Slip", Toast.LENGTH_LONG).show();
+                        Toasty.warning(getApplicationContext(), "Attach your Income Slip", Toast.LENGTH_LONG,true).show();
                         break;
                     } else if (!signaturecb.isChecked()) {
-                        Toast.makeText(getApplicationContext(), "Attach your Signature", Toast.LENGTH_LONG).show();
+                        Toasty.warning(getApplicationContext(), "Attach your Signature", Toast.LENGTH_LONG,true).show();
                         break;
                     } else {
                         Log.d("else", "else part reached");
@@ -446,7 +448,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
 
                     progressDialog.setTitle("Uploading...");
                     progressDialog.show();
-
+                    progressDialog.setCancelable(false);
                     StorageReference sre=storageReference.child("userpic");
                     sre.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -454,14 +456,14 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                             progressDialog.dismiss();
                             Glide.with(FIllform.this).load(selectedImage).into(picimageview);
                             selectpiccb.setChecked(true);
-                            Toast.makeText(FIllform.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                            Toasty.success(FIllform.this, "Uploaded", Toast.LENGTH_SHORT,true).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
 
                             progressDialog.dismiss();
-                            Toast.makeText(FIllform.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Log.d("eeeeeeee","Failed "+e.getMessage());
                         }
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -484,7 +486,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
 
                     progressDialog.setTitle("Uploading...");
                     progressDialog.show();
-
+                    progressDialog.setCancelable(false);
                     StorageReference sre=storageReference.child("passbook");
                     sre.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -492,14 +494,14 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                             progressDialog.dismiss();
                             Glide.with(FIllform.this).load(selectedImage).into(imageViewpassbook);
                             passbookcb.setChecked(true);
-                            Toast.makeText(FIllform.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                            Toasty.success(FIllform.this, "Uploaded", Toast.LENGTH_SHORT,true).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
 
                             progressDialog.dismiss();
-                            Toast.makeText(FIllform.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Log.d("eeeeeeee","Failed "+e.getMessage());
                         }
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -518,7 +520,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                     final Uri selectedImage = data.getData();
                     progressDialog.setTitle("Uploading...");
                     progressDialog.show();
-
+                    progressDialog.setCancelable(false);
                     StorageReference sre=storageReference.child("incomeslip");
                     sre.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -526,14 +528,14 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                             progressDialog.dismiss();
                             Glide.with(FIllform.this).load(selectedImage).into(imageViewpayslip);
                             payslipcb.setChecked(true);
-                            Toast.makeText(FIllform.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                            Toasty.success(FIllform.this, "Uploaded", Toast.LENGTH_SHORT,true).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
 
                             progressDialog.dismiss();
-                            Toast.makeText(FIllform.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Log.d("eeeeeeee","Failed "+e.getMessage());
                         }
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -562,14 +564,14 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                             progressDialog.dismiss();
                             Glide.with(FIllform.this).load(selectedImage).into(imageViewsignature);
                             signaturecb.setChecked(true);
-                            Toast.makeText(FIllform.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                            Toasty.success(FIllform.this, "Uploaded", Toast.LENGTH_SHORT,true).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
 
                             progressDialog.dismiss();
-                            Toast.makeText(FIllform.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Log.d("eeeeeeee","Failed "+e.getMessage());
                         }
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -722,7 +724,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                                   else
                                   {
                                       progressDialog.dismiss();
-                                      Toast.makeText(getApplicationContext(),"Please Retry",Toast.LENGTH_LONG).show();
+                                      Toasty.error(getApplicationContext(),"Please Retry",Toast.LENGTH_LONG,true).show();
                                       Log.d("errrrrrr","Firebase");
                                   }
 
@@ -763,7 +765,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                       else
                           {
                               progressDialog.dismiss();
-                              Toast.makeText(getApplicationContext(),"Please Retry",Toast.LENGTH_LONG).show();
+                              Toasty.error(getApplicationContext(),"Please Retry",Toast.LENGTH_LONG,true).show();
                               Log.d("errrrrrr","Firebase");
                           }
                       }
@@ -775,7 +777,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
           @Override
           public void onCancelled(DatabaseError databaseError) {
 
-              Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_LONG).show();
+             Log.d("eeeeeeee","error "+databaseError.getMessage());
 
           }
       });

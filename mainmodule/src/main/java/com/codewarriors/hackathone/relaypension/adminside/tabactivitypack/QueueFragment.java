@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class QueueFragment extends Fragment {
 
@@ -116,7 +118,7 @@ public class QueueFragment extends Fragment {
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
 
-                    Toast.makeText(getContext(),"Cancel",Toast.LENGTH_LONG).show();
+                    Log.d("firebaseeeeee", databaseError.getMessage());
                 }
             });
 
@@ -125,7 +127,7 @@ public class QueueFragment extends Fragment {
 
         else
         {
-            Toast.makeText(getContext(),"Error",Toast.LENGTH_LONG).show();
+            Toasty.error(getContext(),"Error in Queue",Toast.LENGTH_LONG,true).show();
         }
 
 

@@ -20,6 +20,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import es.dmoral.toasty.Toasty;
+
 public class ListAllConstituency extends AppCompatActivity {
 
     DatabaseReference rootreference= FirebaseDatabase.getInstance().getReference();
@@ -43,7 +45,9 @@ public class ListAllConstituency extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()) {
 
+
                     listtodisplay.clear();
+
 
                     ConstituencyHelperClass constituencyHelperClass=new ConstituencyHelperClass();
 
@@ -65,12 +69,16 @@ public class ListAllConstituency extends AppCompatActivity {
 
 
                 }
+                else
+                {
+                    Toasty.warning(getApplicationContext(), "No Application Found", Toast.LENGTH_SHORT, true).show();
+                }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
-                Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_LONG).show();
+                Toasty.error(getApplicationContext(), "Error In Fetching", Toast.LENGTH_SHORT, true).show();
 
             }
         });

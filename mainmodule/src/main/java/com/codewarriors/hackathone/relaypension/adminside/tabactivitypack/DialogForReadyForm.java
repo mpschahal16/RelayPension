@@ -39,6 +39,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import es.dmoral.toasty.Toasty;
+
 import static android.content.ContentValues.TAG;
 
 /**
@@ -165,7 +167,7 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
                 break;
             }
             default: {
-                Toast.makeText(getContext(), "error", Toast.LENGTH_LONG).show();
+                Log.d("rrrrrrrrrrrrr","error in gender");
             }
         }
 
@@ -357,13 +359,13 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
             @Override
             public void onSuccess(Void aVoid) {
 
-                Toast.makeText(activity,"Sucess to change application stste",Toast.LENGTH_LONG).show();
+                Toasty.success(activity,"Sucess to change application state",Toast.LENGTH_LONG,true).show();
 
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d("failure","to writr state in statecons");
+                Log.d("failure","to write state in statecons"+e.getMessage());
             }
         });
     }
