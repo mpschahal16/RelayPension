@@ -114,7 +114,7 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
                                 startActivity(new Intent(Aadharverify.this,EligibilityActivity.class));
                             }
                         })
-                                .setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.dismiss();
@@ -144,6 +144,8 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
 
    private void verifyaddinno() {
        String s = otpaadharverifyet.getText().toString();
+       progressDialog.setMessage("Verifying...");
+       progressDialog.show();
        msg69var.verify(s);
     }
 
@@ -237,6 +239,7 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onVerified(String response) {
         Log.d("msg69","onverified");
+        progressDialog.dismiss();
         Intent intent = new Intent(Aadharverify.this, FIllform.class);
         intent.putExtra("aadharno", adharno);
         intent.putExtra("constituency",constituency);
@@ -246,6 +249,8 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onVerificationFailed(Exception paramException) {
+        progressDialog.dismiss();
+        Toast.makeText(getApplicationContext(),"Verification Failed",Toast.LENGTH_LONG).show();
         Log.d("msg69","onverifiedfailed");
     }
 

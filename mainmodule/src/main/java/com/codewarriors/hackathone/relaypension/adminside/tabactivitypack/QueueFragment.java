@@ -32,6 +32,7 @@ public class QueueFragment extends Fragment {
 
     ListView queuelistview;
 
+
     FormPushPullCustomVAR formPushPullCustomVAR;
     ApplicationFormListAdapter applicationFormListAdapter;
 
@@ -86,6 +87,12 @@ public class QueueFragment extends Fragment {
                                 return applicationFormListVAR.getFno().compareToIgnoreCase(t1.getFno());
                             }
                         });
+                        Collections.sort(allformslistinqueue, new Comparator<FormPushPullCustomVAR>() {
+                            @Override
+                            public int compare(FormPushPullCustomVAR o1, FormPushPullCustomVAR o2) {
+                                return o1.getFormno().compareToIgnoreCase(o2.getFormno());
+                            }
+                        });
 
 
                             queuelistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -120,9 +127,6 @@ public class QueueFragment extends Fragment {
         {
             Toast.makeText(getContext(),"Error",Toast.LENGTH_LONG).show();
         }
-
-
-
 
 
         return view;

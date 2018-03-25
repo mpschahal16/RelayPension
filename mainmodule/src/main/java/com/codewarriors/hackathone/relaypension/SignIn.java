@@ -291,6 +291,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
         if(awesomeValidation.validate()) {
             String code=otpet.getText().toString();
+            progressDialog.setMessage("Verifying...");
+            progressDialog.show();
             PhoneAuthCredential credential =
                     PhoneAuthProvider.getCredential(phoneVerificationId, code);
             signInWithPhoneAuthCredential(credential);
@@ -316,15 +318,16 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         rootRef = FirebaseDatabase.getInstance().getReference("UserState/");
-                        String userid=task.getResult().getUser().getUid();
-                        if (task.isSuccessful()) {
 
+                        if (task.isSuccessful()) {
+                            String userid=task.getResult().getUser().getUid();
                             boolean isNew = task.getResult().getAdditionalUserInfo().isNewUser();
                             if(isNew) {
 
                                 rootRef.child(userid).setValue(0).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
+                                        progressDialog.dismiss();
                                         startActivity(new Intent(SignIn.this,Aadharverify.class));
                                     }
                                 });
@@ -365,6 +368,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                                     FirebaseAuthInvalidCredentialsException) {
                                errorinverify.setVisibility(View.VISIBLE);
                                errorinverify.setText("DID NOT MATCH");
+                                progressDialog.dismiss();
                             }
                         }
                     }

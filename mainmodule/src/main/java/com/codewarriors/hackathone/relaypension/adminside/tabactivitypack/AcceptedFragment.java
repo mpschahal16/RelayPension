@@ -88,6 +88,12 @@ public class AcceptedFragment extends Fragment {
                                 return applicationFormListVAR.getFno().compareToIgnoreCase(t1.getFno());
                             }
                         });
+                        Collections.sort(allformslistinaccepted, new Comparator<FormPushPullCustomVAR>() {
+                            @Override
+                            public int compare(FormPushPullCustomVAR o1, FormPushPullCustomVAR o2) {
+                                return o1.getFormno().compareToIgnoreCase(o2.getFormno());
+                            }
+                        });
 
 
                         acceptedlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -89,6 +89,13 @@ public class RejectedFragment extends Fragment {
                             }
                         });
 
+                        Collections.sort(allformslistinrejected, new Comparator<FormPushPullCustomVAR>() {
+                            @Override
+                            public int compare(FormPushPullCustomVAR o1, FormPushPullCustomVAR o2) {
+                                return o1.getFormno().compareToIgnoreCase(o2.getFormno());
+                            }
+                        });
+
 
                         rejectedlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override

@@ -91,7 +91,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.50"
-                        android:text="Consituency:"
+                        android:text="Consituency :"
                         android:textStyle="bold" />
 
                     <EditText

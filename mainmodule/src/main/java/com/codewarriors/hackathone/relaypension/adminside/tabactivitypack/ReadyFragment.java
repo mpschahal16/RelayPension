@@ -84,10 +84,11 @@ public class ReadyFragment extends Fragment {
             referencetoready.child("ready").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    listtodisplay.clear();
-                    allformslistinready.clear();
+
                     if(dataSnapshot.exists())
                     {
+                        listtodisplay.clear();
+                        allformslistinready.clear();
 
                         for(DataSnapshot dataSnapshotchild:dataSnapshot.getChildren()) {
                             formPushPullCustomVAR=dataSnapshotchild.getValue(FormPushPullCustomVAR.class);
@@ -106,6 +107,13 @@ public class ReadyFragment extends Fragment {
                                 }
                             });
 
+                        Collections.sort(allformslistinready, new Comparator<FormPushPullCustomVAR>() {
+                            @Override
+                            public int compare(FormPushPullCustomVAR o1, FormPushPullCustomVAR o2) {
+                                return o1.getFormno().compareToIgnoreCase(o2.getFormno());
+                            }
+                        });
+
                         readylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -115,6 +123,9 @@ public class ReadyFragment extends Fragment {
 
                             }
                         });
+
+
+
                     }
                     else
                     {
@@ -124,6 +135,7 @@ public class ReadyFragment extends Fragment {
                     applicationFormListAdapter=new ApplicationFormListAdapter(getContext(),listtodisplay);
                     readylistview.setAdapter(applicationFormListAdapter);
                     applicationFormListAdapter.notifyDataSetChanged();
+
 
                 }
 

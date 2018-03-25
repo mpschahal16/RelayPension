@@ -129,6 +129,10 @@ public class StatusActivity extends AppCompatActivity {
                 }
             });
         }
+        else
+        {
+            Toast.makeText(getApplicationContext(),"Error in Fetching Data",Toast.LENGTH_LONG).show();
+        }
 
 
     }
