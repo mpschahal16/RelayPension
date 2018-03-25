@@ -28,5 +28,3 @@ public class Splash extends AppCompatActivity {
         }.start();
     }
 }
-//Chutiya=Lucky
-//Bdka Chutiya=Gandu;
