@@ -277,7 +277,6 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                         retry=2;
                         Toast.makeText(getApplicationContext(),"OTP SEND",Toast.LENGTH_LONG).show();
 
-
                     }
                 };
     }
