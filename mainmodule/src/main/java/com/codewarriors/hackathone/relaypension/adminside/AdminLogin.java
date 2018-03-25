@@ -2,6 +2,7 @@ package com.codewarriors.hackathone.relaypension.adminside;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -69,11 +70,11 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        String user = t1.getText().toString();
+        final String user = t1.getText().toString();
         String pass = t2.getText().toString();
         if(awesomeValidation.validate()&&pass.length()>8) {
             if (v == b1) {
-                dialog.setMessage("Registering User...please Wait");
+              /*  dialog.setMessage("Registering User...please Wait");
                 dialog.show();
 
                 auth.createUserWithEmailAndPassword(user, pass).
@@ -86,6 +87,10 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
                                     t1.setText("");
                                     t2.setText("");
                                     t1.requestFocus();
+
+
+
+
                                     go_to_login();
                                 }
                             }
@@ -95,7 +100,7 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
                         dialog.dismiss();
                         Toasty.error(AdminLogin.this, "ERROR: " + e.getMessage(), Toast.LENGTH_SHORT,true).show();
                     }
-                });
+                });*/
             }
             if (v == b2) {
                 dialog.setMessage("Logging In ...please Wait");
@@ -105,6 +110,11 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+                                    //saving admin id
+                                    SharedPreferences.Editor editor = getSharedPreferences("codewarriors", MODE_PRIVATE).edit();
+                                    editor.putString("adminid", user);
+                                    editor.apply();
+
                                     go_to_login();
                                 }
                             }
@@ -120,6 +130,7 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
     }
 
     private void go_to_login() {
+
         Intent intent = new Intent(this,ListAllConstituency.class);
         startActivity(intent);
 

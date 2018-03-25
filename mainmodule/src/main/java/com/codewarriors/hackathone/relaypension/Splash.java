@@ -5,12 +5,16 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.codewarriors.hackathone.relaypension.adminside.listallconspack.ListAllConstituency;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import es.dmoral.toasty.Toasty;
 
 public class Splash extends AppCompatActivity {
 
@@ -24,6 +28,7 @@ public class Splash extends AppCompatActivity {
 
        SharedPreferences prefs = getSharedPreferences("codewarriors", MODE_PRIVATE);
         String restoredText = prefs.getString("userid", null);
+        String adminid=prefs.getString("adminid",null);
         if (restoredText != null) {
 
             DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("UserState/");
@@ -36,20 +41,22 @@ public class Splash extends AppCompatActivity {
                     }
                     else
                     {
-                        Log.d("error in splash","datasnapshot emty");
+                        Toasty.error(Splash.this,"Unalbe to fetch user", Toast.LENGTH_LONG,true).show();
                     }
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Log.d("warriors","Error in splash");
+                    Toasty.warning(Splash.this,"Check Your Internet", Toast.LENGTH_LONG,true).show();
 
                 }
             });
         }
-
-
-
+        else if(adminid!=null)
+        {
+            Intent intent = new Intent(this,ListAllConstituency.class);
+            startActivity(intent);
+        }
         else {
             new Thread() {
                 public void run() {
