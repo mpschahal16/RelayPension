@@ -5,16 +5,16 @@ package com.codewarriors.hackathone.relaypension.customvariablesforparsing;
  */
 
 public class ApplicationFormStateCustomVAR {
-    String userid,consituency,aadharno,applivationsyaye;
+    String userid,consituency,aadharno,applicationstate;
 
     public ApplicationFormStateCustomVAR() {
     }
 
-    public ApplicationFormStateCustomVAR(String userid, String consituency, String aadharno, String applivationsyaye) {
+    public ApplicationFormStateCustomVAR(String userid, String consituency, String aadharno, String applicationstate) {
         this.userid = userid;
         this.consituency = consituency;
         this.aadharno = aadharno;
-        this.applivationsyaye = applivationsyaye;
+        this.applicationstate =applicationstate;
     }
 
     public String getUserid() {
@@ -29,7 +29,7 @@ public class ApplicationFormStateCustomVAR {
         return aadharno;
     }
 
-    public String getApplivationsyaye() {
-        return applivationsyaye;
+    public String getApplicationstate() {
+        return applicationstate;
     }
 }

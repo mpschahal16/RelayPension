@@ -175,18 +175,18 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             case R.id.sendaddotpbt:
             {
                 senotpfun();
-               //-- break;
+                break;
 
                 //otp
-mysenotpfun();
+            //mysenotpfun();
 
             }
             case R.id.verifybt:
             {
                 verifyCode();
-                //break;
+                break;
                 //otp
-                myverifyCode();
+               // myverifyCode();
             }
         }
 

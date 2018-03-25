@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "299335379167-e20ir3snmm21bf28jvuirq9507jvt240.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codewarriors.hackathone.relaypension",
+            "certificate_hash": "d509f3a998733b70069009c656fe84a377528b50"
+          }
+        },
+        {
           "client_id": "299335379167-drkpfa2cm4l5v4upbin0on8bb40klkbk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

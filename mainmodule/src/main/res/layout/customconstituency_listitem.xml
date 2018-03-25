@@ -26,6 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Constituency : "
+                android:textColor="@color/colorAccent"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -36,6 +37,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_toEndOf="@+id/textView17"
                 android:text="A"
+                android:textColor="@color/colorAccent"
                 android:textSize="20dp"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -57,14 +59,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="IN READY : "
-                    android:textAlignment="textStart" />
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorAccent" />
 
                 <TextView
                     android:id="@+id/inreadycountcustomtv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="23"
-                    android:textAlignment="textStart" />
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorAccent" />
 
             </LinearLayout>
 
@@ -79,7 +83,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MAX. LIMIT : "
-                    android:textAlignment="textStart" />
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorAccent" />
 
                 <TextView
                     android:id="@+id/maxlimittv"
@@ -87,7 +92,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="25"
-                    android:textAlignment="textStart" />
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorAccent" />
             </LinearLayout>
 
             <LinearLayout
@@ -101,7 +107,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="IN QUEUE : "
-                    android:textAlignment="textStart" />
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorAccent" />
 
                 <TextView
                     android:id="@+id/inqueuetv"
@@ -109,7 +116,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="36"
-                    android:textAlignment="textStart" />
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorAccent" />
             </LinearLayout>
 
         </LinearLayout>

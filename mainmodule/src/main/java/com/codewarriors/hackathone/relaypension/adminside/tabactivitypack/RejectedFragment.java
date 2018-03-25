@@ -37,7 +37,7 @@ public class RejectedFragment extends Fragment {
 
 
     ArrayList<ApplicationFormListVAR> listtodisplay;
-    ArrayList<FormPushPullCustomVAR> allformslistinaccepted;
+    ArrayList<FormPushPullCustomVAR> allformslistinrejected;
 
     public RejectedFragment() {
         // Required empty public constructor
@@ -51,15 +51,15 @@ public class RejectedFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_accepted, container, false);
+        View view = inflater.inflate(R.layout.fragment_rejected, container, false);
 
-        rejectedlistview=view.findViewById(R.id.rejectedfromlv);
+        rejectedlistview=view.findViewById(R.id.rejectformlv);
 
         Intent intent=getActivity().getIntent();
         constituency=intent.getExtras().getString("constituency");
 
         listtodisplay=new ArrayList<>();
-        allformslistinaccepted=new ArrayList<>();
+        allformslistinrejected=new ArrayList<>();
 
         if(constituency!=null)
         {
@@ -68,13 +68,13 @@ public class RejectedFragment extends Fragment {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     listtodisplay.clear();
-                    allformslistinaccepted.clear();
+                    allformslistinrejected.clear();
                     if(dataSnapshot.exists())
                     {
 
                         for(DataSnapshot dataSnapshotchild:dataSnapshot.getChildren()) {
                             formPushPullCustomVAR=dataSnapshotchild.getValue(FormPushPullCustomVAR.class);
-                            allformslistinaccepted.add(formPushPullCustomVAR);
+                            allformslistinrejected.add(formPushPullCustomVAR);
                             ApplicationFormListVAR applicationFormListVAR=new ApplicationFormListVAR(formPushPullCustomVAR.getFirstName()+" "+formPushPullCustomVAR.getMiddleName()
                                     +" "+formPushPullCustomVAR.getLastName(),formPushPullCustomVAR.getAge(),
                                     formPushPullCustomVAR.getConstituency(),formPushPullCustomVAR.getFormno());
@@ -93,14 +93,14 @@ public class RejectedFragment extends Fragment {
                         rejectedlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                DialogForQueueForm dialogForQueueForm =new DialogForQueueForm(getActivity(),allformslistinaccepted.get(i));
+                                DialogForQueueForm dialogForQueueForm =new DialogForQueueForm(getActivity(),allformslistinrejected.get(i));
                                 dialogForQueueForm.show();
                             }
                         });
                     }
                     else
                     {
-                        Log.d("data","REJECTED is empty");
+                        Log.d("data","queue is empty");
                     }
 
                     applicationFormListAdapter=new ApplicationFormListAdapter(getContext(),listtodisplay);

@@ -65,7 +65,7 @@ public class TabactivityReadyQueue extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setOffscreenPageLimit(4);
 
 
     }
@@ -148,10 +148,10 @@ public class TabactivityReadyQueue extends AppCompatActivity {
                 {
                     return new QueueFragment();
                 }
-              /*  case 3:
+                case 3:
                 {
                     return new RejectedFragment();
-                }*/
+                }
                 default:
                 {
                     return PlaceholderFragment.newInstance(position + 1);
@@ -165,7 +165,7 @@ public class TabactivityReadyQueue extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 4;
         }
 
     }

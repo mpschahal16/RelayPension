@@ -5,17 +5,17 @@ package com.codewarriors.hackathone.relaypension.customvariablesforparsing;
  */
 
 public class ConsituencyCustomVAR {
-    String username,uresid,aadharno,consituency,applictionstate;
+    String username,uresid,aadharno,consituency,applicationstate;
 
     public ConsituencyCustomVAR() {
     }
 
-    public ConsituencyCustomVAR(String username,String uresid, String aadharno, String consituency, String applictionstate) {
+    public ConsituencyCustomVAR(String username,String uresid, String aadharno, String consituency, String applicationstate) {
         this.username=username;
         this.uresid = uresid;
         this.aadharno = aadharno;
         this.consituency = consituency;
-        this.applictionstate = applictionstate;
+        this.applicationstate = applicationstate;
     }
 
     public String getUsername() {
@@ -35,6 +35,6 @@ public class ConsituencyCustomVAR {
     }
 
     public String getApplictionstate() {
-        return applictionstate;
+        return applicationstate;
     }
 }
