@@ -112,7 +112,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         errorinsend.setVisibility(View.INVISIBLE);
         errorinverify.setVisibility(View.INVISIBLE);
         //otp code
-      otponcreate();
+   //   otponcreate();
 
         awesomeValidation = new AwesomeValidation(COLORATION);
         awesomeValidation.addValidation(this, R.id.phoneloginet, "^[+]?[0-9]{10,13}$", R.string.invalid_mobile_no);
@@ -126,6 +126,9 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         }*/
         progressDialog=new ProgressDialog(this);
     }
+
+
+
 
     private void otponcreate() {
         //otp_extra
@@ -284,10 +287,14 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
 
     public void verifyCode() {
-        String code = otpet.getText().toString();
-        PhoneAuthCredential credential =
+        awesomeValidation.addValidation(this, R.id.otpaadet, "\\d{6}", R.string.invalid_otp);
+
+        if(awesomeValidation.validate()) {
+            String code=otpet.getText().toString();
+            PhoneAuthCredential credential =
                     PhoneAuthProvider.getCredential(phoneVerificationId, code);
             signInWithPhoneAuthCredential(credential);
+        }
 
     }
     public void myverifyCode() {
