@@ -109,6 +109,8 @@ public class RejectedFragment extends Fragment {
 
                 }
 
+
+
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
 
