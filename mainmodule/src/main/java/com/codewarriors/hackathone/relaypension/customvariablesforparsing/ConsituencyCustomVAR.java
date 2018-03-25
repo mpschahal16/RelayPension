@@ -34,7 +34,7 @@ public class ConsituencyCustomVAR {
         return consituency;
     }
 
-    public String getApplictionstate() {
+    public String getApplicationstate() {
         return applicationstate;
     }
 }

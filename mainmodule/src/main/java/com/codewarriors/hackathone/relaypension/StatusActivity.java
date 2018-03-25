@@ -74,7 +74,7 @@ public class StatusActivity extends AppCompatActivity {
                                 name.setText(consituencyCustomVAR.getUsername());
                                 aadharno.setText(consituencyCustomVAR.getAadharno());
                                 consituency.setText(consituencyCustomVAR.getConsituency());
-                                setstatus(consituencyCustomVAR.getApplictionstate());
+                                setstatus(consituencyCustomVAR.getApplicationstate());
                             }
 
                             @Override

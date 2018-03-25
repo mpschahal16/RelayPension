@@ -94,17 +94,17 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
 
 
         // Test values that we will get from intent in normal work
-        adno = "499240755287";
+      /*  adno = "499240755287";
         consituency = "A";
-        familyincome = "80000";
+        familyincome = "80000";*/
 
         //getting values from calling intent
         Intent it = getIntent();
 
 
-       /* adno=it.getExtras().getString("aadharno",null);
+        adno=it.getExtras().getString("aadharno",null);
         consituency=it.getExtras().getString("constituency",null);
-        familyincome=it.getExtras().getString("salary",null);*/
+        familyincome=it.getExtras().getString("salary",null);
         if (adno != null && consituency != null && familyincome != null) {
             final DatabaseReference rootreference=FirebaseDatabase.getInstance().getReference();
             DatabaseReference stubreferecne = rootreference.child("stubofuid/");
@@ -676,20 +676,15 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                       @Override
                       public void onComplete(@NonNull Task<Void> task) {
                           SharedPreferences prefs = getSharedPreferences("codewarriors", MODE_PRIVATE);
+                         //
                           final String userid = prefs.getString("userid", null);
+                          //final String userid="uzCH77IoDkOXWgfyPV6PlArCuY02";
                           DatabaseReference rootref = FirebaseDatabase.getInstance().getReference("UserState/");
 
 
 
-                         // userid
 
-
-
-
-
-
-
-                          rootref.child("uzCH77IoDkOXWgfyPV6PlArCuY02").setValue(aadharnoet.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                          rootref.child(userid).setValue(aadharnoet.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                               @Override
                               public void onComplete(@NonNull Task<Void> task) {
                                   DatabaseReference root=FirebaseDatabase.getInstance().getReference("userstatecons/");
