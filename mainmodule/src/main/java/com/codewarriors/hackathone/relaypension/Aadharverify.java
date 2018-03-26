@@ -29,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.msg91.sendotp.library.SendOtpVerification;
 import com.msg91.sendotp.library.Verification;
 import com.msg91.sendotp.library.VerificationListener;
+import com.roger.catloadinglibrary.CatLoadingView;
 
 import java.util.ArrayList;
 
@@ -50,7 +51,10 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
    Button sendotptophonebt,verifyotpbt;
    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("stubofuid/");
    DatabaseReference userstateconsref=FirebaseDatabase.getInstance().getReference("userstatecons/");
-   ProgressDialog progressDialog;
+
+
+ //  ProgressDialog progressDialog;
+    CatLoadingView mViewdddd;
    //Timeraa timeraa;
 
     Verification msg69var;
@@ -76,7 +80,16 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
         textInputLayout.setVisibility(View.INVISIBLE);
         sendotptophonebt.setOnClickListener(this);
         verifyotpbt.setOnClickListener(this);
-        progressDialog=new ProgressDialog(this);
+
+
+
+        // progressDialog=new ProgressDialog(this);
+
+        mViewdddd = new CatLoadingView();
+
+
+
+
         awesomeValidation=new AwesomeValidation(ValidationStyle.COLORATION);
         otp=new AwesomeValidation(ValidationStyle.COLORATION);
 
@@ -146,8 +159,13 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
 
    private void verifyaddinno() {
        String s = otpaadharverifyet.getText().toString();
-       progressDialog.setMessage("Verifying...");
-       progressDialog.show();
+
+       mViewdddd.setCanceledOnTouchOutside(false);
+       mViewdddd.setText("Verifying...");
+       mViewdddd.show(getSupportFragmentManager(),"");
+
+      /* progressDialog.setMessage("Verifying...");
+       progressDialog.show();*/
        msg69var.verify(s);
     }
 
@@ -156,8 +174,13 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
         constituency= consituencyet.getText().toString();
         familyanylin=Integer.parseInt(anualfamilyincomeet.getText().toString());
         final DatabaseReference mr=mDatabase.child(st);
-        progressDialog.setMessage("Checking Info");
-        progressDialog.show();
+
+        mViewdddd.setCanceledOnTouchOutside(false);
+        mViewdddd.setText("Checking Info");
+        mViewdddd.show(getSupportFragmentManager(),"");
+
+       /* progressDialog.setMessage("Checking Info");
+        progressDialog.show();*/
 
 
         userstateconsref.child(aadharnoet.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -166,7 +189,8 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
 
                 if(dataSnapshotx.exists()) {
 
-                    progressDialog.dismiss();
+                    mViewdddd.dismiss();
+                    //progressDialog.dismiss();
                     Toasty.warning(getApplicationContext(),"Aadhar Already Used",Toast.LENGTH_LONG,true).show();
 
                 }
@@ -181,7 +205,8 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
                                 adharno = st;
                                 sendOTPtoPhoneNO(userpno);
                             } else {
-                                progressDialog.dismiss();
+                                mViewdddd.dismiss();
+                                //progressDialog.dismiss();
                                 Toasty.warning(getApplicationContext(), "Aadhar Does Not exsist in DB", Toast.LENGTH_LONG,true).show();
                             }
                         }
@@ -191,7 +216,8 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
                             Toasty.error(getApplicationContext(), "Check Network/Db error", Toast.LENGTH_LONG,true).show();
                         }
                     });
-                   progressDialog.dismiss();
+                    mViewdddd.dismiss();
+                 //  progressDialog.dismiss();
 
                 }
 
@@ -226,7 +252,8 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
         otpaadharverifyet.setVisibility(View.VISIBLE);
         verifyotpbt.setVisibility(View.VISIBLE);
         textInputLayout.setVisibility(View.VISIBLE);
-        progressDialog.dismiss();
+        mViewdddd.dismiss();
+        //progressDialog.dismiss();
         Toasty.success(getApplication(),"Otp send to Aadhar linked Mobile",Toast.LENGTH_LONG,true).show();
         Log.d("msg69","onInitiated"+response);
     }
@@ -241,7 +268,8 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onVerified(String response) {
         Log.d("msg69","onverified");
-        progressDialog.dismiss();
+        mViewdddd.dismiss();
+        //progressDialog.dismiss();
         Intent intent = new Intent(Aadharverify.this, FIllform.class);
         intent.putExtra("aadharno", adharno);
         intent.putExtra("constituency",constituency);
@@ -251,7 +279,8 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onVerificationFailed(Exception paramException) {
-        progressDialog.dismiss();
+        mViewdddd.dismiss();
+       // progressDialog.dismiss();
         Toasty.error(getApplicationContext(),"Verification Failed",Toast.LENGTH_LONG,true).show();
         Log.d("msg69","onverifiedfailed");
     }

@@ -43,6 +43,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.roger.catloadinglibrary.CatLoadingView;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -59,7 +60,9 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     TextInputLayout textInputLayout;
     AwesomeValidation awesomeValidation;
 
-    ProgressDialog progressDialog;
+   // ProgressDialog progressDialog;
+    CatLoadingView mViewdddd;
+
     Timeraa timeraa;
 
     DatabaseReference rootRef;
@@ -126,7 +129,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             startActivity(new Intent(this,Splash.class));
 
         }*/
-        progressDialog=new ProgressDialog(this);
+       // progressDialog=new ProgressDialog(this);
+        mViewdddd = new CatLoadingView();
     }
 
 
@@ -221,17 +225,24 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                             this,               // Activity (for callback binding)
                             verificationCallbacks);
                     retry=retry+1;
-                    progressDialog.setMessage("Sending OTP To "+phoneNumber);
+
+                    mViewdddd.setCanceledOnTouchOutside(false);
+                    mViewdddd.setText("Sending OTP");
+                    mViewdddd.show(getSupportFragmentManager(),"");
+
+
+                   /* progressDialog.setMessage("Sending OTP To "+phoneNumber);
                     progressDialog.setCancelable(false);
-                    progressDialog.show();
+                    progressDialog.show();*/
                     break;
 
                 }
                 case 2:
                 {
                     resendCode(phoneNumber);
-                    progressDialog.setMessage("Sending OTP To "+phoneNumber);
-                    progressDialog.show();
+                    mViewdddd.setCanceledOnTouchOutside(false);
+                    mViewdddd.setText("Sending OTP");
+                    mViewdddd.show(getSupportFragmentManager(),"");
                     break;
                 }
             }
@@ -258,10 +269,12 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                             // Invalid request
                             Log.d("msg", "Invalid credential: "
                                     + e.getLocalizedMessage());
-                            progressDialog.dismiss();
+                            mViewdddd.dismiss();
+                           // progressDialog.dismiss();
                         } else if (e instanceof FirebaseTooManyRequestsException) {
                             // SMS quota exceeded
-                            progressDialog.dismiss();
+                            mViewdddd.dismiss();
+                           // progressDialog.dismiss();
                             Log.d("msg", "SMS Quota exceeded.");
                         }
                     }
@@ -274,7 +287,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                         resendToken = token;
                         timeraa=new Timeraa();
                         timeraa.execute();
-                        progressDialog.dismiss();
+                        mViewdddd.dismiss();
+                       // progressDialog.dismiss();
                         sendotp.setVisibility(View.INVISIBLE);
                         otpet.setVisibility(View.VISIBLE);
                         verify.setVisibility(View.VISIBLE);
@@ -293,8 +307,16 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
         if(awesomeValidation.validate()) {
             String code=otpet.getText().toString();
-            progressDialog.setMessage("Verifying...");
-            progressDialog.show();
+
+
+            mViewdddd.setCanceledOnTouchOutside(false);
+            mViewdddd.setText("Verifying...");
+            mViewdddd.show(getSupportFragmentManager(),"");
+
+
+
+           /* progressDialog.setMessage("Verifying...");
+            progressDialog.show();*/
             PhoneAuthCredential credential =
                     PhoneAuthProvider.getCredential(phoneVerificationId, code);
             signInWithPhoneAuthCredential(credential);
@@ -329,7 +351,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                                 rootRef.child(userid).setValue(0).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        progressDialog.dismiss();
+                                        mViewdddd.dismiss();
+                                       // progressDialog.dismiss();
                                         startActivity(new Intent(SignIn.this,Aadharverify.class));
                                     }
                                 });
@@ -370,7 +393,9 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                                     FirebaseAuthInvalidCredentialsException) {
                                errorinverify.setVisibility(View.VISIBLE);
                                errorinverify.setText("DID NOT MATCH");
-                                progressDialog.dismiss();
+
+                               mViewdddd.dismiss();
+                                //progressDialog.dismiss();
                             }
                         }
                     }

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -34,6 +35,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.roger.catloadinglibrary.CatLoadingView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -56,7 +58,8 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
     private FormPushPullCustomVAR formPushPullCustomVAR;
 
 
-    ProgressDialog progressDialog;
+   // ProgressDialog progressDialog;
+   CatLoadingView mViewdddd;
 
 
     private ArrayList<FormPushPullCustomVAR> queueformlist;
@@ -128,7 +131,8 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
         setEverything();
         queueformlist=new ArrayList<>();
 
-        progressDialog=new ProgressDialog(getContext());
+       // progressDialog=new ProgressDialog(getContext());
+        mViewdddd = new CatLoadingView();
 
         cancel.setOnClickListener(this);
         reject.setOnClickListener(this);
@@ -215,9 +219,16 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         int i=view.getId();
-        progressDialog.setMessage("Applying Changes");
+
+
+        mViewdddd.setCanceledOnTouchOutside(false);
+        mViewdddd.setText("Applying Changes");
+        mViewdddd.show(((FragmentActivity) activity)
+                .getSupportFragmentManager(),"");
+
+        /*progressDialog.setMessage("Applying Changes");
         progressDialog.setCancelable(false);
-        progressDialog.show();
+        progressDialog.show();*/
         switch (i)
         {
             case R.id.acceptbt:
@@ -389,7 +400,11 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
                                     // the original copy by assigning null as its value.
                                     fromPath.child(key).setValue(null);
                                     setstateofapplictionform(key,"2");
-                                    progressDialog.dismiss();
+
+
+                                    //progressDialog.dismiss();
+
+                                    mViewdddd.dismiss();
                                     queueformlist.remove(0);
                                     dismiss();
 
@@ -455,7 +470,9 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
                     else
                     {
 
-                        progressDialog.dismiss();
+                        //progressDialog.dismiss();
+
+                        mViewdddd.dismiss();
                         dismiss();
 
 
@@ -467,7 +484,10 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
                 else
                 {
 
-                    progressDialog.dismiss();
+                    //progressDialog.dismiss();
+
+                    mViewdddd.dismiss();
+
                     dismiss();
                     Log.d("error","erreor in dialog while fetching queue");
 
