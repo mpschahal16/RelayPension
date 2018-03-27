@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ public class AcceptedFragment extends Fragment {
     ArrayList<ApplicationFormListVAR> listtodisplay;
     ArrayList<FormPushPullCustomVAR> allformslistinaccepted;
 
+
     public AcceptedFragment() {
         // Required empty public constructor
     }
@@ -56,6 +58,7 @@ public class AcceptedFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_accepted, container, false);
 
         acceptedlistview=view.findViewById(R.id.acceptedfromlv);
+
 
         Intent intent=getActivity().getIntent();
         constituency=intent.getExtras().getString("constituency");
@@ -102,7 +105,7 @@ public class AcceptedFragment extends Fragment {
                         acceptedlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                DialogForQueueForm dialogForQueueForm =new DialogForQueueForm(getActivity(),allformslistinaccepted.get(i));
+                                DialogOfFormWithPdf dialogForQueueForm =new DialogOfFormWithPdf(getActivity(),allformslistinaccepted.get(i),"1");
                                 dialogForQueueForm.show();
                             }
                         });
@@ -131,8 +134,6 @@ public class AcceptedFragment extends Fragment {
         {
             Toasty.error(getContext(),"Error in Accepted",Toast.LENGTH_LONG,true).show();
         }
-
-
 
 
 

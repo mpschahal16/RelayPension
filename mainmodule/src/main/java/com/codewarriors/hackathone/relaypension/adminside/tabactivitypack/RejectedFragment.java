@@ -102,7 +102,7 @@ public class RejectedFragment extends Fragment {
                         rejectedlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                DialogForQueueForm dialogForQueueForm =new DialogForQueueForm(getActivity(),allformslistinrejected.get(i));
+                                DialogOfFormWithPdf dialogForQueueForm =new DialogOfFormWithPdf(getActivity(),allformslistinrejected.get(i),"2");
                                 dialogForQueueForm.show();
                             }
                         });

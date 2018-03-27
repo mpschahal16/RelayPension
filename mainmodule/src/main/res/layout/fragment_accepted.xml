@@ -6,16 +6,22 @@
     android:background="@color/avtivitybackground">
 
     <LinearLayout
+        android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/layoutbackground">
+        android:background="@drawable/layoutbackground"
+        android:orientation="vertical">
 
 
         <ListView
             android:id="@+id/acceptedfromlv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+
+        </ListView>
+
+
     </LinearLayout>
 
 </RelativeLayout>
