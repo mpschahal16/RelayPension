@@ -34,7 +34,7 @@ public class StatusActivity extends AppCompatActivity {
     TextView name,aadharno,consituency,applictionstatus;
     ImageView pic;
 
-    Button reapplybt;
+  //  Button reapplybt;
 
     DatabaseReference mDB;
     String aadharnost;//="499240755287";
@@ -49,8 +49,8 @@ public class StatusActivity extends AppCompatActivity {
         consituency=findViewById(R.id.consituencystatustv);
         applictionstatus=findViewById(R.id.applicationstatustv);
         pic=findViewById(R.id.statuspic);
-        reapplybt=findViewById(R.id.reapplystatebt);
-        reapplybt.setVisibility(View.INVISIBLE);
+    //    reapplybt=findViewById(R.id.reapplystatebt);
+   //     reapplybt.setVisibility(View.INVISIBLE);
 
         SharedPreferences prefs = getSharedPreferences("codewarriors", MODE_PRIVATE);
         String restoredText = prefs.getString("userid", null);
@@ -143,13 +143,13 @@ public class StatusActivity extends AppCompatActivity {
         }
 
 
-        reapplybt.setOnClickListener(new View.OnClickListener() {
+      /*  reapplybt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //re apply process will start from here
                 Toasty.success(StatusActivity.this,"sssss",Toast.LENGTH_LONG,true).show();
             }
-        });
+        });*/
 
 
     }
@@ -160,31 +160,31 @@ public class StatusActivity extends AppCompatActivity {
         {
             case "0":
             {
-                reapplybt.setVisibility(View.VISIBLE);
+               // reapplybt.setVisibility(View.VISIBLE);
                 applictionstatus.setText("Rejected");
                 break;
             }
             case "1":
             {
-                reapplybt.setVisibility(View.INVISIBLE);
+              //  reapplybt.setVisibility(View.INVISIBLE);
                 applictionstatus.setText("IN QUEUE");
                 break;
             }
             case "2":
             {
-                reapplybt.setVisibility(View.INVISIBLE);
+                //reapplybt.setVisibility(View.INVISIBLE);
                 applictionstatus.setText("IN READY");
                 break;
             }
             case "4":
             {
-                reapplybt.setVisibility(View.INVISIBLE);
+                //reapplybt.setVisibility(View.INVISIBLE);
                 applictionstatus.setText("ACCEPTED");
                 break;
             }
             default:
             {
-                reapplybt.setVisibility(View.INVISIBLE);
+                //reapplybt.setVisibility(View.INVISIBLE);
                 applictionstatus.setText("UNKNOWN");
 
             }

@@ -150,7 +150,8 @@
                         android:typeface="normal" />
                 </LinearLayout>
 
-                <Button
+
+               <!-- <Button
                     android:id="@+id/reapplystatebt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -158,7 +159,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/buttonshape"
                     android:textColor="#ffffff"
-                    android:text="Re- Apply" />
+                    android:text="Re- Apply" />-->
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

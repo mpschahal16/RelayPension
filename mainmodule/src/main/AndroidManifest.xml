@@ -33,7 +33,6 @@
         <activity
             android:name=".Aadharverify"
             android:label="@string/aadharverification">
-
         </activity>
         <activity
             android:name=".FIllform"

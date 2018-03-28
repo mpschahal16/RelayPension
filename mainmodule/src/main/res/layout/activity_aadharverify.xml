@@ -41,7 +41,8 @@
                         android:inputType="number"
                         android:layout_gravity="center"
                         android:maxLength="12"
-                        android:textAlignment="center">
+                        android:textAlignment="center"
+                        android:drawableLeft="@drawable/aadharpicverify">
 
                         <requestFocus></requestFocus>
                     </EditText>
@@ -65,7 +66,8 @@
                         android:layout_weight="1"
                         android:ems="10"
                         android:hint="Constituency"
-                        android:inputType="textCapCharacters"/>
+                        android:inputType="textCapCharacters"
+                        android:drawableLeft="@drawable/constituencypic"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -86,7 +88,8 @@
                         android:layout_weight="1"
                         android:ems="10"
                         android:hint="Annual Family Income"
-                        android:inputType="number"/>
+                        android:inputType="number"
+                        android:drawableLeft="@drawable/rupee"/>
 
                 </android.support.design.widget.TextInputLayout>
 

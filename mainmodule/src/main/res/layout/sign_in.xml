@@ -47,7 +47,9 @@
                 android:hint="@string/mobile_number"
                 android:inputType="phone"
                 android:maxLength="10"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:drawableLeft="@drawable/verifynopic"
+                />
 
             <requestFocus></requestFocus>
 
