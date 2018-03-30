@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.codewarriors.hackathone.relaypension.R;
 
-public class About_act extends AppCompatActivity {
+public class AboutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

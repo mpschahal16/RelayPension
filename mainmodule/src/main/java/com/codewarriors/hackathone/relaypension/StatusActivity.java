@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.codewarriors.hackathone.relaypension.customvariablesforparsing.ConsituencyCustomVAR;
+import com.codewarriors.hackathone.relaypension.reapplypack.AboutActivity;
+import com.codewarriors.hackathone.relaypension.reapplypack.Helpactivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -214,7 +216,7 @@ public class StatusActivity extends AppCompatActivity {
 
         switch (item.getItemId())
         {
-            case R.id.sign_out:
+            case R.id.sign_out: {
                 SharedPreferences.Editor editor = getSharedPreferences("codewarriors", MODE_PRIVATE).edit();
                 editor.putString("userid", null);
                 editor.apply();
@@ -225,6 +227,21 @@ public class StatusActivity extends AppCompatActivity {
                 finish();
                 startActivity(i);
                 return true;
+            }
+
+            case R.id.about_actmenu:
+            {
+
+                startActivity(new Intent(StatusActivity.this, AboutActivity.class));
+
+                return true;
+            }
+
+            case R.id.help_actmenu:
+            {
+                startActivity(new Intent(StatusActivity.this, Helpactivity.class));
+                return true;
+            }
 
             default:
                 return super.onOptionsItemSelected(item);

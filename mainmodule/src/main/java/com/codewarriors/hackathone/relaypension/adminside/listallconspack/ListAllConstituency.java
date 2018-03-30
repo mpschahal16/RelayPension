@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.codewarriors.hackathone.relaypension.R;
 import com.codewarriors.hackathone.relaypension.adminside.tabactivitypack.TabactivityReadyQueue;
 import com.codewarriors.hackathone.relaypension.customvariablesforparsing.ConstituencyHelperClass;
+import com.codewarriors.hackathone.relaypension.reapplypack.AboutActivity;
+import com.codewarriors.hackathone.relaypension.reapplypack.Helpactivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -120,7 +122,7 @@ public class ListAllConstituency extends AppCompatActivity {
 
         switch (item.getItemId())
         {
-            case R.id.sign_out:
+            case R.id.sign_out: {
                 SharedPreferences.Editor editor = getSharedPreferences("codewarriors", MODE_PRIVATE).edit();
                 editor.putString("adminid", null);
                 editor.apply();
@@ -131,6 +133,20 @@ public class ListAllConstituency extends AppCompatActivity {
                 finish();
                 startActivity(i);
                 return true;
+            }
+            case R.id.about_actmenu:
+            {
+
+                startActivity(new Intent(ListAllConstituency.this, AboutActivity.class));
+
+                return true;
+            }
+
+            case R.id.help_actmenu:
+            {
+                startActivity(new Intent(ListAllConstituency.this, Helpactivity.class));
+                return true;
+            }
 
             default:
                 return super.onOptionsItemSelected(item);

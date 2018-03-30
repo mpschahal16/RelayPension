@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.codewarriors.hackathone.relaypension.FIllform;
 import com.codewarriors.hackathone.relaypension.R;
 import com.codewarriors.hackathone.relaypension.StubNoReturn;
 import com.codewarriors.hackathone.relaypension.customvariablesforparsing.StubAadhaarCustomVAR;
@@ -31,7 +30,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-public class help_act extends AppCompatActivity implements View.OnClickListener {
+public class Helpactivity extends AppCompatActivity implements View.OnClickListener {
         EditText username, fno, message;
         ImageView img;
         Button select, submit;
@@ -58,7 +57,7 @@ public class help_act extends AppCompatActivity implements View.OnClickListener 
             cb.setOnClickListener(this);
 
 
-            Intent it = getIntent();
+            /*Intent it = getIntent();
             adno=it.getExtras().getString("aadharno",null);
 
 
@@ -76,19 +75,19 @@ public class help_act extends AppCompatActivity implements View.OnClickListener 
                     }
                     else
                     {
-                        startActivity(new Intent(help_act.this, StubNoReturn.class));
+                        startActivity(new Intent(Helpactivity.this, StubNoReturn.class));
                     }
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    startActivity(new Intent(help_act.this, StubNoReturn.class));
+                    startActivity(new Intent(Helpactivity.this, StubNoReturn.class));
                 }
             });
 
         } else {
-            startActivity(new Intent(help_act.this, StubNoReturn.class));
-        }
+            startActivity(new Intent(Helpactivity.this, StubNoReturn.class));
+        }*/
             storage = FirebaseStorage.getInstance();
         }
 
@@ -143,9 +142,9 @@ public class help_act extends AppCompatActivity implements View.OnClickListener 
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                 progressDialog.dismiss();
                                 //  mViewdddd.dismiss();
-                                Glide.with(help_act.this).load(selectedImage).into(img);
+                                Glide.with(Helpactivity.this).load(selectedImage).into(img);
                                 cb.setChecked(true);
-                                Toast.makeText(help_act.this, "Uploaded", Toast.LENGTH_LONG).show();
+                                Toast.makeText(Helpactivity.this, "Uploaded", Toast.LENGTH_LONG).show();
                                 // Toasty.success(FIllform.this, "Uploaded", Toast.LENGTH_SHORT,true).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {

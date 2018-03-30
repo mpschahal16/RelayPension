@@ -28,6 +28,8 @@ import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.codewarriors.hackathone.relaypension.adminside.AdminLogin;
+import com.codewarriors.hackathone.relaypension.reapplypack.AboutActivity;
+import com.codewarriors.hackathone.relaypension.reapplypack.Helpactivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -496,12 +498,29 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
         switch (item.getItemId())
         {
-            case R.id.admin_login:
+            case R.id.admin_login: {
                 startActivity(new Intent(SignIn.this, AdminLogin.class));
                 return true;
+            }
+
+            case R.id.about_actmenu:
+            {
+
+                startActivity(new Intent(SignIn.this, AboutActivity.class));
+
+                return true;
+            }
+
+            case R.id.help_actmenu:
+            {
+                startActivity(new Intent(SignIn.this, Helpactivity.class));
+                return true;
+            }
 
             default:
                 return super.onOptionsItemSelected(item);
+
+
         }
     }
 

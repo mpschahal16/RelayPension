@@ -57,8 +57,8 @@
             android:theme="@style/AppTheme1.NoActionBar" />
         <activity android:name=".adminside.Admin_review" />
         <activity android:name=".reapplypack.reapply_fillform" />
-        <activity android:name=".reapplypack.help_act" />
-        <activity android:name=".reapplypack.About_act"></activity>
+        <activity android:name=".reapplypack.Helpactivity" />
+        <activity android:name=".reapplypack.AboutActivity"></activity>
     </application>
 
 </manifest>

@@ -35,6 +35,8 @@ import com.codewarriors.hackathone.relaypension.customvariablesforparsing.Consit
 import com.codewarriors.hackathone.relaypension.customvariablesforparsing.ConstituencyHelperClass;
 import com.codewarriors.hackathone.relaypension.customvariablesforparsing.FormPushPullCustomVAR;
 import com.codewarriors.hackathone.relaypension.customvariablesforparsing.StubAadhaarCustomVAR;
+import com.codewarriors.hackathone.relaypension.reapplypack.AboutActivity;
+import com.codewarriors.hackathone.relaypension.reapplypack.Helpactivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -933,6 +935,21 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                 finish();
                 startActivity(i);
                 return true;
+
+
+            case R.id.about_actmenu:
+            {
+
+                startActivity(new Intent(FIllform.this, AboutActivity.class));
+
+                return true;
+            }
+
+            case R.id.help_actmenu:
+            {
+                startActivity(new Intent(FIllform.this, Helpactivity.class));
+                return true;
+            }
 
             default:
                 return super.onOptionsItemSelected(item);

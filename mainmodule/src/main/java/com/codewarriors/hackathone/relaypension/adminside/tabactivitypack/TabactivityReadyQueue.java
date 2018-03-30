@@ -15,6 +15,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.codewarriors.hackathone.relaypension.R;
+import com.codewarriors.hackathone.relaypension.StatusActivity;
+import com.codewarriors.hackathone.relaypension.reapplypack.AboutActivity;
+import com.codewarriors.hackathone.relaypension.reapplypack.Helpactivity;
 
 public class TabactivityReadyQueue extends AppCompatActivity {
 
@@ -76,9 +79,8 @@ public class TabactivityReadyQueue extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item)
     {
 
-        switch (item.getItemId())
-        {
-            case R.id.sign_out:
+        switch (item.getItemId()) {
+            case R.id.sign_out: {
                 SharedPreferences.Editor editor = getSharedPreferences("codewarriors", MODE_PRIVATE).edit();
                 editor.putString("adminid", null);
                 editor.apply();
@@ -89,6 +91,22 @@ public class TabactivityReadyQueue extends AppCompatActivity {
                 finish();
                 startActivity(i);
                 return true;
+            }
+
+            case R.id.about_actmenu:
+            {
+
+                startActivity(new Intent(TabactivityReadyQueue.this, AboutActivity.class));
+
+                return true;
+            }
+
+            case R.id.help_actmenu:
+            {
+                startActivity(new Intent(TabactivityReadyQueue.this, Helpactivity.class));
+                return true;
+            }
+
 
             default:
                 return super.onOptionsItemSelected(item);

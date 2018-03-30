@@ -20,6 +20,8 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.codewarriors.hackathone.relaypension.customvariablesforparsing.ConstituencyHelperClass;
+import com.codewarriors.hackathone.relaypension.reapplypack.AboutActivity;
+import com.codewarriors.hackathone.relaypension.reapplypack.Helpactivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -307,7 +309,7 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
 
         switch (item.getItemId())
         {
-            case R.id.sign_out:
+            case R.id.sign_out: {
                 SharedPreferences.Editor editor = getSharedPreferences("codewarriors", MODE_PRIVATE).edit();
                 editor.putString("userid", null);
                 editor.apply();
@@ -318,6 +320,21 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
                 finish();
                 startActivity(i);
                 return true;
+            }
+
+            case R.id.about_actmenu:
+            {
+
+                startActivity(new Intent(Aadharverify.this, AboutActivity.class));
+
+                return true;
+            }
+
+            case R.id.help_actmenu:
+            {
+                startActivity(new Intent(Aadharverify.this, Helpactivity.class));
+                return true;
+            }
 
             default:
                 return super.onOptionsItemSelected(item);
