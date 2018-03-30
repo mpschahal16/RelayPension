@@ -3,6 +3,7 @@ package com.codewarriors.hackathone.relaypension.adminside.tabactivitypack;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -219,13 +220,15 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
         mViewdddd.show(((FragmentActivity) activity)
                 .getSupportFragmentManager(),"");*/
 
-        progressDialog.setMessage("Applying Changes");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+
         switch (i)
         {
             case R.id.acceptbt:
             {
+
+                progressDialog.setMessage("Applying Changes");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
                 DatabaseReference fromreadyref=FirebaseDatabase.getInstance().getReference("consituency/"+formPushPullCustomVAR.getConstituency()+"/"+
                         "ready/");
                 DatabaseReference acceptref=FirebaseDatabase.getInstance().getReference("consituency/"+formPushPullCustomVAR.getConstituency()+"/"+
@@ -250,11 +253,27 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
 
             case R.id.rejectbt:
             {
+
                  DatabaseReference fromreadyref=FirebaseDatabase.getInstance().getReference("consituency/"+formPushPullCustomVAR.getConstituency()+"/"+
                 "ready/");
                 DatabaseReference rejectref=FirebaseDatabase.getInstance().getReference("consituency/"+formPushPullCustomVAR.getConstituency()+"/"+
                         "rejected/");
-                readytorejected(fromreadyref,rejectref,formPushPullCustomVAR.getAadharNo());
+
+                DialogForAdminReveify dialogForAdminReveify=new DialogForAdminReveify(activity,fromreadyref,rejectref,formPushPullCustomVAR);
+
+                dialogForAdminReveify.show();
+                dialogForAdminReveify.setOnDismissListener(new OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                       dismiss();
+                    }
+                });
+
+                /* DatabaseReference fromreadyref=FirebaseDatabase.getInstance().getReference("consituency/"+formPushPullCustomVAR.getConstituency()+"/"+
+                "ready/");
+                DatabaseReference rejectref=FirebaseDatabase.getInstance().getReference("consituency/"+formPushPullCustomVAR.getConstituency()+"/"+
+                        "rejected/");
+                readytorejected(fromreadyref,rejectref,formPushPullCustomVAR.getAadharNo());*/
 
 
 
