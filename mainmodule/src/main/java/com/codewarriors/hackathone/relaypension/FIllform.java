@@ -147,7 +147,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
                    // Toasty.error(FIllform.this, "ERROR In fetching form no", Toast.LENGTH_SHORT,true).show();
-                    Toast.makeText(FIllform.this,"ERROR In fetching form no",Toast.LENGTH_LONG).show();
+                    Toast.makeText(FIllform.this,"Error in fetching form number",Toast.LENGTH_LONG).show();
                     startActivity(new Intent(FIllform.this, StubNoReturn.class));
                 }
             });
@@ -347,18 +347,18 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                         break;
                     } else if (!selectpiccb.isChecked()) {
                         //Toasty.warning(getApplicationContext(), "Upload your Passport Size pic", Toast.LENGTH_LONG,true).show();
-                        Toast.makeText(getApplicationContext(), "Upload your Passport Size pic",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Upload Your Passport Size Image",Toast.LENGTH_LONG).show();
                         break;
                     } else if (!passbookcb.isChecked()) {
-                        Toast.makeText(getApplicationContext(), "Attach your Passbook",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Attach your Passbook Image",Toast.LENGTH_LONG).show();
                         //Toasty.warning(getApplicationContext(), "Attach your Passbook", Toast.LENGTH_LONG,true).show();
                         break;
                     } else if (!payslipcb.isChecked()) {
-                        Toast.makeText(getApplicationContext(), "Attach your Passbook",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Attach your Passbook Image",Toast.LENGTH_LONG).show();
                       //  Toasty.warning(getApplicationContext(), "Attach your Income Slip", Toast.LENGTH_LONG,true).show();
                         break;
                     } else if (!signaturecb.isChecked()) {
-                        Toast.makeText(getApplicationContext(), "Attach your Signature",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Attach your Signature Image",Toast.LENGTH_LONG).show();
                         //Toasty.warning(getApplicationContext(), "Attach your Signature", Toast.LENGTH_LONG,true).show();
                         break;
                     } else {
@@ -476,7 +476,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
 
                           //  mViewdddd.dismiss();
                             progressDialog.dismiss();
-                            Log.d("eeeeeeee","Failed "+e.getMessage());
+                            Log.d("eeeeeeee","Error: "+e.getMessage());
                         }
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -524,7 +524,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
 
                             progressDialog.dismiss();
                            // mViewdddd.dismiss();
-                            Log.d("eeeeeeee","Failed "+e.getMessage());
+                            Log.d("eeeeeeee","Error: "+e.getMessage());
                         }
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -703,7 +703,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                     })
                     .setCancelable(true)
                     .setIcon(android.R.drawable.ic_dialog_info)
-                    .setMessage("Please ReCheck EveryThing");
+                    .setMessage("Please recheck everything\n No modifications after submission.");
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
             submitcheck=submitcheck+1;
@@ -880,13 +880,13 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
     private void AlerDialogCriteria()
     {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setPositiveButton("Eligibilty Criteria", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setPositiveButton("Eligibility Criteria", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 startActivity(new Intent(FIllform.this,EligibilityActivity.class));
             }
         })
-                .setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -894,7 +894,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                 })
                 .setCancelable(true)
                 .setIcon(android.R.drawable.ic_dialog_info)
-                .setMessage("Please Read Eligibilty Criteria");
+                .setMessage("Please Read Eligibility Criteria");
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }

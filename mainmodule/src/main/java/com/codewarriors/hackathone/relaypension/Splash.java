@@ -45,7 +45,7 @@ public class Splash extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                   Toast.makeText(Splash.this,"Check Your Internet",Toast.LENGTH_LONG).show();
+                   Toast.makeText(Splash.this,"Check Your Internet Connection",Toast.LENGTH_LONG).show();
                    //Toasty.warning(Splash.this,"Check Your Internet", Toast.LENGTH_LONG,true).show();
 
                 }

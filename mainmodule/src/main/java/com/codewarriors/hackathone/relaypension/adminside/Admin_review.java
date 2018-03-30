@@ -54,7 +54,7 @@ public class Admin_review extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
-                Toast.makeText(getApplicationContext(),"ERROR"+databaseError.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Error"+databaseError.getMessage(),Toast.LENGTH_LONG).show();
 
             }
         });

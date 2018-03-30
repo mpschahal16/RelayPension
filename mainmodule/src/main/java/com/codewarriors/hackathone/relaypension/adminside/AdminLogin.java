@@ -104,8 +104,8 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         dialog.dismiss();
-                       // Toasty.error(AdminLogin.this, "ERROR: " + e.getMessage(), Toast.LENGTH_SHORT,true).show();
-                         Toast.makeText(AdminLogin.this,"ERROR: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                       // Toasty.error(AdminLogin.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT,true).show();
+                         Toast.makeText(AdminLogin.this,"Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });*/
             }
@@ -113,7 +113,7 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
                /* mViewdddd.setCanceledOnTouchOutside(false);
                 mViewdddd.setText("Logging In ...please Wait");
                 mViewdddd.show(getSupportFragmentManager(),"");*/
-                dialog.setMessage("Logging In ...please Wait");
+                dialog.setMessage("Logging In ...Please Wait");
                 dialog.setCancelable(false);
                 dialog.show();
                 auth.signInWithEmailAndPassword(user, pass).
@@ -137,7 +137,7 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
                        // mViewdddd.dismiss();
                         dialog.dismiss();
                        // Toasty.error(AdminLogin.this, "ERROR: " + e.getMessage(), Toast.LENGTH_SHORT,true).show();
-                        Toast.makeText(AdminLogin.this, "ERROR: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AdminLogin.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 });

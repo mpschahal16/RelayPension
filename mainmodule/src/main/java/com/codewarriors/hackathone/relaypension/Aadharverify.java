@@ -177,7 +177,7 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
         mViewdddd.setText("Checking Info");
         mViewdddd.show(getSupportFragmentManager(),"");*/
 
-       progressDialog.setMessage("Checking Info");
+       progressDialog.setMessage("Checking User Info");
        progressDialog.setCancelable(false);
         progressDialog.show();
 
@@ -208,7 +208,7 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
                               //  mViewdddd.dismiss();
                                 progressDialog.dismiss();
                                // Toasty.warning(getApplicationContext(), "Aadhar Does Not exsist in DB", Toast.LENGTH_LONG,true).show();
-                                Toast.makeText(getApplicationContext(),"Aadhar Does Not exsist in DB",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"Aadhar Does Not exist in DataBase",Toast.LENGTH_LONG).show();
                             }
                         }
 
@@ -216,7 +216,7 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
                         public void onCancelled(DatabaseError databaseError) {
                            // Toasty.error(getApplicationContext(), "Check Network/Db error", Toast.LENGTH_LONG,true).show();
 
-                            Toast.makeText(getApplicationContext(),"Check Network/Db error",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(),"Error"+databaseError.getMessage(),Toast.LENGTH_LONG).show();
                         }
                     });
                    // mViewdddd.dismiss();
@@ -259,7 +259,7 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
         progressDialog.dismiss();
        // Toasty.success(getApplication(),"Otp send to Aadhar linked Mobile",Toast.LENGTH_LONG,true).show();
 
-        Toast.makeText(getApplication(),"Otp send to Aadhar linked Mobile",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplication(),"OTP sent to Aadhar Linked Mobile",Toast.LENGTH_LONG).show();
         Log.d("msg69","onInitiated"+response);
     }
 
@@ -267,7 +267,7 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
     public void onInitiationFailed(Exception paramException) {
       //  Toasty.error(getApplication(),"Check ur Network",Toast.LENGTH_LONG,true).show();
 
-        Toast.makeText(getApplication(),"Check ur Network",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplication(),"Check Your Network Connection",Toast.LENGTH_LONG).show();
         Log.d("msg69","onInitiatedfailed");
 
     }
