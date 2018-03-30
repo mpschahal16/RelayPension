@@ -178,7 +178,7 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
                                     ///added code
 
 
-                                    activity.sendBroadcast(new Intent().putExtra("data", 1).setAction("codewarriors"));
+                                   // activity.sendBroadcast(new Intent().putExtra("data", 1).setAction("codewarriors"));
 
 
 

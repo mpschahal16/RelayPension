@@ -38,7 +38,7 @@ public class ReadyFragment extends Fragment {
     ListView readylistview;
 
 
-    MyReceiver myReceiver;
+   // MyReceiver myReceiver;
 
 
 
@@ -74,11 +74,11 @@ public class ReadyFragment extends Fragment {
         listtodisplay=new ArrayList<>();
         allformslistinready=new ArrayList<>();
 
-        myReceiver=new MyReceiver();
+      //  myReceiver=new MyReceiver();
 
-        IntentFilter intentFilter = new IntentFilter();
+       /* IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("codewarriors");
-        getActivity().registerReceiver(myReceiver, intentFilter);
+        getActivity().registerReceiver(myReceiver, intentFilter);*/
 
       /*  revert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,10 +96,10 @@ public class ReadyFragment extends Fragment {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
+                    listtodisplay.clear();
+                    allformslistinready.clear();
                     if(dataSnapshot.exists())
                     {
-                        listtodisplay.clear();
-                        allformslistinready.clear();
 
                         for(DataSnapshot dataSnapshotchild:dataSnapshot.getChildren()) {
                             formPushPullCustomVAR=dataSnapshotchild.getValue(FormPushPullCustomVAR.class);
@@ -250,7 +250,7 @@ public class ReadyFragment extends Fragment {
 
 
 
-    private class MyReceiver extends BroadcastReceiver {
+  /*  private class MyReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context arg0, Intent arg1) {
@@ -264,7 +264,7 @@ public class ReadyFragment extends Fragment {
 
         }
 
-    }
+    }*/
 
 
 
