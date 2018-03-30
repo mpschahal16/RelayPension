@@ -49,15 +49,12 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
     RadioButton radioButton1,radioButton2,radioButton3;
 
     String rejectreason="0";
-   FormPushPullCustomVAR formPushPullCustomVAR;
+    FormPushPullCustomVAR formPushPullCustomVAR;
 
     DatabaseReference fromreadyref,rejectref;
 
     SmsManager smsManager;
-    PendingIntent sendPI,delPI;
-    BroadcastReceiver sendBR,delBR;
-    String data,a,b;
-    int otp;
+    String a,b;
 
     public DialogForAdminReveify(@NonNull Activity activity, DatabaseReference fromreadyref, DatabaseReference rejectref, FormPushPullCustomVAR formPushPullCustomVAR) {
         super(activity);
@@ -82,8 +79,6 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
         radioButton2=findViewById(R.id.reasonreject2);
         radioButton3=findViewById(R.id.reasonreject3);
 
-        sendPI = PendingIntent.getBroadcast(activity,987,new Intent("SEND_SMS"),0);
-        delPI=PendingIntent.getBroadcast(activity,986, new Intent("DEL_SMS"),0);
         smsManager = SmsManager.getDefault();
 
 
@@ -97,17 +92,20 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
                     case R.id.reasonreject1:
                     {
                         rejectreason="1";
+                        a="reson 1";
                         break;
                     }
                     case R.id.reasonreject2:
                     {
                         rejectreason="2";
+                        a="reason 2";
                         break;
                     }
                     case R.id.reasonreject3:
                     {
 
                         rejectreason="3";
+                        a="reason 3";
                         break;
                     }
                 }
@@ -168,11 +166,8 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
                                     setstateofapplictionform(key,"0");
                                     seterrorinappliction(key);
                                     getQueuelist();
-                                    b = "Your application has been rejected";
-                                    smsManager.sendTextMessage("+91"+formPushPullCustomVAR.getPhoneNo(),null,""+b,sendPI,delPI);
-
-
-
+                                    b = "Your application has been rejected because"+a;
+                                    smsManager.sendTextMessage("+91"+formPushPullCustomVAR.getPhoneNo(),null,""+b,null,null);
                                 }
                                 else {
                                     Log.e(TAG, "onComplete: failure:" + databaseError.getMessage() + ": "
