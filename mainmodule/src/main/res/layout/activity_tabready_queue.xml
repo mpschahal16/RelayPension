@@ -38,19 +38,19 @@
                 android:id="@+id/acceptedtab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ACCEPTED" />
+                android:text="READY" />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/readytab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="READY" />
+                android:text="QUEUED UP" />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/queuetab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="QUEUE" />
+                android:text="ACCEPTED" />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/rejected"

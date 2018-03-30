@@ -138,18 +138,20 @@ public class TabactivityReadyQueue extends AppCompatActivity {
             {
                 case 0:
                 {
-                    return new AcceptedFragment();
+                    return new ReadyFragment();
                 }
                 case 1:
                 {
-                 return new ReadyFragment();
+                    return new QueueFragment();
                 }
                 case 2:
                 {
-                    return new QueueFragment();
+                    return new AcceptedFragment();
+
                 }
                 case 3:
                 {
+
                     return new RejectedFragment();
                 }
                 default:

@@ -136,6 +136,8 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
 
 
 
+
+
     }
 
     private void setEverything() {
@@ -369,8 +371,9 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
                             }
                         });
 
+                smsManager = SmsManager.getDefault();
                 a = "Your application has been accepted";
-                smsManager.sendTextMessage("+91"+"7500000308",null,""+a,null,null);
+                smsManager.sendTextMessage("+91"+formPushPullCustomVAR.getPhoneNo(),null,""+a,null,null);
             }
 
             @Override

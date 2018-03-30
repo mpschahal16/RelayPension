@@ -1,7 +1,10 @@
 package com.codewarriors.hackathone.relaypension.adminside.tabactivitypack;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.annotation.BoolRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -21,16 +24,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
 
 
-public class AcceptedFragment extends Fragment {
+public class AcceptedFragment extends Fragment implements View.OnClickListener {
 
     DatabaseReference rootreference= FirebaseDatabase.getInstance().getReference();
     private String constituency;
+
+
+
+    Button savetocsvbt;
 
     ListView acceptedlistview;
 
@@ -57,6 +67,7 @@ public class AcceptedFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_accepted, container, false);
 
         acceptedlistview=view.findViewById(R.id.acceptedfromlv);
+        savetocsvbt=view.findViewById(R.id.savetvbtocs);
 
 
         Intent intent=getActivity().getIntent();
@@ -66,6 +77,7 @@ public class AcceptedFragment extends Fragment {
         allformslistinaccepted=new ArrayList<>();
 
 
+        savetocsvbt.setOnClickListener(this);
         if(constituency!=null)
         {
             DatabaseReference referencetoready=rootreference.child("consituency/"+constituency+"/");
@@ -143,8 +155,184 @@ public class AcceptedFragment extends Fragment {
     }
 
 
+    @Override
+    public void onClick(View v) {
+
+
+        int id=v.getId();
+        switch (id)
+        {
+            case R.id.savetvbtocs:
+            {
+               savealltocsv();
+                break;
+            }
+        }
+    }
+
+    private void savealltocsv() {
+        if(allformslistinaccepted.isEmpty())
+        {
+           Toast.makeText(getContext(),"Ready is empty",Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            ProgressDialog progressDialog=new ProgressDialog(getContext());
+            progressDialog.setCancelable(false);
+            progressDialog.setMessage("Saving to .csv");
+            String dir="/sdcard/Relay_Pension/AcceptedCSV";
+            File defaultFile = new File(dir);
+            if (!defaultFile.exists())
+                defaultFile.mkdirs();
+
+
+            String filename = "/sdcard/Relay_Pension/AcceptedCSV/accetedcsv.csv";
+
+            try {
+                FileWriter fw = new FileWriter(filename);
+
+
+                fw.append("Aadhar No");
+                fw.append(",");
+
+                fw.append("Form No");
+                fw.append(",");
+
+                fw.append("Constituency");
+                fw.append(",");
+
+                fw.append("First Name");
+                fw.append(",");
+
+                fw.append("Middle Name");
+                fw.append(",");
+
+                fw.append("Last Name");
+                fw.append(",");
+
+                fw.append("Age");
+                fw.append(",");
+
+
+                fw.append("Gender");
+                fw.append(",");
+
+                fw.append("D.O.B.");
+                fw.append(",");
+
+                fw.append("Phone No.");
+                fw.append(",");
+
+                fw.append("Address");
+                fw.append(",");
+
+                fw.append("City");
+                fw.append(",");
+
+                fw.append("State");
+                fw.append(",");
+
+                fw.append("Postal Code");
+                fw.append(",");
+
+                fw.append("Bank Account no.");
+                fw.append(",");
+
+                fw.append("Bank Name");
+                fw.append(",");
+
+                fw.append("Family Income");
+                fw.append(",");
+
+
+                fw.append("Status of Form");
+                fw.append(",");
+
+
+
+                fw.append('\n');
 
 
 
 
+                for (FormPushPullCustomVAR formPushPullCustomVAR:allformslistinaccepted)
+                {
+
+                    fw.append(formPushPullCustomVAR.getAadharNo());
+                    fw.append(",");
+
+                    fw.append(formPushPullCustomVAR.getFormno());
+                    fw.append(",");
+
+                    fw.append(formPushPullCustomVAR.getConstituency());
+                    fw.append(",");
+
+                    fw.append(formPushPullCustomVAR.getFirstName());
+                    fw.append(",");
+
+                    fw.append(formPushPullCustomVAR.getMiddleName());
+                    fw.append(",");
+
+                    fw.append(formPushPullCustomVAR.getLastName());
+                    fw.append(",");
+
+                    fw.append(formPushPullCustomVAR.getAge());
+                    fw.append(",");
+
+
+                    fw.append(formPushPullCustomVAR.getGender());
+                    fw.append(",");
+
+                    fw.append(formPushPullCustomVAR.getDateofbirth());
+                    fw.append(",");
+
+                    fw.append(formPushPullCustomVAR.getFormno());
+                    fw.append(",");
+
+                    fw.append(formPushPullCustomVAR.getHoseno1()+","+formPushPullCustomVAR.getStreetorarea());
+                    fw.append(",");
+
+                    fw.append(formPushPullCustomVAR.getCity());
+                    fw.append(",");
+
+                    fw.append(formPushPullCustomVAR.getState());
+                    fw.append(",");
+
+                    fw.append(formPushPullCustomVAR.getPostalcode());
+                    fw.append(",");
+
+                    fw.append(formPushPullCustomVAR.getBankaccountno());
+                    fw.append(",");
+
+                    fw.append(formPushPullCustomVAR.getBankname());
+                    fw.append(",");
+
+                    fw.append(formPushPullCustomVAR.getFamilyincome());
+                    fw.append(",");
+
+
+                    fw.append("Accepted");
+                    fw.append(",");
+
+
+
+                    fw.append('\n');
+
+
+
+
+
+                }
+                fw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+
+
+            Toast.makeText(getContext(),"sucess",Toast.LENGTH_LONG).show();
+
+        }
+    }
 }

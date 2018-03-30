@@ -1,27 +1,35 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
-    android:background="@color/avtivitybackground">
+    android:background="@color/avtivitybackground"
+    android:orientation="vertical"
+    android:padding="8dp">
+
 
     <LinearLayout
-        android:id="@+id/layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/layoutbackground"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/layoutbackground">
 
+        <Button
+            android:id="@+id/savetvbtocs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/buttonshape"
+            android:text="SAVE TO .CSV"
+            android:textColor="#ffffff" />
 
         <ListView
             android:id="@+id/acceptedfromlv"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
         </ListView>
 
-
     </LinearLayout>
+
 
 </RelativeLayout>
