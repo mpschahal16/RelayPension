@@ -126,7 +126,7 @@ public class DialogOfFormWithPdf extends Dialog {
         banknamert=findViewById(R.id.banknamespinner);
         sv=findViewById(R.id.scroolview);
 
-        savetopdf=findViewById(R.id.savetopdf);
+       // savetopdf=findViewById(R.id.savetopdf);
 
 
         // radio group and radio button
@@ -142,7 +142,7 @@ public class DialogOfFormWithPdf extends Dialog {
 
 
 
-        savetopdf.setOnClickListener(new View.OnClickListener() {
+      /*  savetopdf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -153,7 +153,7 @@ public class DialogOfFormWithPdf extends Dialog {
 
 
             }
-        });
+        });*/
 
 
 

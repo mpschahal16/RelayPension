@@ -755,7 +755,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
 
                                       ConsituencyCustomVAR consituencyCustomVAR = new ConsituencyCustomVAR(firstnameet.getText().toString()
                                               + " " + middlenameet.getText().toString() + "" +
-                                              lastnameet.getText().toString(), userid, aadharnoet.getText().toString(), consituency, "2");
+                                              lastnameet.getText().toString(), userid, aadharnoet.getText().toString(), consituency, "2","0");
                                       root.child(aadharnoet.getText().toString()).setValue(consituencyCustomVAR).addOnSuccessListener(new OnSuccessListener<Void>() {
                                           @Override
                                           public void onSuccess(Void aVoid) {
@@ -796,7 +796,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                                   DatabaseReference root = FirebaseDatabase.getInstance().getReference("userstatecons/");
                                   ConsituencyCustomVAR consituencyCustomVAR = new ConsituencyCustomVAR(firstnameet.getText().toString()
                                           + " " + middlenameet.getText().toString() + " " +
-                                          lastnameet.getText().toString(), userid, aadharnoet.getText().toString(), consituency, "1");
+                                          lastnameet.getText().toString(), userid, aadharnoet.getText().toString(), consituency, "1","0");
                                   root.child(aadharnoet.getText().toString()).setValue(consituencyCustomVAR).addOnSuccessListener(new OnSuccessListener<Void>() {
                                       @Override
                                       public void onSuccess(Void aVoid) {

@@ -34,7 +34,7 @@ public class StatusActivity extends AppCompatActivity {
     TextView name,aadharno,consituency,applictionstatus;
     ImageView pic;
 
-  //  Button reapplybt;
+   // Button reapplybt;
 
     DatabaseReference mDB;
     String aadharnost;//="499240755287";
@@ -49,8 +49,8 @@ public class StatusActivity extends AppCompatActivity {
         consituency=findViewById(R.id.consituencystatustv);
         applictionstatus=findViewById(R.id.applicationstatustv);
         pic=findViewById(R.id.statuspic);
-    //    reapplybt=findViewById(R.id.reapplystatebt);
-   //     reapplybt.setVisibility(View.INVISIBLE);
+      //  reapplybt=findViewById(R.id.reapplystatebt);
+     //   reapplybt.setVisibility(View.INVISIBLE);
 
         SharedPreferences prefs = getSharedPreferences("codewarriors", MODE_PRIVATE);
         String restoredText = prefs.getString("userid", null);
@@ -172,19 +172,19 @@ public class StatusActivity extends AppCompatActivity {
             }
             case "2":
             {
-                //reapplybt.setVisibility(View.INVISIBLE);
+              //  reapplybt.setVisibility(View.INVISIBLE);
                 applictionstatus.setText("IN READY");
                 break;
             }
             case "4":
             {
-                //reapplybt.setVisibility(View.INVISIBLE);
+              //  reapplybt.setVisibility(View.INVISIBLE);
                 applictionstatus.setText("ACCEPTED");
                 break;
             }
             default:
             {
-                //reapplybt.setVisibility(View.INVISIBLE);
+               // reapplybt.setVisibility(View.INVISIBLE);
                 applictionstatus.setText("UNKNOWN");
 
             }

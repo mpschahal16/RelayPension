@@ -465,7 +465,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
 
 
-    @Override
+ /*   @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater menuInflater = getMenuInflater();
@@ -485,6 +485,6 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
+    }*/
 
 }
