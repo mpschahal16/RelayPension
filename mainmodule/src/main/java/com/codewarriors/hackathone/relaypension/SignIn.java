@@ -43,12 +43,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.roger.catloadinglibrary.CatLoadingView;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import es.dmoral.toasty.Toasty;
+
 
 import static com.basgeekball.awesomevalidation.ValidationStyle.COLORATION;
 
@@ -60,8 +59,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     TextInputLayout textInputLayout;
     AwesomeValidation awesomeValidation;
 
-   // ProgressDialog progressDialog;
-    CatLoadingView mViewdddd;
+    ProgressDialog progressDialog;
+   // CatLoadingView mViewdddd;
 
     Timeraa timeraa;
 
@@ -129,8 +128,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             startActivity(new Intent(this,Splash.class));
 
         }*/
-       // progressDialog=new ProgressDialog(this);
-        mViewdddd = new CatLoadingView();
+        progressDialog=new ProgressDialog(this);
+        //mViewdddd = new CatLoadingView();
     }
 
 
@@ -146,13 +145,16 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             public void onReceive(Context context, Intent intent) {
                 switch (this.getResultCode()){
                     case RESULT_OK :
-                        Toasty.success(context, "SMS SEND", Toast.LENGTH_SHORT,true).show();
+                       // Toasty.success(context, "SMS SEND", Toast.LENGTH_SHORT,true).show();
+                        Toast.makeText(context, "SMS SEND", Toast.LENGTH_SHORT).show();
                         break;
                     case SmsManager.RESULT_ERROR_NO_SERVICE :
-                        Toasty.success(context, "NO SERVICE", Toast.LENGTH_SHORT,true).show();
+                      //  Toasty.success(context, "NO SERVICE", Toast.LENGTH_SHORT,true).show();
+                        Toast.makeText(context, "NO SERVICE", Toast.LENGTH_SHORT).show();
                         break;
                     default :
-                        Toasty.success(context, "SERVICE PROBLEM", Toast.LENGTH_SHORT,true).show();
+                       // Toasty.success(context, "SERVICE PROBLEM", Toast.LENGTH_SHORT,true).show();
+                        Toast.makeText(context,  "SERVICE PROBLEM", Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -161,13 +163,16 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             public void onReceive(Context context, Intent intent) {
                 switch (this.getResultCode()){
                     case RESULT_OK :
-                        Toasty.success(context, "SMS DELIVERED", Toast.LENGTH_SHORT,true).show();
+                        //Toasty.success(context, "SMS DELIVERED", Toast.LENGTH_SHORT,true).show();
+                        Toast.makeText(context, "SMS DELIVERED", Toast.LENGTH_SHORT).show();
                         break;
                     case SmsManager.RESULT_ERROR_GENERIC_FAILURE :
-                        Toasty.error(context, "GENERIC FAILURE", Toast.LENGTH_SHORT,true).show();
+                       // Toasty.error(context, "GENERIC FAILURE", Toast.LENGTH_SHORT,true).show();
+                        Toast.makeText(context, "GENERIC FAILURE", Toast.LENGTH_SHORT).show();
                         break;
                     default:
-                        Toasty.error(context, "SERVICE PROBLEM", Toast.LENGTH_SHORT,true).show();
+                      //  Toasty.error(context, "SERVICE PROBLEM", Toast.LENGTH_SHORT,true).show();
+                        Toast.makeText(context, "SERVICE PROBLEM", Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -226,23 +231,26 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                             verificationCallbacks);
                     retry=retry+1;
 
-                    mViewdddd.setCanceledOnTouchOutside(false);
+                   /* mViewdddd.setCanceledOnTouchOutside(false);
                     mViewdddd.setText("Sending OTP");
-                    mViewdddd.show(getSupportFragmentManager(),"");
+                    mViewdddd.show(getSupportFragmentManager(),"");*/
 
 
-                   /* progressDialog.setMessage("Sending OTP To "+phoneNumber);
+                    progressDialog.setMessage("Sending OTP To "+phoneNumber);
                     progressDialog.setCancelable(false);
-                    progressDialog.show();*/
+                    progressDialog.show();
                     break;
 
                 }
                 case 2:
                 {
+                    progressDialog.setMessage("Sending OTP To "+phoneNumber);
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
                     resendCode(phoneNumber);
-                    mViewdddd.setCanceledOnTouchOutside(false);
+                   /* mViewdddd.setCanceledOnTouchOutside(false);
                     mViewdddd.setText("Sending OTP");
-                    mViewdddd.show(getSupportFragmentManager(),"");
+                    mViewdddd.show(getSupportFragmentManager(),"");*/
                     break;
                 }
             }
@@ -269,12 +277,12 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                             // Invalid request
                             Log.d("msg", "Invalid credential: "
                                     + e.getLocalizedMessage());
-                            mViewdddd.dismiss();
-                           // progressDialog.dismiss();
+                           // mViewdddd.dismiss();
+                            progressDialog.dismiss();
                         } else if (e instanceof FirebaseTooManyRequestsException) {
                             // SMS quota exceeded
-                            mViewdddd.dismiss();
-                           // progressDialog.dismiss();
+                           // mViewdddd.dismiss();
+                            progressDialog.dismiss();
                             Log.d("msg", "SMS Quota exceeded.");
                         }
                     }
@@ -287,14 +295,20 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                         resendToken = token;
                         timeraa=new Timeraa();
                         timeraa.execute();
-                        mViewdddd.dismiss();
-                       // progressDialog.dismiss();
+                      //  mViewdddd.dismiss();
+                        progressDialog.dismiss();
                         sendotp.setVisibility(View.INVISIBLE);
                         otpet.setVisibility(View.VISIBLE);
                         verify.setVisibility(View.VISIBLE);
                         textInputLayout.setVisibility(View.VISIBLE);
                         retry=2;
-                        Toasty.success(getApplicationContext(),"OTP SEND",Toast.LENGTH_LONG,true).show();
+
+
+                       // Toasty.success(getApplicationContext(),"OTP SEND",Toast.LENGTH_LONG,true).show();
+
+                        Toast.makeText(getApplicationContext(), "OTP SEND", Toast.LENGTH_SHORT).show();
+
+
 
                     }
                 };
@@ -309,14 +323,15 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             String code=otpet.getText().toString();
 
 
-            mViewdddd.setCanceledOnTouchOutside(false);
+           /* mViewdddd.setCanceledOnTouchOutside(false);
             mViewdddd.setText("Verifying...");
-            mViewdddd.show(getSupportFragmentManager(),"");
+            mViewdddd.show(getSupportFragmentManager(),"");*/
 
 
 
-           /* progressDialog.setMessage("Verifying...");
-            progressDialog.show();*/
+           progressDialog.setMessage("Verifying...");
+           progressDialog.setCancelable(false);
+            progressDialog.show();
             PhoneAuthCredential credential =
                     PhoneAuthProvider.getCredential(phoneVerificationId, code);
             signInWithPhoneAuthCredential(credential);
@@ -329,10 +344,12 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         otp= Integer.parseInt(data);
         if(a==otp)
         {
-            Toasty.success(this, "welcome user", Toast.LENGTH_SHORT,true).show();
+           // Toasty.success(this, "welcome user", Toast.LENGTH_SHORT,true).show();
+            Toast.makeText(this, "welcome user", Toast.LENGTH_SHORT).show();
         }
         else {
-            Toasty.error(this, "INVALID OTP", Toast.LENGTH_SHORT,true).show();
+           // Toasty.error(this, "INVALID OTP", Toast.LENGTH_SHORT,true).show();
+            Toast.makeText(this, "Welcome user", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -351,8 +368,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                                 rootRef.child(userid).setValue(0).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        mViewdddd.dismiss();
-                                       // progressDialog.dismiss();
+                                      //  mViewdddd.dismiss();
+                                        progressDialog.dismiss();
                                         startActivity(new Intent(SignIn.this,Aadharverify.class));
                                     }
                                 });
@@ -377,7 +394,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
                                     @Override
                                     public void onCancelled(DatabaseError databaseError) {
-                                        Toasty.warning(getApplicationContext(),"Slow Internet",Toast.LENGTH_LONG,true).show();
+                                       // Toasty.warning(getApplicationContext(),"Slow Internet",Toast.LENGTH_LONG,true).show();
+                                        Toast.makeText(getApplicationContext(),"Slow Internet", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -394,8 +412,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                                errorinverify.setVisibility(View.VISIBLE);
                                errorinverify.setText("DID NOT MATCH");
 
-                               mViewdddd.dismiss();
-                                //progressDialog.dismiss();
+                               //mViewdddd.dismiss();
+                                progressDialog.dismiss();
                             }
                         }
                     }
@@ -465,7 +483,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
 
 
- /*   @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater menuInflater = getMenuInflater();
@@ -485,6 +503,6 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }*/
+    }
 
 }

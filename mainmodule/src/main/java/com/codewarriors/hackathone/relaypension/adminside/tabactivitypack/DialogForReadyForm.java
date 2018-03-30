@@ -3,12 +3,9 @@ package com.codewarriors.hackathone.relaypension.adminside.tabactivitypack;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -16,15 +13,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.codewarriors.hackathone.relaypension.FIllform;
+import com.codewarriors.hackathone.relaypension.Aadharverify;
 import com.codewarriors.hackathone.relaypension.R;
-import com.codewarriors.hackathone.relaypension.StatusActivity;
-import com.codewarriors.hackathone.relaypension.customvariablesforparsing.ConsituencyCustomVAR;
 import com.codewarriors.hackathone.relaypension.customvariablesforparsing.FormPushPullCustomVAR;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -35,13 +29,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.roger.catloadinglibrary.CatLoadingView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import es.dmoral.toasty.Toasty;
+
 
 import static android.content.ContentValues.TAG;
 
@@ -58,8 +51,8 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
     private FormPushPullCustomVAR formPushPullCustomVAR;
 
 
-   // ProgressDialog progressDialog;
-   CatLoadingView mViewdddd;
+   ProgressDialog progressDialog;
+   //CatLoadingView mViewdddd;
 
 
     private ArrayList<FormPushPullCustomVAR> queueformlist;
@@ -131,8 +124,8 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
         setEverything();
         queueformlist=new ArrayList<>();
 
-       // progressDialog=new ProgressDialog(getContext());
-        mViewdddd = new CatLoadingView();
+        progressDialog=new ProgressDialog(getContext());
+       // mViewdddd = new CatLoadingView();
 
         cancel.setOnClickListener(this);
         reject.setOnClickListener(this);
@@ -221,14 +214,14 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
         int i=view.getId();
 
 
-        mViewdddd.setCanceledOnTouchOutside(false);
+        /*mViewdddd.setCanceledOnTouchOutside(false);
         mViewdddd.setText("Applying Changes");
         mViewdddd.show(((FragmentActivity) activity)
-                .getSupportFragmentManager(),"");
+                .getSupportFragmentManager(),"");*/
 
-        /*progressDialog.setMessage("Applying Changes");
+        progressDialog.setMessage("Applying Changes");
         progressDialog.setCancelable(false);
-        progressDialog.show();*/
+        progressDialog.show();
         switch (i)
         {
             case R.id.acceptbt:
@@ -363,14 +356,15 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
         });
     }
 
-    private void setstateofapplictionform(String aadhrnowheretochange,String state) {
+    private void setstateofapplictionform(final String aadhrnowheretochange, String state) {
         DatabaseReference root=FirebaseDatabase.getInstance().getReference("userstatecons/"+aadhrnowheretochange+"/");
 
         root.child("applicationstate").setValue(state).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
 
-                Toasty.success(activity,"Sucess to change application state",Toast.LENGTH_LONG,true).show();
+                Toast.makeText(activity,"Sucess to change application state",Toast.LENGTH_LONG).show();
+                //Toasty.success(activity,"Sucess to change application state",Toast.LENGTH_LONG,true).show();
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -404,7 +398,7 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
 
                                     //progressDialog.dismiss();
 
-                                    mViewdddd.dismiss();
+                                    //mViewdddd.dismiss();
                                     queueformlist.remove(0);
                                     dismiss();
 
@@ -470,9 +464,9 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
                     else
                     {
 
-                        //progressDialog.dismiss();
+                        progressDialog.dismiss();
 
-                        mViewdddd.dismiss();
+                        //mViewdddd.dismiss();
                         dismiss();
 
 
@@ -484,9 +478,9 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
                 else
                 {
 
-                    //progressDialog.dismiss();
+                    progressDialog.dismiss();
 
-                    mViewdddd.dismiss();
+                    //mViewdddd.dismiss();
 
                     dismiss();
                     Log.d("error","erreor in dialog while fetching queue");

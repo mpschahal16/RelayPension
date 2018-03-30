@@ -578,6 +578,8 @@
                             android:id="@+id/aacountnofillformet"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:maxLength="18"
+                            android:inputType="number"
                             android:ems="10" />
                     </RelativeLayout>
                 </LinearLayout>

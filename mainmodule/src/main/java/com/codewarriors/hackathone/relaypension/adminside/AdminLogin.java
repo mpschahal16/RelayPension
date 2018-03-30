@@ -23,9 +23,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.roger.catloadinglibrary.CatLoadingView;
 
-import es.dmoral.toasty.Toasty;
 
 public class AdminLogin extends AppCompatActivity implements View.OnClickListener{
 
@@ -37,7 +35,7 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
 
 
     ProgressDialog dialog;
-    CatLoadingView mViewdddd;
+    //CatLoadingView mViewdddd;
 
     AwesomeValidation awesomeValidation;
 
@@ -57,7 +55,7 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
         tv.setOnClickListener(this);
         dialog = new ProgressDialog(this);
 
-        mViewdddd = new CatLoadingView();
+       // mViewdddd = new CatLoadingView();
         auth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
        /* if (user != null) {
@@ -89,7 +87,9 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     dialog.dismiss();
-                                    Toasty.success(AdminLogin.this, "User Registered", Toast.LENGTH_SHORT,true).show();
+                                   // Toasty.success(AdminLogin.this, "User Registered", Toast.LENGTH_SHORT,true).show();
+
+                                    Toast.makeText(AdminLogin.this,"User Registered", Toast.LENGTH_SHORT).show();
                                     t1.setText("");
                                     t2.setText("");
                                     t1.requestFocus();
@@ -104,16 +104,18 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         dialog.dismiss();
-                        Toasty.error(AdminLogin.this, "ERROR: " + e.getMessage(), Toast.LENGTH_SHORT,true).show();
+                       // Toasty.error(AdminLogin.this, "ERROR: " + e.getMessage(), Toast.LENGTH_SHORT,true).show();
+                         Toast.makeText(AdminLogin.this,"ERROR: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });*/
             }
             if (v == b2) {
-                mViewdddd.setCanceledOnTouchOutside(false);
+               /* mViewdddd.setCanceledOnTouchOutside(false);
                 mViewdddd.setText("Logging In ...please Wait");
-                mViewdddd.show(getSupportFragmentManager(),"");
-               /* dialog.setMessage("Logging In ...please Wait");
-                dialog.show();*/
+                mViewdddd.show(getSupportFragmentManager(),"");*/
+                dialog.setMessage("Logging In ...please Wait");
+                dialog.setCancelable(false);
+                dialog.show();
                 auth.signInWithEmailAndPassword(user, pass).
                         addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -123,8 +125,8 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
                                     SharedPreferences.Editor editor = getSharedPreferences("codewarriors", MODE_PRIVATE).edit();
                                     editor.putString("adminid", user);
                                     editor.apply();
-
-                                    mViewdddd.dismiss();
+                                    dialog.dismiss();
+                                   // mViewdddd.dismiss();
 
                                     go_to_login();
                                 }
@@ -132,9 +134,11 @@ public class AdminLogin extends AppCompatActivity implements View.OnClickListene
                         }).addOnFailureListener(this, new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        mViewdddd.dismiss();
-                       // dialog.dismiss();
-                        Toasty.error(AdminLogin.this, "ERROR: " + e.getMessage(), Toast.LENGTH_SHORT,true).show();
+                       // mViewdddd.dismiss();
+                        dialog.dismiss();
+                       // Toasty.error(AdminLogin.this, "ERROR: " + e.getMessage(), Toast.LENGTH_SHORT,true).show();
+                        Toast.makeText(AdminLogin.this, "ERROR: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
                     }
                 });
             }

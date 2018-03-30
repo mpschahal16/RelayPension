@@ -28,7 +28,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import es.dmoral.toasty.Toasty;
 
 public class StatusActivity extends AppCompatActivity {
     TextView name,aadharno,consituency,applictionstatus;
@@ -139,7 +138,8 @@ public class StatusActivity extends AppCompatActivity {
         }
         else
         {
-            Toasty.error(getApplicationContext(),"Error in Fetching Data",Toast.LENGTH_LONG,true).show();
+            Toast.makeText(getApplicationContext(),"Error in Fetching Data",Toast.LENGTH_LONG).show();
+          //  Toasty.error(getApplicationContext(),"Error in Fetching Data",Toast.LENGTH_LONG,true).show();
         }
 
 
@@ -147,7 +147,7 @@ public class StatusActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //re apply process will start from here
-                Toasty.success(StatusActivity.this,"sssss",Toast.LENGTH_LONG,true).show();
+
             }
         });*/
 

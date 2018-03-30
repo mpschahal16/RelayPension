@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.codewarriors.hackathone.relaypension.adminside.listallconspack.ListAllConstituency;
@@ -13,8 +12,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import es.dmoral.toasty.Toasty;
 
 public class Splash extends AppCompatActivity {
 
@@ -41,13 +38,15 @@ public class Splash extends AppCompatActivity {
                     }
                     else
                     {
-                        Toasty.error(Splash.this,"Unalbe to fetch user", Toast.LENGTH_LONG,true).show();
+                        Toast.makeText(Splash.this,"Unalbe to fetch user",Toast.LENGTH_LONG).show();
+                      //  Toasty.error(Splash.this,"Unalbe to fetch user", Toast.LENGTH_LONG,true).show();
                     }
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Toasty.warning(Splash.this,"Check Your Internet", Toast.LENGTH_LONG,true).show();
+                   Toast.makeText(Splash.this,"Check Your Internet",Toast.LENGTH_LONG).show();
+                   //Toasty.warning(Splash.this,"Check Your Internet", Toast.LENGTH_LONG,true).show();
 
                 }
             });

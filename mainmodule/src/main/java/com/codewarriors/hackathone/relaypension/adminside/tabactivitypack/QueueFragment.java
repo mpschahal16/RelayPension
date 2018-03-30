@@ -24,8 +24,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import es.dmoral.toasty.Toasty;
-
 
 public class QueueFragment extends Fragment {
 
@@ -127,7 +125,8 @@ public class QueueFragment extends Fragment {
 
         else
         {
-            Toasty.error(getContext(),"Error in Queue",Toast.LENGTH_LONG,true).show();
+            //Toasty.error(getContext(),"Error in Queue",Toast.LENGTH_LONG,true).show();
+            Toast.makeText(getContext(),"Error in Queue",Toast.LENGTH_LONG).show();
         }
 
 

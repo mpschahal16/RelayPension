@@ -1,9 +1,8 @@
 package com.codewarriors.hackathone.relaypension;
 
-import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -20,16 +19,8 @@ import com.codewarriors.hackathone.relaypension.customvariablesforparsing.StubAa
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.regex.Pattern;
-
-import es.dmoral.toasty.Toasty;
 
 public class Insertdatatostub extends AppCompatActivity {
 
@@ -139,7 +130,7 @@ public class Insertdatatostub extends AppCompatActivity {
                   String first_name=firstnameet.getText().toString();
                   String middle_name=middlenameet.getText().toString();
                   String last_name=lastnameet.getText().toString();
-                  String gen=gender;
+                  final String gen=gender;
                   String dateofbirth=dobdayet.getText()+"/"+dobmonthet.getText()+"/"+dobyearet.getText();
                   String phone_no=phonenoet.getText().toString();
                   String aadhar_no=aadharnoet.getText().toString();
@@ -182,11 +173,13 @@ public class Insertdatatostub extends AppCompatActivity {
 
 
 
-                              Toasty.success(getApplicationContext(), "Sucess", Toast.LENGTH_LONG,true).show();
+                              Toast.makeText(getApplicationContext(),"Sucess",Toast.LENGTH_LONG).show();
+                             // Toasty.success(getApplicationContext(), "Sucess", Toast.LENGTH_LONG,true).show();
                           }
                         else
                           {
-                             Toasty.error(getApplicationContext(), "Failed", Toast.LENGTH_LONG,true).show();
+                              Toast.makeText(getApplicationContext(), "Failed",Toast.LENGTH_LONG).show();
+                              //Toasty.error(getApplicationContext(), "Failed", Toast.LENGTH_LONG,true).show();
                           }
                       }
                   }).addOnFailureListener(new OnFailureListener() {
@@ -204,12 +197,14 @@ public class Insertdatatostub extends AppCompatActivity {
                 {
                     if(!radioGroupflag)
                     {
-                        Toasty.warning(getApplicationContext(),"Select Gender",Toast.LENGTH_LONG,true).show();
+                        Toast.makeText(getApplicationContext(),"Select Gender",Toast.LENGTH_LONG).show();
+                       // Toasty.warning(getApplicationContext(),"Select Gender",Toast.LENGTH_LONG,true).show();
                     }
 
                     if(statespinner.getSelectedItem().toString().equals(""))
                     {
-                        Toasty.warning(getApplicationContext(),"Select State",Toast.LENGTH_LONG,true).show();
+                        Toast.makeText(getApplicationContext(),"Select State",Toast.LENGTH_LONG).show();
+                        //Toasty.warning(getApplicationContext(),"Select State",Toast.LENGTH_LONG,true).show();
                     }
 
                 }

@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -39,7 +38,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,12 +47,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.roger.catloadinglibrary.CatLoadingView;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import es.dmoral.toasty.Toasty;
 
 public class FIllform extends AppCompatActivity implements View.OnClickListener {
     EditText consituencyet, firstnameet, middlenameet, lastnameet, dobet, phonenoet, aadharnoet, hosenoet, streetet, postalet, cityet, stateet, familyincomeet, accountnoet;
@@ -75,8 +71,8 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
     AwesomeValidation awesomeValidation;
 
 
-   // ProgressDialog progressDialog;
-    CatLoadingView mViewdddd;
+    ProgressDialog progressDialog;
+   // CatLoadingView mViewdddd;
 
 
     FirebaseStorage storage;
@@ -110,8 +106,8 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
         //getting values from calling intent
         Intent it = getIntent();
 
-      //  progressDialog=new ProgressDialog(this);
-        mViewdddd = new CatLoadingView();
+         progressDialog=new ProgressDialog(this);
+       // mViewdddd = new CatLoadingView();
 
 
 
@@ -150,7 +146,8 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Toasty.error(FIllform.this, "ERROR In fetching form no", Toast.LENGTH_SHORT,true).show();
+                   // Toasty.error(FIllform.this, "ERROR In fetching form no", Toast.LENGTH_SHORT,true).show();
+                    Toast.makeText(FIllform.this,"ERROR In fetching form no",Toast.LENGTH_LONG).show();
                     startActivity(new Intent(FIllform.this, StubNoReturn.class));
                 }
             });
@@ -345,19 +342,24 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                     break;
                 } else {
                     if (bankspinner.getSelectedItem().toString().equals("")) {
-                        Toasty.warning(getApplicationContext(), "Select Bank", Toast.LENGTH_LONG,true).show();
+                        //Toasty.warning(getApplicationContext(), "Select Bank", Toast.LENGTH_LONG,true).show();
+                        Toast.makeText(getApplicationContext(), "Select Bank",Toast.LENGTH_LONG).show();
                         break;
                     } else if (!selectpiccb.isChecked()) {
-                        Toasty.warning(getApplicationContext(), "Upload your Passport Size pic", Toast.LENGTH_LONG,true).show();
+                        //Toasty.warning(getApplicationContext(), "Upload your Passport Size pic", Toast.LENGTH_LONG,true).show();
+                        Toast.makeText(getApplicationContext(), "Upload your Passport Size pic",Toast.LENGTH_LONG).show();
                         break;
                     } else if (!passbookcb.isChecked()) {
-                        Toasty.warning(getApplicationContext(), "Attach your Passbook", Toast.LENGTH_LONG,true).show();
+                        Toast.makeText(getApplicationContext(), "Attach your Passbook",Toast.LENGTH_LONG).show();
+                        //Toasty.warning(getApplicationContext(), "Attach your Passbook", Toast.LENGTH_LONG,true).show();
                         break;
                     } else if (!payslipcb.isChecked()) {
-                        Toasty.warning(getApplicationContext(), "Attach your Income Slip", Toast.LENGTH_LONG,true).show();
+                        Toast.makeText(getApplicationContext(), "Attach your Passbook",Toast.LENGTH_LONG).show();
+                      //  Toasty.warning(getApplicationContext(), "Attach your Income Slip", Toast.LENGTH_LONG,true).show();
                         break;
                     } else if (!signaturecb.isChecked()) {
-                        Toasty.warning(getApplicationContext(), "Attach your Signature", Toast.LENGTH_LONG,true).show();
+                        Toast.makeText(getApplicationContext(), "Attach your Signature",Toast.LENGTH_LONG).show();
+                        //Toasty.warning(getApplicationContext(), "Attach your Signature", Toast.LENGTH_LONG,true).show();
                         break;
                     } else {
                         Log.d("else", "else part reached");
@@ -450,29 +452,30 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                 if (resultCode == RESULT_OK && null != data) {
                     final Uri selectedImage = data.getData();
 
-                    mViewdddd.setCanceledOnTouchOutside(false);
+                  /*  mViewdddd.setCanceledOnTouchOutside(false);
                     mViewdddd.setText("Uploading...");
-                    mViewdddd.show(getSupportFragmentManager(),"");
+                    mViewdddd.show(getSupportFragmentManager(),"");*/
 
-                   /* progressDialog.setTitle("Uploading...");
+                    progressDialog.setTitle("Uploading...");
                     progressDialog.show();
-                    progressDialog.setCancelable(false);*/
+                    progressDialog.setCancelable(false);
                     StorageReference sre=storageReference.child("userpic");
                     sre.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                          //  progressDialog.dismiss();
-                            mViewdddd.dismiss();
+                            progressDialog.dismiss();
+                          //  mViewdddd.dismiss();
                             Glide.with(FIllform.this).load(selectedImage).into(picimageview);
                             selectpiccb.setChecked(true);
-                            Toasty.success(FIllform.this, "Uploaded", Toast.LENGTH_SHORT,true).show();
+                            Toast.makeText(FIllform.this,"Uploaded",Toast.LENGTH_LONG).show();
+                           // Toasty.success(FIllform.this, "Uploaded", Toast.LENGTH_SHORT,true).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
 
-                            mViewdddd.dismiss();
-                            //progressDialog.dismiss();
+                          //  mViewdddd.dismiss();
+                            progressDialog.dismiss();
                             Log.d("eeeeeeee","Failed "+e.getMessage());
                         }
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -480,8 +483,8 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                     .getTotalByteCount());
-                            mViewdddd.setText("Uploaded "+(int)progress+"%");
-                            //progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                          //  mViewdddd.setText("Uploaded "+(int)progress+"%");
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
                         }
                     });
 
@@ -496,29 +499,31 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                     final Uri selectedImage = data.getData();
 
 
-                    mViewdddd.setCanceledOnTouchOutside(false);
+                   /* mViewdddd.setCanceledOnTouchOutside(false);
                     mViewdddd.setText("Uploading...");
-                    mViewdddd.show(getSupportFragmentManager(),"");
+                    mViewdddd.show(getSupportFragmentManager(),"");*/
 
-                  /*  progressDialog.setTitle("Uploading...");
+                    progressDialog.setTitle("Uploading...");
                     progressDialog.show();
-                    progressDialog.setCancelable(false);*/
+                    progressDialog.setCancelable(false);
                     StorageReference sre=storageReference.child("passbook");
                     sre.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                           // progressDialog.dismiss();
-                            mViewdddd.dismiss();
+                            progressDialog.dismiss();
+                           // mViewdddd.dismiss();
                             Glide.with(FIllform.this).load(selectedImage).into(imageViewpassbook);
                             passbookcb.setChecked(true);
-                            Toasty.success(FIllform.this, "Uploaded", Toast.LENGTH_SHORT,true).show();
+                            //Toasty.success(FIllform.this, "Uploaded", Toast.LENGTH_SHORT,true).show();
+
+                            Toast.makeText(FIllform.this,"Uploaded",Toast.LENGTH_LONG).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
 
-                            //progressDialog.dismiss();
-                            mViewdddd.dismiss();
+                            progressDialog.dismiss();
+                           // mViewdddd.dismiss();
                             Log.d("eeeeeeee","Failed "+e.getMessage());
                         }
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -526,8 +531,8 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                     .getTotalByteCount());
-                            mViewdddd.setText("Uploaded "+(int)progress+"%");
-                          //  progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                           // mViewdddd.setText("Uploaded "+(int)progress+"%");
+                              progressDialog.setMessage("Uploaded "+(int)progress+"%");
                         }
                     });
                 }
@@ -538,32 +543,33 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                 if (resultCode == RESULT_OK && null != data) {
                     final Uri selectedImage = data.getData();
 
-                    mViewdddd.setCanceledOnTouchOutside(false);
+                    /*mViewdddd.setCanceledOnTouchOutside(false);
                     mViewdddd.setText("Uploading...");
-                    mViewdddd.show(getSupportFragmentManager(),"");
+                    mViewdddd.show(getSupportFragmentManager(),"");*/
 
 
-                 /*   progressDialog.setTitle("Uploading...");
+                    progressDialog.setTitle("Uploading...");
                     progressDialog.show();
-                    progressDialog.setCancelable(false);*/
+                    progressDialog.setCancelable(false);
 
 
                     StorageReference sre=storageReference.child("incomeslip");
                     sre.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                           // progressDialog.dismiss();
-                            mViewdddd.dismiss();
+                            progressDialog.dismiss();
+                          //  mViewdddd.dismiss();
                             Glide.with(FIllform.this).load(selectedImage).into(imageViewpayslip);
                             payslipcb.setChecked(true);
-                            Toasty.success(FIllform.this, "Uploaded", Toast.LENGTH_SHORT,true).show();
+                            Toast.makeText(FIllform.this,"Uploaded",Toast.LENGTH_LONG).show();
+                            //Toasty.success(FIllform.this, "Uploaded", Toast.LENGTH_SHORT,true).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
 
-                           // progressDialog.dismiss();
-                            mViewdddd.dismiss();
+                           progressDialog.dismiss();
+                           // mViewdddd.dismiss();
                             Log.d("eeeeeeee","Failed "+e.getMessage());
                         }
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -571,8 +577,8 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                     .getTotalByteCount());
-                            mViewdddd.setText("Uploaded "+(int)progress+"%");
-                           // progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                           // mViewdddd.setText("Uploaded "+(int)progress+"%");
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
                         }
                     });
 
@@ -584,30 +590,31 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                 if (resultCode == RESULT_OK && null != data) {
                     final Uri selectedImage = data.getData();
 
-                    mViewdddd.setCanceledOnTouchOutside(false);
+                 /*   mViewdddd.setCanceledOnTouchOutside(false);
                     mViewdddd.setText("Uploading...");
-                    mViewdddd.show(getSupportFragmentManager(),"");
+                    mViewdddd.show(getSupportFragmentManager(),"");*/
 
-                  /*  progressDialog.setTitle("Uploading...");
+                    progressDialog.setTitle("Uploading...");
                     progressDialog.show();
-                    progressDialog.setCancelable(false);*/
+                    progressDialog.setCancelable(false);
 
                     StorageReference sre=storageReference.child("signature");
                     sre.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            // progressDialog.dismiss();
-                            mViewdddd.dismiss();
+                             progressDialog.dismiss();
+                           // mViewdddd.dismiss();
                             Glide.with(FIllform.this).load(selectedImage).into(imageViewsignature);
                             signaturecb.setChecked(true);
-                            Toasty.success(FIllform.this, "Uploaded", Toast.LENGTH_SHORT,true).show();
+                            Toast.makeText(FIllform.this,"Uploaded",Toast.LENGTH_LONG).show();
+                           // Toasty.success(FIllform.this, "Uploaded", Toast.LENGTH_SHORT,true).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
 
-                            // progressDialog.dismiss();
-                            mViewdddd.dismiss();
+                             progressDialog.dismiss();
+                           // mViewdddd.dismiss();
                             Log.d("eeeeeeee","Failed "+e.getMessage());
                         }
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -615,8 +622,8 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
                                     .getTotalByteCount());
-                            mViewdddd.setText("Uploaded "+(int)progress+"%");
-                           // progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                           // mViewdddd.setText("Uploaded "+(int)progress+"%");
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
                         }
                     });
                 }
@@ -677,11 +684,12 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
             alertDialogBuilder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    mViewdddd.setCanceledOnTouchOutside(false);
+                   /* mViewdddd.setCanceledOnTouchOutside(false);
                     mViewdddd.setText("Submitting...");
-                    mViewdddd.show(getSupportFragmentManager(),"");
-                  /*  progressDialog.setMessage("Submitting...");
-                    progressDialog.show();*/
+                    mViewdddd.show(getSupportFragmentManager(),"");*/
+                    progressDialog.setMessage("Submitting...");
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
                     setValueIndatabase(formPushPullCustomVAR);
                     dialog.dismiss();
                 }
@@ -702,11 +710,12 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
         }
         else
         {
-            mViewdddd.setCanceledOnTouchOutside(false);
+          /*  mViewdddd.setCanceledOnTouchOutside(false);
             mViewdddd.setText("Submitting...");
-            mViewdddd.show(getSupportFragmentManager(),"");
-          /*  progressDialog.setMessage("Submitting...");
-            progressDialog.show();*/
+            mViewdddd.show(getSupportFragmentManager(),"");*/
+            progressDialog.setMessage("Submitting...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
             setValueIndatabase(formPushPullCustomVAR);
 
 
@@ -760,17 +769,18 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                                           @Override
                                           public void onSuccess(Void aVoid) {
                                               //This will open status activity
-                                              mViewdddd.dismiss();
-                                              //progressDialog.dismiss();
+                                              //mViewdddd.dismiss();
+                                                progressDialog.dismiss();
                                               startActivity(new Intent(FIllform.this, StatusActivity.class));
                                           }
                                       });
                                   }
                                   else
                                   {
-                                      mViewdddd.dismiss();
-                                      //progressDialog.dismiss();
-                                      Toasty.error(getApplicationContext(),"Please Retry",Toast.LENGTH_LONG,true).show();
+                                     // mViewdddd.dismiss();
+                                      progressDialog.dismiss();
+                                      Toast.makeText(getApplicationContext(),"Please Retry",Toast.LENGTH_LONG).show();
+                                    //  Toasty.error(getApplicationContext(),"Please Retry",Toast.LENGTH_LONG,true).show();
                                       Log.d("errrrrrr","Firebase");
                                   }
 
@@ -800,8 +810,8 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                                   root.child(aadharnoet.getText().toString()).setValue(consituencyCustomVAR).addOnSuccessListener(new OnSuccessListener<Void>() {
                                       @Override
                                       public void onSuccess(Void aVoid) {
-                                         mViewdddd.dismiss();
-                                          // progressDialog.dismiss();
+                                      //   mViewdddd.dismiss();
+                                           progressDialog.dismiss();
                                           startActivity(new Intent(FIllform.this, StatusActivity.class));
                                       }
                                   });
@@ -811,9 +821,11 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                       }
                       else
                           {
-                            mViewdddd.dismiss();
-                             // progressDialog.dismiss();
-                              Toasty.error(getApplicationContext(),"Please Retry",Toast.LENGTH_LONG,true).show();
+                           // mViewdddd.dismiss();
+                              progressDialog.dismiss();
+                             // Toasty.error(getApplicationContext(),"Please Retry",Toast.LENGTH_LONG,true).show();
+
+                              Toast.makeText(getApplicationContext(),"Please Retry",Toast.LENGTH_LONG).show();
                               Log.d("errrrrrr","Firebase");
                           }
                       }

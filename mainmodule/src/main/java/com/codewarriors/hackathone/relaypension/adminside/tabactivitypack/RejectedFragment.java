@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import es.dmoral.toasty.Toasty;
+
 
 
 public class RejectedFragment extends Fragment {
@@ -132,7 +132,8 @@ public class RejectedFragment extends Fragment {
 
         else
         {
-            Toasty.error(getContext(),"Error in Accepted",Toast.LENGTH_LONG,true).show();
+          Toast.makeText(getContext(),"Error in Accepted",Toast.LENGTH_LONG).show();
+            //Toasty.error(getContext(),"Error in Accepted",Toast.LENGTH_LONG,true).show();
         }
 
 
