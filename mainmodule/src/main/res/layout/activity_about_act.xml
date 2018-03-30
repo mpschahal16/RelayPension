@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.codewarriors.hackathone.relaypension.reapplypack.About_act">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/avtivitybackground"
+        android:padding="7dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/layoutbackground">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="About Relay Pension !"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="\n Relay Pension is an app which enables user to submit the application for pension over the internet.\n The user will not be required to go to some government office to submit the application all the procedures will be completed through the application.  \n It was developed by team of six members in 2018. "
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
