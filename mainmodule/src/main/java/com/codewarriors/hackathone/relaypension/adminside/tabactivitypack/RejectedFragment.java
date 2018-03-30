@@ -180,13 +180,13 @@ public class RejectedFragment extends Fragment implements View.OnClickListener {
             ProgressDialog progressDialog=new ProgressDialog(getContext());
             progressDialog.setCancelable(false);
             progressDialog.setMessage("Saving to .csv");
-            String dir="/sdcard/Relay_Pension/AcceptedCSV";
+            String dir="/sdcard/Relay_Pension/RejectedCSV";
             File defaultFile = new File(dir);
             if (!defaultFile.exists())
                 defaultFile.mkdirs();
 
 
-            String filename = "/sdcard/Relay_Pension/AcceptedCSV/accetedcsv.csv";
+            String filename = "/sdcard/Relay_Pension/RejectedCSV/rejectedcsv.csv";
 
             try {
                 FileWriter fw = new FileWriter(filename);
