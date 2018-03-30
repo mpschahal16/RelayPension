@@ -136,13 +136,15 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
                 {
                     Toast.makeText(getContext(),"Please select reason",Toast.LENGTH_LONG).show();
                 }
+                b = "Your application has been rejected because"+a;
+                smsManager.sendTextMessage("+91"+formPushPullCustomVAR.getPhoneNo(),null,""+b,null,null);
+
                 break;
 
             }
             case R.id.dismissdiarejbt:
             {
                 dismiss();
-                break;
             }
         }
     }
@@ -166,8 +168,6 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
                                     setstateofapplictionform(key,"0");
                                     seterrorinappliction(key);
                                     getQueuelist();
-                                    b = "Your application has been rejected because"+a;
-                                    smsManager.sendTextMessage("+91"+formPushPullCustomVAR.getPhoneNo(),null,""+b,null,null);
                                 }
                                 else {
                                     Log.e(TAG, "onComplete: failure:" + databaseError.getMessage() + ": "

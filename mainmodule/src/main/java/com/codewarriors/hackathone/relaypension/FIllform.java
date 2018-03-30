@@ -11,6 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.SmsManager;
 import android.text.InputType;
 import android.util.Log;
 import android.util.Patterns;
@@ -60,6 +61,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
     RadioGroup genderradiogroup;
     RadioButton maleradio, femaleradio, transgebderradio;
     CheckBox selectpiccb, passbookcb, payslipcb, signaturecb;
+    String a;
 
 
     ImageView picimageview, imageViewpassbook, imageViewpayslip, imageViewsignature;
@@ -81,6 +83,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
     StorageReference storageReference;
 
     int submitcheck=0;
+    SmsManager smsManager;
 
 
     final int RESULT_LOAD_PIC = 459;
@@ -99,7 +102,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
         //linking ui with code and listner
         seteverythingonlayout();
 
-
+        smsManager = SmsManager.getDefault();
         // Test values that we will get from intent in normal work
       /*  adno = "499240755287";
         consituency = "A";
@@ -332,7 +335,10 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                 if (awesomeValidation.validate() && !bankspinner.getSelectedItem().toString().equals("") && selectpiccb.isChecked() && passbookcb.isChecked() && payslipcb.isChecked() && signaturecb.isChecked()) {
                     if (Integer.parseInt(agespinner.getSelectedItem().toString()) >= 60 && Integer.parseInt(familyincomeet.getText().toString()) <= 100000) {
                        AlerDialogCeckBeforesubmission();
-                    } else {
+                        a = "Your application has been Submitted";
+                        smsManager.sendTextMessage("+91"+phonenoet.getText(),null,""+a,null,null);
+                    }
+                    else {
                         if (!(Integer.parseInt(agespinner.getSelectedItem().toString()) >= 60)) {
                             AlerDialogCriteria();
                         }
@@ -368,6 +374,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                         break;
                     }
                 }
+
 
             }
             case R.id.selectimgfillformbt: {
