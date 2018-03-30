@@ -2,8 +2,14 @@ package com.codewarriors.hackathone.relaypension.adminside.tabactivitypack;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -27,6 +33,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import static android.content.ContentValues.TAG;
+import static android.support.v4.provider.FontsContractCompat.FontRequestCallback.RESULT_OK;
 
 /*
  * Created by manpreet on 30/3/18.
@@ -46,6 +53,11 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
 
     DatabaseReference fromreadyref,rejectref;
 
+    SmsManager smsManager;
+    PendingIntent sendPI,delPI;
+    BroadcastReceiver sendBR,delBR;
+    String data,a,b;
+    int otp;
 
     public DialogForAdminReveify(@NonNull Activity activity, DatabaseReference fromreadyref, DatabaseReference rejectref, FormPushPullCustomVAR formPushPullCustomVAR) {
         super(activity);
@@ -69,6 +81,10 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
         radioButton1=findViewById(R.id.reasonreject1);
         radioButton2=findViewById(R.id.reasonreject2);
         radioButton3=findViewById(R.id.reasonreject3);
+
+        sendPI = PendingIntent.getBroadcast(activity,987,new Intent("SEND_SMS"),0);
+        delPI=PendingIntent.getBroadcast(activity,986, new Intent("DEL_SMS"),0);
+        smsManager = SmsManager.getDefault();
 
 
 
@@ -123,6 +139,7 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
                     Toast.makeText(getContext(),"Please select reason",Toast.LENGTH_LONG).show();
                 }
                 break;
+
             }
             case R.id.dismissdiarejbt:
             {
@@ -151,6 +168,9 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
                                     setstateofapplictionform(key,"0");
                                     seterrorinappliction(key);
                                     getQueuelist();
+                                    b = "Your application has been rejected";
+                                    smsManager.sendTextMessage("+91"+formPushPullCustomVAR.getPhoneNo(),null,""+b,sendPI,delPI);
+
 
 
                                 }

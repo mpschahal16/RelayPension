@@ -81,7 +81,7 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.custom_dia_forreadyform);
-       Button cancel = findViewById(R.id.acceptbt);
+        Button cancel = findViewById(R.id.acceptbt);
         Button reject = findViewById(R.id.rejectbt);
         // image view
         picimageview = findViewById(R.id.imageviewfillform);

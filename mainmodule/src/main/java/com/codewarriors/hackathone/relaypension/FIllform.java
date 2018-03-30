@@ -48,6 +48,8 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.net.URI;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -456,7 +458,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                     mViewdddd.setText("Uploading...");
                     mViewdddd.show(getSupportFragmentManager(),"");*/
 
-                    progressDialog.setTitle("Uploading...");
+                   progressDialog.setTitle("Uploading...");
                     progressDialog.show();
                     progressDialog.setCancelable(false);
                     StorageReference sre=storageReference.child("userpic");
