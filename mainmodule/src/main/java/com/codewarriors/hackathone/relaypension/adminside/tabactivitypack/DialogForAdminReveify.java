@@ -92,20 +92,20 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
                     case R.id.reasonreject1:
                     {
                         rejectreason="1";
-                        a="reson 1";
+                        a=" reson 1";
                         break;
                     }
                     case R.id.reasonreject2:
                     {
                         rejectreason="2";
-                        a="reason 2";
+                        a=" reason 2";
                         break;
                     }
                     case R.id.reasonreject3:
                     {
 
                         rejectreason="3";
-                        a="reason 3";
+                        a=" reason 3";
                         break;
                     }
                 }
