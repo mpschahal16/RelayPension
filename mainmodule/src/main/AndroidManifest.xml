@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -35,11 +35,11 @@
             android:label="@string/Sign_in" />
         <activity
             android:name=".Aadharverify"
-            android:label="@string/aadharverification"></activity>
+            android:label="@string/aadharverification" />
         <activity
             android:name=".FIllform"
-            android:label="@string/fillform"></activity>
-        <activity android:name=".Insertdatatostub"></activity>
+            android:label="@string/fillform" />
+        <activity android:name=".Insertdatatostub" />
         <activity android:name=".StubNoReturn" />
         <activity android:name=".EligibilityActivity" />
         <activity
@@ -50,13 +50,15 @@
             android:label="@string/admin" />
         <activity
             android:name=".adminside.listallconspack.ListAllConstituency"
-            android:label="@string/constituency"></activity>
+            android:label="@string/constituency" />
         <activity
             android:name=".adminside.tabactivitypack.TabactivityReadyQueue"
             android:label="@string/title_activity_tabready_queue"
-            android:theme="@style/AppTheme1.NoActionBar"></activity>
+            android:theme="@style/AppTheme1.NoActionBar" />
         <activity android:name=".adminside.Admin_review" />
-        <activity android:name=".reapplypack.reapply_fillform"></activity>
+        <activity android:name=".reapplypack.reapply_fillform" />
+        <activity android:name=".reapplypack.help_act" />
+        <activity android:name=".reapplypack.About_act"></activity>
     </application>
 
 </manifest>
