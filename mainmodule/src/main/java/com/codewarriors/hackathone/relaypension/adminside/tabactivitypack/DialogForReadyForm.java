@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -54,6 +55,8 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
 
    ProgressDialog progressDialog;
    //CatLoadingView mViewdddd;
+   SmsManager smsManager;
+   String a;
 
 
     private ArrayList<FormPushPullCustomVAR> queueformlist;
@@ -365,6 +368,9 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
                                 }
                             }
                         });
+
+                a = "Your application has been accepted";
+                smsManager.sendTextMessage("+91"+formPushPullCustomVAR.getPhoneNo(),null,""+a,null,null);
             }
 
             @Override
