@@ -1,7 +1,10 @@
 package com.codewarriors.hackathone.relaypension.adminside.tabactivitypack;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -33,6 +36,9 @@ public class ReadyFragment extends Fragment {
     private String constituency;
 
     ListView readylistview;
+
+
+    MyReceiver myReceiver;
 
 
 
@@ -67,6 +73,12 @@ public class ReadyFragment extends Fragment {
 
         listtodisplay=new ArrayList<>();
         allformslistinready=new ArrayList<>();
+
+        myReceiver=new MyReceiver();
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("codewarriors");
+        getActivity().registerReceiver(myReceiver, intentFilter);
 
       /*  revert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,13 +130,15 @@ public class ReadyFragment extends Fragment {
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                                 DialogForReadyForm dialogForReadyForm =new DialogForReadyForm(getActivity(),allformslistinready.get(i));
-                                dialogForReadyForm.show();
                                 dialogForReadyForm.setOnDismissListener(new DialogInterface.OnDismissListener() {
                                     @Override
                                     public void onDismiss(DialogInterface dialog) {
+                                       refresheverything();
 
                                     }
                                 });
+                                dialogForReadyForm.show();
+
 
                             }
                         });
@@ -164,6 +178,92 @@ public class ReadyFragment extends Fragment {
 
 
         return view;
+    }
+
+
+
+
+
+
+    public void refresheverything()
+    {
+        DatabaseReference referencetoready=rootreference.child("consituency/"+constituency+"/");
+        referencetoready.child("ready").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                listtodisplay.clear();
+                allformslistinready.clear();
+                if(dataSnapshot.exists())
+                {
+
+
+                    for(DataSnapshot dataSnapshotchild:dataSnapshot.getChildren()) {
+                        formPushPullCustomVAR=dataSnapshotchild.getValue(FormPushPullCustomVAR.class);
+                        allformslistinready.add(formPushPullCustomVAR);
+                        ApplicationFormListVAR applicationFormListVAR=new ApplicationFormListVAR(formPushPullCustomVAR.getFirstName()+" "+formPushPullCustomVAR.getMiddleName()
+                                +" "+formPushPullCustomVAR.getLastName(),formPushPullCustomVAR.getAge(),
+                                formPushPullCustomVAR.getConstituency(),formPushPullCustomVAR.getFormno());
+
+                        listtodisplay.add(applicationFormListVAR);
+                    }
+                    Collections.sort(listtodisplay, new Comparator<ApplicationFormListVAR>() {
+                        @Override
+                        public int compare(ApplicationFormListVAR applicationFormListVAR, ApplicationFormListVAR t1) {
+                            return applicationFormListVAR.getFno().compareToIgnoreCase(t1.getFno());
+                        }
+                    });
+
+                    Collections.sort(allformslistinready, new Comparator<FormPushPullCustomVAR>() {
+                        @Override
+                        public int compare(FormPushPullCustomVAR o1, FormPushPullCustomVAR o2) {
+                            return o1.getFormno().compareToIgnoreCase(o2.getFormno());
+                        }
+                    });
+
+                    applicationFormListAdapter.notifyDataSetChanged();
+
+                }
+                else
+                {
+                    Log.d("data","Ready is empty");
+                }
+
+                applicationFormListAdapter=new ApplicationFormListAdapter(getContext(),listtodisplay);
+                readylistview.setAdapter(applicationFormListAdapter);
+                applicationFormListAdapter.notifyDataSetChanged();
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+                Log.d("firebaseeeeee", databaseError.getMessage());
+
+
+            }
+        });
+
+
+    }
+
+
+
+    private class MyReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context arg0, Intent arg1) {
+            // TODO Auto-generated method stub
+
+            int datapassed = arg1.getIntExtra("data", 0);
+            if(datapassed==1) {
+
+              refresheverything();
+            }
+
+        }
+
     }
 
 

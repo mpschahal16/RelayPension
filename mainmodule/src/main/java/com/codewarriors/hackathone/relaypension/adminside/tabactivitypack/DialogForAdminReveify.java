@@ -54,6 +54,7 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
     DatabaseReference fromreadyref,rejectref;
 
     SmsManager smsManager;
+
     String a,b;
 
     public DialogForAdminReveify(@NonNull Activity activity, DatabaseReference fromreadyref, DatabaseReference rejectref, FormPushPullCustomVAR formPushPullCustomVAR) {
@@ -79,7 +80,11 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
         radioButton2=findViewById(R.id.reasonreject2);
         radioButton3=findViewById(R.id.reasonreject3);
 
-        smsManager = SmsManager.getDefault();
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("");
+
+
 
 
 
@@ -92,20 +97,20 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
                     case R.id.reasonreject1:
                     {
                         rejectreason="1";
-                        a=" reson 1";
+                        a="reson 1";
                         break;
                     }
                     case R.id.reasonreject2:
                     {
                         rejectreason="2";
-                        a=" reason 2";
+                        a="reason 2";
                         break;
                     }
                     case R.id.reasonreject3:
                     {
 
                         rejectreason="3";
-                        a=" reason 3";
+                        a="reason 3";
                         break;
                     }
                 }
@@ -131,20 +136,19 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
 
                     readytorejected(fromreadyref,rejectref,formPushPullCustomVAR.getAadharNo(),rejectreason);
 
+
                 }
                 else
                 {
                     Toast.makeText(getContext(),"Please select reason",Toast.LENGTH_LONG).show();
                 }
-                b = "Your application has been rejected because"+a;
-                smsManager.sendTextMessage("+91"+formPushPullCustomVAR.getPhoneNo(),null,""+b,null,null);
-
                 break;
 
             }
             case R.id.dismissdiarejbt:
             {
                 dismiss();
+                break;
             }
         }
     }
@@ -167,7 +171,21 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
                                     fromPath.child(key).setValue(null);
                                     setstateofapplictionform(key,"0");
                                     seterrorinappliction(key);
+                                    b = "Your application has been rejected because"+a;
+
+
+
+                                    ///added code
+
+
+                                    activity.sendBroadcast(new Intent().putExtra("data", 1).setAction("codewarriors"));
+
+
+
+                                    smsManager = SmsManager.getDefault();
+                                    smsManager.sendTextMessage("+91"+formPushPullCustomVAR.getPhoneNo(),null,""+b,null,null);
                                     getQueuelist();
+
                                 }
                                 else {
                                     Log.e(TAG, "onComplete: failure:" + databaseError.getMessage() + ": "

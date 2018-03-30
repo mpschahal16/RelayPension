@@ -119,8 +119,9 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
         //spinner in form layout
         agespinner = findViewById(R.id.agespinnerfillform);
         agespinner.setEnabled(false);
+        
 
-       smsManager= SmsManager.getDefault();
+
 
 
 
@@ -236,8 +237,11 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
                 DatabaseReference acceptref=FirebaseDatabase.getInstance().getReference("consituency/"+formPushPullCustomVAR.getConstituency()+"/"+
                         "accepted/");
                 readytoaccepted(fromreadyref,acceptref,formPushPullCustomVAR.getAadharNo());
-                a = "Your application has been accepted";
-                smsManager.sendTextMessage("+91"+formPushPullCustomVAR.getPhoneNo(),null,""+a,null,null);
+
+
+
+
+
 
                 //TEST VALUES
             /*  DatabaseReference fromreadyref=FirebaseDatabase.getInstance().getReference("consituency/"+"A"+"/"+
@@ -365,6 +369,8 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
                             }
                         });
 
+                a = "Your application has been accepted";
+                smsManager.sendTextMessage("+91"+"7500000308",null,""+a,null,null);
             }
 
             @Override
