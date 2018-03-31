@@ -489,7 +489,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menuforadminlogin, menu);
+        menuInflater.inflate(R.menu.menusignin, menu);
         return true;
     }
     @Override
@@ -498,6 +498,10 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
         switch (item.getItemId())
         {
+            case R.id.statusacti:
+            {
+                return true;
+            }
             case R.id.admin_login: {
                 startActivity(new Intent(SignIn.this, AdminLogin.class));
                 return true;

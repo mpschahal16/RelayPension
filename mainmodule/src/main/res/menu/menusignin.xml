@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:id="@+id/statusacti"
+        android:title="View Status" />
     <item android:id="@+id/admin_login"
         android:title="Admin Login" />
 
     <item android:id="@+id/help_actmenu"
-        android:title="Help" />
+        android:title="May I Help ?" />
 
     <item android:id="@+id/about_actmenu"
         android:title="About us" />

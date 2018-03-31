@@ -362,11 +362,13 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
                                     fromPath.child(key).setValue(null);
                                     setstateofapplictionform(key,"4");
                                     getQueuelist();
+                                    dismiss();
 
                                 }
                                 else {
                                     Log.e(TAG, "onComplete: failure:" + databaseError.getMessage() + ": "
                                             + databaseError.getDetails());
+                                    dismiss();
                                 }
                             }
                         });
