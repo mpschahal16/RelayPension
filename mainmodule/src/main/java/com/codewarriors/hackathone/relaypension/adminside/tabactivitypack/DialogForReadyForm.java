@@ -232,7 +232,7 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
             {
 
                 progressDialog.setMessage("Applying Changes");
-                progressDialog.setCancelable(false);
+                progressDialog.setCancelable(true);
                 progressDialog.show();
                 DatabaseReference fromreadyref=FirebaseDatabase.getInstance().getReference("consituency/"+formPushPullCustomVAR.getConstituency()+"/"+
                         "ready/");
@@ -426,7 +426,7 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
                                     setstateofapplictionform(key,"2");
 
 
-                                    //progressDialog.dismiss();
+                                    progressDialog.dismiss();
 
                                     //mViewdddd.dismiss();
                                     queueformlist.remove(0);

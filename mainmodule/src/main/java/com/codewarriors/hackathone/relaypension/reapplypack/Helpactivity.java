@@ -47,7 +47,6 @@ public class Helpactivity extends AppCompatActivity implements View.OnClickListe
 
     ProgressDialog progressDialog;
 
-    String aadharno, fno = "", messagestr;
 
 
     FirebaseStorage storage;
