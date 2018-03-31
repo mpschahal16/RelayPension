@@ -5,15 +5,16 @@ package com.codewarriors.hackathone.relaypension.customvariablesforparsing;
  */
 
 public class ReportCustomVAR {
-    private String aadharno,formno,messag;
+    private String aadharno,formno,messag,already;
 
     public ReportCustomVAR() {
     }
 
-    public ReportCustomVAR(String aadharno, String formno, String messag) {
+    public ReportCustomVAR(String aadharno, String formno, String messag,String already) {
         this.aadharno = aadharno;
         this.formno = formno;
         this.messag = messag;
+        this.already=already;
     }
 
 
@@ -27,5 +28,9 @@ public class ReportCustomVAR {
 
     public String getMessag() {
         return messag;
+    }
+
+    public String getAlready() {
+        return already;
     }
 }

@@ -173,7 +173,7 @@ public class RejectedFragment extends Fragment implements View.OnClickListener {
     private void savealltocsv() {
         if(allformslistinrejected.isEmpty())
         {
-            Toast.makeText(getContext(),"Ready is empty",Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(),"Rejected is empty",Toast.LENGTH_LONG).show();
         }
         else
         {

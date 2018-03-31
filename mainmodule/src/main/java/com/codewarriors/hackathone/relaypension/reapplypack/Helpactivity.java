@@ -136,7 +136,8 @@ public class Helpactivity extends AppCompatActivity implements View.OnClickListe
                                 String aadhrno=aadharnoet.getText().toString();
                                 String fno=fnoet.getText().toString();
                                 String mess=messageet.getText().toString();
-                                ReportCustomVAR reportCustomVAR=new ReportCustomVAR(aadhrno,fno,mess);
+                                String checked="yes";
+                                ReportCustomVAR reportCustomVAR=new ReportCustomVAR(aadhrno,fno,mess,checked);
 
 
 
@@ -179,6 +180,51 @@ public class Helpactivity extends AppCompatActivity implements View.OnClickListe
                             }
                             else
                             {
+
+                                String aadhrno=aadharnoet.getText().toString();
+                                String fno=fnoet.getText().toString();
+                                String mess=messageet.getText().toString();
+                                String checked="no";
+                                ReportCustomVAR reportCustomVAR=new ReportCustomVAR(aadhrno,fno,mess,checked);
+
+
+
+
+
+
+
+                                mDatabase.child(aadharnoet.getText().toString()).setValue(reportCustomVAR).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            aadharnoet.setText("");
+                                            fnoet.setText("");
+                                            messageet.setText("");
+                                            cbforalreadyuser.setChecked(false);
+                                            linearLayout.setVisibility(View.INVISIBLE);
+
+                                            progressDialog.dismiss();
+                                            AlertDialog.Builder builder = new AlertDialog.Builder(Helpactivity.this);
+                                            builder.setMessage("Complain submitted sucessfully")
+                                                    .setTitle("Sucess");
+
+                                            AlertDialog alertDialog=builder.create();
+                                            alertDialog.show();
+                                        }
+                                        else
+                                        {
+                                            Toast.makeText(getApplicationContext(), "Failed",Toast.LENGTH_LONG).show();
+                                            //Toasty.error(getApplicationContext(), "Failed", Toast.LENGTH_LONG,true).show();
+                                        }
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.d("errrrrr","ERROR "+e.getMessage());
+                                    }
+                                });
+
+
 
                             }
 
