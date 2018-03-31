@@ -922,9 +922,8 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
     public boolean onOptionsItemSelected(MenuItem item)
     {
 
-        switch (item.getItemId())
-        {
-            case R.id.sign_out:
+        switch (item.getItemId()) {
+            case R.id.sign_out: {
                 SharedPreferences.Editor editor = getSharedPreferences("codewarriors", MODE_PRIVATE).edit();
                 editor.putString("userid", null);
                 editor.apply();
@@ -935,6 +934,8 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                 finish();
                 startActivity(i);
                 return true;
+            }
+
 
 
             case R.id.about_actmenu:
