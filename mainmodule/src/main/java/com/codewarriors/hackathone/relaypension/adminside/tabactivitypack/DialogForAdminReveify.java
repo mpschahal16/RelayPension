@@ -97,20 +97,20 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
                     case R.id.reasonreject1:
                     {
                         rejectreason="1";
-                        a="reson 1";
+                        a=" reason 1";
                         break;
                     }
                     case R.id.reasonreject2:
                     {
                         rejectreason="2";
-                        a="reason 2";
+                        a=" reason 2";
                         break;
                     }
                     case R.id.reasonreject3:
                     {
 
                         rejectreason="3";
-                        a="reason 3";
+                        a=" reason 3";
                         break;
                     }
                 }
@@ -140,7 +140,7 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
                 }
                 else
                 {
-                    Toast.makeText(getContext(),"Please select reason",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"Please select a reason",Toast.LENGTH_LONG).show();
                 }
                 break;
 
@@ -301,7 +301,7 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
 
 
                     dismiss();
-                    Log.d("error","erreor in dialog while fetching queue");
+                    Log.d("error","error in dialog while fetching queue");
 
                 }
 
@@ -310,7 +310,7 @@ public class DialogForAdminReveify extends Dialog implements View.OnClickListene
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
-                Log.d("canceled","erreor in dialog while fetching queue");
+                Log.d("canceled","error in dialog while fetching queue");
 
             }
         });

@@ -193,7 +193,7 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
                    // mViewdddd.dismiss();
                     progressDialog.dismiss();
                    // Toasty.warning(getApplicationContext(),"Aadhar Already Used",Toast.LENGTH_LONG,true).show();
-                    Toast.makeText(getApplicationContext(),"Aadhar Already Used",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Aadhar Number Already Used",Toast.LENGTH_LONG).show();
 
                 }
                 else
@@ -210,7 +210,7 @@ public class Aadharverify extends AppCompatActivity implements View.OnClickListe
                               //  mViewdddd.dismiss();
                                 progressDialog.dismiss();
                                // Toasty.warning(getApplicationContext(), "Aadhar Does Not exsist in DB", Toast.LENGTH_LONG,true).show();
-                                Toast.makeText(getApplicationContext(),"Aadhar Does Not exist in DataBase",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"Aadhar Number Does Not exist in DataBase",Toast.LENGTH_LONG).show();
                             }
                         }
 

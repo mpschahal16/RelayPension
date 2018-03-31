@@ -173,13 +173,13 @@ public class RejectedFragment extends Fragment implements View.OnClickListener {
     private void savealltocsv() {
         if(allformslistinrejected.isEmpty())
         {
-            Toast.makeText(getContext(),"Rejected is empty",Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(),"Rejected Queue is empty",Toast.LENGTH_LONG).show();
         }
         else
         {
             ProgressDialog progressDialog=new ProgressDialog(getContext());
             progressDialog.setCancelable(false);
-            progressDialog.setMessage("Saving to .csv");
+            progressDialog.setMessage("Saving to .csv format");
             String dir="/sdcard/Relay_Pension/RejectedCSV";
             File defaultFile = new File(dir);
             if (!defaultFile.exists())
@@ -311,7 +311,7 @@ public class RejectedFragment extends Fragment implements View.OnClickListener {
                     fw.append(",");
 
 
-                    fw.append("Accepted");
+                    fw.append("Rejected");
                     fw.append(",");
 
 
@@ -331,7 +331,7 @@ public class RejectedFragment extends Fragment implements View.OnClickListener {
 
 
 
-            Toast.makeText(getContext(),"sucess",Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(),"Action Completed Successfully",Toast.LENGTH_LONG).show();
 
         }
     }

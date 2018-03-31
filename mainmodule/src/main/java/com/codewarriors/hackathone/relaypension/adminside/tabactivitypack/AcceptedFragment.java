@@ -173,13 +173,13 @@ public class AcceptedFragment extends Fragment implements View.OnClickListener {
     private void savealltocsv() {
         if(allformslistinaccepted.isEmpty())
         {
-           Toast.makeText(getContext(),"Ready is empty",Toast.LENGTH_LONG).show();
+           Toast.makeText(getContext(),"Accepted Queue is empty",Toast.LENGTH_LONG).show();
         }
         else
         {
             ProgressDialog progressDialog=new ProgressDialog(getContext());
             progressDialog.setCancelable(false);
-            progressDialog.setMessage("Saving to .csv");
+            progressDialog.setMessage("Saving to .csv format");
             String dir="/sdcard/Relay_Pension/AcceptedCSV";
             File defaultFile = new File(dir);
             if (!defaultFile.exists())
@@ -331,7 +331,7 @@ public class AcceptedFragment extends Fragment implements View.OnClickListener {
 
 
 
-            Toast.makeText(getContext(),"sucess",Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(),"Action Completed Successfully",Toast.LENGTH_LONG).show();
 
         }
     }

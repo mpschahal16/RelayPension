@@ -173,7 +173,7 @@ public class Insertdatatostub extends AppCompatActivity {
 
 
 
-                              Toast.makeText(getApplicationContext(),"Sucess",Toast.LENGTH_LONG).show();
+                              Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
                              // Toasty.success(getApplicationContext(), "Sucess", Toast.LENGTH_LONG,true).show();
                           }
                         else

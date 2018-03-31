@@ -160,7 +160,7 @@ public class DialogOfFormWithPdf extends Dialog {
         String state = Environment.getExternalStorageState();
         if (!Environment.MEDIA_MOUNTED.equals(state)) {
             //Toasty.error(getContext(),"Storage Not Mountd",Toast.LENGTH_LONG,true).show();
-            Toast.makeText(getContext(),"Storage Not Mountd",Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(),"Storage Not Mounted",Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -174,7 +174,7 @@ public class DialogOfFormWithPdf extends Dialog {
             Log.e("callPhone: ", "permission" );
         } else {
             ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
-            Toast.makeText(activity, "need permission", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "Permission Required", Toast.LENGTH_SHORT).show();
         }
 
 

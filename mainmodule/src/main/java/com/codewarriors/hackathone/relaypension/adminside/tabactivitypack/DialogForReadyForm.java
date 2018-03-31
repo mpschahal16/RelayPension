@@ -513,7 +513,7 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
                     //mViewdddd.dismiss();
 
                     dismiss();
-                    Log.d("error","erreor in dialog while fetching queue");
+                    Log.d("error","error in dialog while fetching queue");
 
                 }
 
@@ -522,7 +522,7 @@ public class DialogForReadyForm extends Dialog implements View.OnClickListener {
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
-                Log.d("canceled","erreor in dialog while fetching queue");
+                Log.d("canceled","error in dialog while fetching queue");
 
             }
         });

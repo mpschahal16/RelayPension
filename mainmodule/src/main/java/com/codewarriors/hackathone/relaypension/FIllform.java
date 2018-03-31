@@ -337,7 +337,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                 if (awesomeValidation.validate() && !bankspinner.getSelectedItem().toString().equals("") && selectpiccb.isChecked() && passbookcb.isChecked() && payslipcb.isChecked() && signaturecb.isChecked()) {
                     if (Integer.parseInt(agespinner.getSelectedItem().toString()) >= 60 && Integer.parseInt(familyincomeet.getText().toString()) <= 100000) {
                        AlerDialogCeckBeforesubmission();
-                        a = "Your application has been Submitted";
+                        a = "Your application has been Submitted and Your Form Number is: "+formno;
                         smsManager.sendTextMessage("+91"+phonenoet.getText(),null,""+a,null,null);
                     }
                     else {
@@ -714,7 +714,7 @@ public class FIllform extends AppCompatActivity implements View.OnClickListener 
                     })
                     .setCancelable(true)
                     .setIcon(android.R.drawable.ic_dialog_info)
-                    .setMessage("Please recheck everything\n No modifications after submission.");
+                    .setMessage("Please recheck everything. \n No modifications possible after submission.");
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
             submitcheck=submitcheck+1;
